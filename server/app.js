@@ -79,6 +79,7 @@ function relevantKeyword(word) {
     (LANGAUGES.includes(word) || DATABASES.includes(word) || METHODOLOGY.includes(word) || OTHERS.includes(word) || TOOLS.includes(word));
 }
 
+// Parse the user's input and store in the database
 app.get('/parse', async (req, res) => {
     console.log(req.query);
     const {userInput, jobTitle, companyName, companyLocation, dateOfSubmission, companyURL} = req.query;
@@ -90,6 +91,54 @@ app.get('/parse', async (req, res) => {
     let results = await collection.insertOne({companyName, jobTitle, companyLocation, dateOfSubmission, companyURL, wordMap, userInput})
     
     res.send(wordMap);
-})
+});
 
+
+// Retrieve all documents but only keeping the wordMap
+app.post('/global-statistics', async (req, res) => {
+    let collection = await conn.db("company").collection('information');
+    const agg = [
+        {
+          '$project': {
+            '_id': 0, 
+            'wordMap': 1
+          }
+        }
+      ];
+
+    let data = await collection.aggregate(agg).toArray();
+    let totalMap =  {}
+
+    for (let i = 0; i < data.length; i++){
+        let currentData = data[i]
+        console.log(currentData);
+        for (const wordMap of Object.values(currentData)){
+            for (const [key,value] of Object.entries(wordMap)){
+                let currentWordCount = totalMap[key]
+                let count = currentWordCount ? currentWordCount : 0;
+                totalMap[key] = count + value
+
+            }
+        }
+    }
+
+    const sortedDict = Object.fromEntries(
+        Object.entries(totalMap).sort(([,a],[,b]) => b-a)
+    );
+    console.log('totalMap===', sortedDict);
+    res.send({sortedDict, length: data.length});
+});
+
+// Handling shutdown server
+// Error Handling
+process.on("SIGINT", async () => {
+    try{
+      await client.close();     // Close MongoDB connection
+      console.log("MongoDB server closed successfully");
+      process.exit(0);      // No Error Exit
+    } catch (error){
+      console.log("Error occurred during shutdown");
+      process.exit(1);    // Fatal Error Exit
+    }
+  });
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
