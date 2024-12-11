@@ -11,7 +11,7 @@
     width: 75vb;
     height: 30vh;
     max-height: 50vh;
-    min-width: 30%;
+    min-width: 30vb;
     max-width: 100vb;
     min-height: 10vh;
 }
@@ -25,8 +25,8 @@
 .result{
     display: flex;
     flex-direction: column;
-    width: 85%;
-    height: 70vh;
+    width: 50%;
+    height: 40vh;
     flex-wrap: wrap;
     gap: 10px;
 }

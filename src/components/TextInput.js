@@ -36,6 +36,14 @@ function TextInput() {
         
     }
 
+    const resetFields = () => {
+        setUserInput('');
+        setCompanyName('');
+        setCompanyLocation('');
+        setCompanyURL('');
+        setDateOfSubmission(new Date());
+
+    }
   return (
     <div className='text-container'>
         
@@ -73,6 +81,12 @@ function TextInput() {
                         selected={dateOfSubmission}
                         onChange={(date) => setDateOfSubmission(date)} 
                      />
+
+                     <button 
+                        onClick={resetFields}
+                    >
+                        Reset Fields
+                    </button>
                 </div>
             </div>
 
