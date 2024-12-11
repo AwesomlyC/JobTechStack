@@ -23,13 +23,14 @@ const STOPWORDS = ['i','me','my','myself','we','our','ours','ourselves','you','y
     'should','now'
 ];
 const LANGAUGES = ['python', 'c', 'java', 'react', 'reactjs', 'javascript', 'typescript','php', 'ruby', 'swift', 'r', 'html', 'css',
-     'html5', 'git', 'vuejs', 'vue', 'angularjs', 'angular'
+     'html5', 'git', 'vuejs', 'vue', 'angularjs', 'angular', 'nodejs', 'node'
     ]
 const DATABASES = ['nosql', 'mysql', 'postgresql', 'mongodb', 'cassandra', 'spark', 'sparks','sql', 'sqlite', 'msql','databricks', 
-    'databrick', 'azure', 'redis','apache','amazon','dynamodb', 'dynamo', 'couchbase', 'neo4j', 'graphql', 'aurora', 'rds', 'eks' ]
+    'databrick', 'azure', 'redis','apache','amazon','dynamodb', 'dynamo', 'couchbase', 'neo4j', 'graphql', 'aurora', 'rds', 'eks', 
+    'mssql',  'oracle', 'cloud']
 const METHODOLOGY = ['agile', 'scrum']
-const OTHERS = ['rest' ,'restful', 'restfuls', 'api', 'apis', 'xml', 'json', 'aws', 'microservices', 'microservice', 'spring', 'boot']
-const TOOLS = ['postman', 'jira', 'selenium', 'docker', 'kubernetes', 'kubernete',  'lambda' ]
+const OTHERS = ['rest' ,'restful', 'restfuls', 'api', 'apis', 'xml', 'json', 'aws', 'microservices', 'microservice', 'spring', 'boot', 'django', 'flask']
+const TOOLS = ['postman', 'jira', 'selenium', 'docker', 'kubernetes', 'kubernete',  'lambda', 'devops', 'devop' ]
 
 
   app.get('/', (req, res) => {
