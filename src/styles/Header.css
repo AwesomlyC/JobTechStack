@@ -1,0 +1,27 @@
+
+.navbar{
+    width: 100%;
+    display: flex;
+    text-align: center;
+    background-color: lightcoral;
+    position: static;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vh;
+    z-index: 1000;
+}
+
+
+.navbar-button, a{
+    margin: 0 1rem 0 1rem;
+}
+
+.navbar-button{
+    border-radius: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: blue;
+    font-size: larger;
+}

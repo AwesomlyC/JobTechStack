@@ -1,0 +1,32 @@
+
+.text-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.text-input{
+    width: 75%;
+    height: 30vh;
+    max-height: 50vh;
+    max-width: 75%;
+    min-width: 30%;
+    min-height: 10vh;
+}
+
+.text-submit-button{
+    background-color: lightgreen;
+    border-radius: 10px;
+    font-size: larger;
+}
+
+.result{
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    height: 70vh;
+    flex-wrap: wrap;
+    gap: 10px;
+}
