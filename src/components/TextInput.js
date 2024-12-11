@@ -9,27 +9,37 @@ function TextInput() {
     const [userInput, setUserInput] = useState('');
     const [wordMap, setWordMap] = useState({});
     const [companyName, setCompanyName] = useState('');
-    const [companyLocation, setCompanyLocation] = useState(''); 
+    const [companyLocation, setCompanyLocation] = useState('Remote'); 
     const [dateOfSubmission, setDateOfSubmission] = useState(new Date());   // Calendar Icon
+    const [jobTitle, setJobTitle] = useState('');   // Calendar Icon
+
     const [companyURL, setCompanyURL] = useState(''); // optional
 
     const submitChanges = () => {
 
+        if (!userInput || !companyName || !companyLocation || !jobTitle){
+            console.log(userInput ,companyName ,companyLocation,jobTitle) 
+            return;
+        }
+
         const data = {
             userInput,
-            companyName,
-            companyLocation,
+            companyName: companyName.trimEnd(),
+            jobTitle: jobTitle.trimEnd(),
+            companyLocation: companyLocation.trimEnd(),
             dateOfSubmission,
-            companyURL
+            companyURL: companyURL.trimEnd()
         }
+
+        
         axios.get(
             `${process.env.REACT_APP_SERVER_URL}/parse`,
             { params: data }
             
         ).then ( res => {
             console.log("Returned Data -->", res.data);
-            console.log(typeof res.data);
             setWordMap(res.data);
+            resetFields();
         }).catch(error => {
             console.error("error occurred:", error);
         });
@@ -39,7 +49,8 @@ function TextInput() {
     const resetFields = () => {
         setUserInput('');
         setCompanyName('');
-        setCompanyLocation('');
+        setCompanyLocation('Remote');
+        setJobTitle('');
         setCompanyURL('');
         setDateOfSubmission(new Date());
 
@@ -54,8 +65,9 @@ function TextInput() {
                     value={userInput}
                     onChange={(e) => setUserInput(e.target.value)}
                 />
-                <div className='company-information'>
+                <div className='company-container'>
                     <input 
+                        className='company-information'
                         type='text'
                         value={companyName}
                         onChange={(e) => setCompanyName(e.target.value)}
@@ -63,17 +75,37 @@ function TextInput() {
                         required
                     />
                     <input 
+                        className='company-information'
+                        type='text'
+                        value={jobTitle}
+                        onChange={(e) => setJobTitle(e.target.value.trimEnd())}
+                        placeholder='Job Title'
+                        required
+                    />
+                    {/* <input 
+                        className='company-information'
                         type='text'
                         value={companyLocation}
                         onChange={(e) => setCompanyLocation(e.target.value)}
                         placeholder='Company Location'
                         required
-                    />
+                    /> */}
 
+                    <select
+                        className='company-information'
+                        value={companyLocation}
+                        onChange={(e) => setCompanyLocation(e.target.value.trimEnd())}
+                    >
+                        <option value='Remote'>Remote</option>
+                        <option value='United_States'>United States</option>
+                        <option value='California'>California</option>
+
+                    </select>
                     <input 
+                        className='company-information'
                         type='text'
                         value={companyURL}
-                        onChange={(e) => setCompanyURL(e.target.value)}
+                        onChange={(e) => setCompanyURL(e.target.value.trimEnd())}
                         placeholder='URL'
                     />
 
@@ -84,6 +116,7 @@ function TextInput() {
 
                      <button 
                         onClick={resetFields}
+                        className='text-reset-button'
                     >
                         Reset Fields
                     </button>

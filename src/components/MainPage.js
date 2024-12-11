@@ -3,8 +3,6 @@ import TextInput from './TextInput'
 function MainPage() {
   return (
     <div>
-        
-        MainPage
         <TextInput />
 
     </div>

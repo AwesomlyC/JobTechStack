@@ -80,13 +80,13 @@ function relevantKeyword(word) {
 
 app.get('/parse', async (req, res) => {
     console.log(req.query);
-    const {userInput, companyName, companyLocation, dateOfSubmission, companyURL} = req.query;
+    const {userInput, jobTitle, companyName, companyLocation, dateOfSubmission, companyURL} = req.query;
     const wordMap = countRepeatedWords(userInput);
     console.log("WordMap:", wordMap);
     
     let collection = await conn.db("company").collection('information');
     
-    let results = await collection.insertOne({companyName, companyLocation, dateOfSubmission, companyURL, wordMap, userInput})
+    let results = await collection.insertOne({companyName, jobTitle, companyLocation, dateOfSubmission, companyURL, wordMap, userInput})
     
     res.send(wordMap);
 })
