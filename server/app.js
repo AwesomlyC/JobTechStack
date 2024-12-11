@@ -16,13 +16,13 @@ app.get('/', (req, res) => {
     res.send('Hello World!')
 });
 function countRepeatedWords(sentence) {
-    const stopWords = ["is", "a", "for", "the", "of", "and", "to", "in", "on", "with", "at", "by"];
+    const stopWords = ['i','me','my','myself','we','our','ours','ourselves','you','your','yours','yourself','yourselves','he','him','his','himself','she','her','hers','herself','it','its','itself','they','them','their','theirs','themselves','what','which','who','whom','this','that','these','those','am','is','are','was','were','be','been','being','have','has','had','having','do','does','did','doing','a','an','the','and','but','if','or','because','as','until','while','of','at','by','for','with','about','against','between','into','through','during','before','after','above','below','to','from','up','down','in','out','on','off','over','under','again','further','then','once','here','there','when','where','why','how','all','any','both','each','few','more','most','other','some','such','no','nor','not','only','own','same','so','than','too','very','s','t','can','will','just','don','should','now'];    console.log('called parse request');
 
     let words = sentence
-    .toLowerCase()
-    .replace(/[^\w\s]/g, '')
-    .split(/\s/)
-    .filter(word => !stopWords.includes(word) && word.length > 2);
+        .toLowerCase()
+        .replace(/[^\w\s]/g, '')
+        .split(/\s/)
+        .filter(word => !stopWords.includes(word) && word.length > 2);
     let wordMap = {};
 
     for (let i = 0; i < words.length; i++) {
@@ -37,19 +37,13 @@ function countRepeatedWords(sentence) {
 }
 
 app.get('/parse', (req, res) => {
-    const stopWords = ["is", "a", "for", "the", "of", "and", "to", "in", "on", "with", "at", "by"];
-    console.log('called parse request');
     console.log(req.query);
     const {userInput} = req.query;
 
-    const words = userInput.toLowerCase().split(/\s/);
-    const filteredWords = words.filter(word => !stopWords.includes(word) && word.length > 2);
-    // const words = userInput.split(' ');
+    // console.log(words, words.length);
+    // console.log(filteredWords, filteredWords.length);
 
-    console.log(words, words.length);
-    console.log(filteredWords, filteredWords.length);
-
-    console.log(countRepeatedWords(userInput));
+    // console.log(countRepeatedWords(userInput));
     const wordMap = countRepeatedWords(userInput);
     res.send(wordMap);
 })

@@ -1,13 +1,16 @@
 import React, {useState} from 'react'
 import axios from 'axios'
+import DatePicker from "react-datepicker";
 import '../styles/TextInput.css'
+import 'react-datepicker/dist/react-datepicker.css'
+
 function TextInput() {
 
     const [userInput, setUserInput] = useState('');
     const [wordMap, setWordMap] = useState({});
     const [companyName, setCompanyName] = useState('');
     const [companyLocation, setCompanyLocation] = useState(''); 
-    const [dateOfSubmission, setDateOfSubmission] = useState('');   // Calendar Icon
+    const [dateOfSubmission, setDateOfSubmission] = useState(new Date());   // Calendar Icon
     const [companyURL, setCompanyURL] = useState(''); // optional
 
     const submitChanges = () => {
@@ -35,12 +38,43 @@ function TextInput() {
 
   return (
     <div className='text-container'>
-        <textarea 
-            className='text-input'
-            type="text"
-            value={userInput}
-            onChange={(e) => setUserInput(e.target.value)}
-        />
+        
+            <div className='user-input-field'>
+                <textarea 
+                    className='text-input'
+                    type="text"
+                    value={userInput}
+                    onChange={(e) => setUserInput(e.target.value)}
+                />
+                <div className='company-information'>
+                    <input 
+                        type='text'
+                        value={companyName}
+                        onChange={(e) => setCompanyName(e.target.value)}
+                        placeholder='Company Name'
+                        required
+                    />
+                    <input 
+                        type='text'
+                        value={companyLocation}
+                        onChange={(e) => setCompanyLocation(e.target.value)}
+                        placeholder='Company Location'
+                        required
+                    />
+
+                    <input 
+                        type='text'
+                        value={companyURL}
+                        onChange={(e) => setCompanyURL(e.target.value)}
+                        placeholder='URL'
+                    />
+
+                    <DatePicker 
+                        selected={dateOfSubmission}
+                        onChange={(date) => setDateOfSubmission(date)} 
+                     />
+                </div>
+            </div>
 
         <button 
             className='text-submit-button'
