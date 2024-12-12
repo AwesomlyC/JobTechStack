@@ -159,6 +159,11 @@ app.post('/global-statistics', async (req, res) => {
     res.send({sortedDict, length: data.length, relevantInformation: totalCompany});
 });
 
+app.get('/global-statistics', async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.send("This is the global-statistics-page")
+}
+
 // Handling shutdown server
 // Error Handling
 process.on("SIGINT", async () => {
