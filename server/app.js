@@ -9,10 +9,10 @@ const dotenv = require('dotenv');
 
 // app.use(cors());
 
-app.use(cors({
-    origin: 'http://localhost:3000', // Replace with your allowed origin
-    methods: ["GET", "POST"],
-}));
+// app.use(cors({
+//     origin: 'http://localhost:3000', // Replace with your allowed origin
+//     methods: ["GET", "POST"],
+// }));
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -51,7 +51,7 @@ const TOOLS = ['postman', 'jira', 'selenium', 'docker', 'kubernetes', 'kubernete
   app.get('/', (req, res) => {
     console.log("WORKS");
     res.header("Access-Control-Allow-Origin", "*");
-    res.send('Hello World! v1.2')
+    res.send('Hello World! v1.3')
 });
 try{
   const connectionString = process.env.ATLAS_URI || "";
