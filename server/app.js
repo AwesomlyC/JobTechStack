@@ -162,7 +162,7 @@ app.post('/global-statistics', async (req, res) => {
 app.get('/global-statistics', async (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.send("This is the global-statistics-page")
-}
+});
 
 // Handling shutdown server
 // Error Handling
