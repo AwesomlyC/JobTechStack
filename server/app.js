@@ -16,7 +16,9 @@ const dotenv = require('dotenv');
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Credentials", "true");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   next();
 });
 
@@ -51,14 +53,12 @@ const TOOLS = ['postman', 'jira', 'selenium', 'docker', 'kubernetes', 'kubernete
   app.get('/', (req, res) => {
     console.log("WORKS");
     res.header("Access-Control-Allow-Origin", "*");
-    res.send('Hello World! v1.3')
+    res.send('Hello World! v1.4')
 });
-try{
-  const connectionString = process.env.ATLAS_URI || "";
-  const client = new MongoClient(connectionString);
-} catch(error) {
-  console.error(process.env.ATLAS_URI, error);
-}
+
+const connectionString = process.env.ATLAS_URI || "";
+const client = new MongoClient(connectionString);
+
 let conn;
 
 async function connection() {
