@@ -11,7 +11,7 @@ function Header() {
       className='navbar'
     >
 
-      <a href={`${process.env.REACT_APP_HOME_PAGE}`}><strong>JobTechStack</strong></a>
+      <a href='/'><strong>JobTechStack</strong></a>
       <button
         className='navbar-button'
         onClick={() => {navigate('/global-statistics')}}
