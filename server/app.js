@@ -50,7 +50,8 @@ const TOOLS = ['postman', 'jira', 'selenium', 'docker', 'kubernetes', 'kubernete
 
   app.get('/', (req, res) => {
     console.log("WORKS");
-    res.send('Hello World! v1.1')
+    res.header("Access-Control-Allow-Origin", "*");
+    res.send('Hello World! v1.2')
 });
 try{
   const connectionString = process.env.ATLAS_URI || "";
@@ -99,6 +100,8 @@ function relevantKeyword(word) {
 
 // Parse the user's input and store in the database
 app.get('/parse', async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+
     console.log(req.query);
     const {userInput, jobTitle, companyName, companyLocation, dateOfSubmission, companyURL} = req.query;
     const wordMap = countRepeatedWords(userInput);
@@ -114,6 +117,8 @@ app.get('/parse', async (req, res) => {
 
 // Retrieve all documents but only keeping the wordMap
 app.post('/global-statistics', async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+
     let collection = await conn.db("company").collection('information');
     const agg = [
         {
