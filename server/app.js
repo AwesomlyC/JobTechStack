@@ -52,8 +52,8 @@ const TOOLS = ['postman', 'jira', 'selenium', 'docker', 'kubernetes', 'kubernete
 
   app.get('/', (req, res) => {
     console.log("WORKS");
-    res.header("Access-Control-Allow-Origin", "*");
-    res.send('Hello World! v1.4')
+    // res.header("Access-Control-Allow-Origin", "*");
+    res.send('Hello World! v1.5')
 });
 
 const connectionString = process.env.ATLAS_URI || "";
@@ -64,6 +64,7 @@ let conn;
 async function connection() {
     try {
         conn = await client.connect();
+        return conn;
       } catch(e) {
         console.error(e);
       }
@@ -123,15 +124,16 @@ app.get('/parse', async (req, res) => {
 // Retrieve all documents but only keeping the wordMap
 app.post('/global-statistics', async (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
-
+  let collection;
+  let conn;
   try{
     if (conn === null){
-      await connection();
+      conn = await connection();
     }
-    let collection = await conn.db("company").collection('information');
+    collection = await conn.db("company").collection('information');
   } catch (error) {
     console.error("ERROR OCCURRED DURING POST", error);
-    res.status(404).send("FAILED REQUEST");
+    res.status(400).send("FAILED REQUEST");
   }
     const agg = [
         {
