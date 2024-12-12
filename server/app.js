@@ -7,11 +7,12 @@ const { MongoClient, ServerApiVersion } = require('mongodb');
 const dotenv = require('dotenv');
 // dotenv.config({path: './../.env'});
 
-app.use(cors());
+// app.use(cors());
 
 app.use(cors({
-    origin: 'http://localhost:3000' // Replace with your allowed origin
-  }));
+    origin: 'http://localhost:3000', // Replace with your allowed origin
+    methods: ["GET", "POST"],
+}));
 
 const STOPWORDS = ['i','me','my','myself','we','our','ours','ourselves','you','your','yours','yourself','yourselves','he','him',
     'his','himself','she','her','hers','herself','it','its','itself','they','them','their','theirs','themselves','what','which',
@@ -45,9 +46,12 @@ const TOOLS = ['postman', 'jira', 'selenium', 'docker', 'kubernetes', 'kubernete
     console.log("WORKS");
     res.send('Hello World!')
 });
-
-const connectionString = process.env.ATLAS_URI || "";
-const client = new MongoClient(connectionString);
+try{
+  const connectionString = process.env.ATLAS_URI || "";
+  const client = new MongoClient(connectionString);
+} catch(error) {
+  console.error(process.env.ATLAS_URI, error);
+}
 let conn;
 
 async function connection() {
