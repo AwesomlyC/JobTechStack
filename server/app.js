@@ -107,10 +107,15 @@ app.get('/parse', async (req, res) => {
     const wordMap = countRepeatedWords(userInput);
     console.log("WordMap:", wordMap);
     
-    let collection = await conn.db("company").collection('information');
-    
-    let results = await collection.insertOne({companyName, jobTitle, companyLocation, dateOfSubmission, companyURL, wordMap, userInput})
-    
+    try{
+      if (conn ===  null){
+        await connection();
+      }
+      let collection = await conn.db("company").collection('information');
+      let results = await collection.insertOne({companyName, jobTitle, companyLocation, dateOfSubmission, companyURL, wordMap, userInput})
+    }  catch (error) {
+      console.error("ERROR OCCURRED DURING PARSE", error);
+    }
     res.send(wordMap);
 });
 
@@ -119,7 +124,15 @@ app.get('/parse', async (req, res) => {
 app.post('/global-statistics', async (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
 
+  try{
+    if (conn === null){
+      await connection();
+    }
     let collection = await conn.db("company").collection('information');
+  } catch (error) {
+    console.error("ERROR OCCURRED DURING POST", error);
+    res.status(404).send("FAILED REQUEST");
+  }
     const agg = [
         {
           '$project': {
