@@ -14,6 +14,12 @@ app.use(cors({
     methods: ["GET", "POST"],
 }));
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 const STOPWORDS = ['i','me','my','myself','we','our','ours','ourselves','you','your','yours','yourself','yourselves','he','him',
     'his','himself','she','her','hers','herself','it','its','itself','they','them','their','theirs','themselves','what','which',
     'who','whom','this','that','these','those','am','is','are','was','were','be','been','being','have','has','had','having','do',
@@ -44,7 +50,7 @@ const TOOLS = ['postman', 'jira', 'selenium', 'docker', 'kubernetes', 'kubernete
 
   app.get('/', (req, res) => {
     console.log("WORKS");
-    res.send('Hello World!')
+    res.send('Hello World! v1.1')
 });
 try{
   const connectionString = process.env.ATLAS_URI || "";
