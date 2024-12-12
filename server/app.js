@@ -53,7 +53,7 @@ const TOOLS = ['postman', 'jira', 'selenium', 'docker', 'kubernetes', 'kubernete
   app.get('/', (req, res) => {
     console.log("WORKS");
     // res.header("Access-Control-Allow-Origin", "*");
-    res.send('Hello World! v1.5')
+    res.send('Hello World! v1.6')
 });
 
 const connectionString = process.env.ATLAS_URI || "";
@@ -107,10 +107,10 @@ app.get('/parse', async (req, res) => {
     const {userInput, jobTitle, companyName, companyLocation, dateOfSubmission, companyURL} = req.query;
     const wordMap = countRepeatedWords(userInput);
     console.log("WordMap:", wordMap);
-    
+    let conn;
     try{
-      if (conn ===  null){
-        await connection();
+      if (!conn || conn ===  null){
+        conn = await connection();
       }
       let collection = await conn.db("company").collection('information');
       let results = await collection.insertOne({companyName, jobTitle, companyLocation, dateOfSubmission, companyURL, wordMap, userInput})
@@ -127,7 +127,7 @@ app.post('/global-statistics', async (req, res) => {
   let collection;
   let conn;
   try{
-    if (conn === null){
+    if (!conn || conn === null){
       conn = await connection();
     }
     collection = await conn.db("company").collection('information');
