@@ -6,6 +6,7 @@ function GlobalStatisticsPage() {
     const [globalStatistics, setGlobalStatistics] = useState({});
     const [hasRetrieve, setHasRetrieve] = useState(false);
     const [numberOfDocuments, setNumberOfDocuments] = useState(0);
+    const [relevantCompanyInformation, setRelevantCompanyInformation] = useState([]);
 
 
     useEffect( () => {
@@ -17,9 +18,9 @@ function GlobalStatisticsPage() {
             await axios.post(
               `${process.env.REACT_APP_SERVER_URL}/global-statistics`,
             ).then(response => { 
-              console.log(response.data);
               setGlobalStatistics(response.data.sortedDict);
               setNumberOfDocuments(response.data.length);
+              setRelevantCompanyInformation(response.data.relevantInformation);
               setHasRetrieve(true);
             }).catch(error => {
               console.error("Error when retrieving global statistics ---",  error);
@@ -38,6 +39,36 @@ function GlobalStatisticsPage() {
                       </div>
                   )}
               </div>
+          </div>
+
+          <div className='table-job-information'>
+                <table>
+                  <tr className='table-headers'>
+                    <th className='table-number'>No.</th>
+                    <th className='table-name'>Company Name</th>
+                    <th className='table-title'>Job Title</th>
+                    <th className='table-location'>Location</th>
+                    <th className='table-date'>Date Submitted</th>
+                    <th className='table-url'>URL</th>
+                  </tr>
+                  {relevantCompanyInformation.map( 
+                    (info, index) => (
+                      <tr key={index} className='table-result-row'>
+                        <th>{index + 1}</th>
+                        <th>{info.companyName}</th>
+                        <th>{info.jobTitle}</th>
+                        <th>{info.companyLocation === "United_States" ? "United States" : info.companyLocation}</th>
+                        <th>{info.dateOfSubmission}</th>
+                        <th>
+                          <a href={info.companyURL} className='row-url'>
+                            {info.companyURL}
+                          </a>
+                        </th>
+                      </tr>
+                    )
+                    )}
+                </table>
+
           </div>
       </div>
   )

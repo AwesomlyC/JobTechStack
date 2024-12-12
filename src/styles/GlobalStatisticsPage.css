@@ -12,3 +12,64 @@ h1{
     font-size: 64px;
 }
 
+.table-job-information{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    
+}
+.table-number{
+    width: 4rem;
+}
+
+.table-result-row{
+    text-align: left;
+}
+
+
+
+.table-name{
+    width: 20rem;
+}
+
+.table-title{
+    width: 25rem;
+}
+
+.table-location{
+    width: 10rem;
+}
+
+.table-date{
+    width: 15rem;
+}
+
+.row-url{
+    font-size:small;
+    display: inline-block;
+    width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+tr.table-result-row>th{
+    padding-bottom: 10px;
+}
+
+tr:nth-child(odd){
+    background-color: #EB5E66;
+}
+
+table{
+    height: min(100%, 75vh);
+    display: inline-block;
+    overflow: auto;
+    background-color: lightseagreen
+}
+
+.table-headers{
+    background-color: yellow !important;
+    font-size: larger;
+}

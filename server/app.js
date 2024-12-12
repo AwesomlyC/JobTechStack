@@ -22,15 +22,23 @@ const STOPWORDS = ['i','me','my','myself','we','our','ours','ourselves','you','y
     'most','other','some','such','no','nor','not','only','own','same','so','than','too','very','s','t','can','will','just','don',
     'should','now'
 ];
+
 const LANGAUGES = ['python', 'c', 'java', 'react', 'reactjs', 'javascript', 'typescript','php', 'ruby', 'swift', 'r', 'html', 'css',
-     'html5', 'git', 'vuejs', 'vue', 'angularjs', 'angular', 'nodejs', 'node'
+     'html5', 'git', 'vuejs', 'vue', 'angularjs', 'angular', 'nodejs', 'node', 'tailwind', 'j2ee', 'playwright', 'bootstrap', 'foundation',
+     'materialize', 'rust', 'css3', 'obj'
     ]
-const DATABASES = ['nosql', 'mysql', 'postgresql', 'mongodb', 'cassandra', 'spark', 'sparks','sql', 'sqlite', 'msql','databricks', 
+
+const DATABASES = ['nosql', 'mysql', 'postgresql', 'postgres', 'mongodb', 'cassandra', 'spark', 'sparks','sql', 'sqlite', 'msql','databricks', 
     'databrick', 'azure', 'redis','apache','amazon','dynamodb', 'dynamo', 'couchbase', 'neo4j', 'graphql', 'aurora', 'rds', 'eks', 
-    'mssql',  'oracle', 'cloud']
-const METHODOLOGY = ['agile', 'scrum']
-const OTHERS = ['rest' ,'restful', 'restfuls', 'api', 'apis', 'xml', 'json', 'aws', 'microservices', 'microservice', 'spring', 'boot', 'django', 'flask']
-const TOOLS = ['postman', 'jira', 'selenium', 'docker', 'kubernetes', 'kubernete',  'lambda', 'devops', 'devop' ]
+    'mssql',  'oracle', 'cloud', 'gcp']
+
+const METHODOLOGY = ['agile', 'scrum', 'sdlc', 'qa', 'seo',]
+
+const OTHERS = ['rest' ,'restful', 'restfuls', 'api', 'apis', 'xml', 'json', 'aws', 'microservices', 'microservice', 'spring', 'boot', 
+  'django', 'flask', 'ec2', 'ci', 'cd', 'cicd', 'vpc', 's3', 'jquery', 'ajax', 'etl', 'tomcat']
+
+const TOOLS = ['postman', 'jira', 'selenium', 'docker', 'kubernetes', 'kubernete',  'lambda', 'devops', 'devop', 'terraform',
+   'cloudformation', 'bash', 'linux', 'macos','unix', 'windows', 'macintosh', 'ansible', 'jest', 'mocha', 'informatica', 'tabkeau']
 
 
   app.get('/', (req, res) => {
@@ -101,32 +109,44 @@ app.post('/global-statistics', async (req, res) => {
         {
           '$project': {
             '_id': 0, 
-            'wordMap': 1
+            "companyName": 1,
+            "jobTitle": 1,
+            "companyLocation": 1,
+            "dateOfSubmission": 1,
+            "companyURL": 1,
+            "wordMap": 1
           }
         }
       ];
 
     let data = await collection.aggregate(agg).toArray();
     let totalMap =  {}
-
+    let totalCompany = []
     for (let i = 0; i < data.length; i++){
         let currentData = data[i]
-        console.log(currentData);
-        for (const wordMap of Object.values(currentData)){
-            for (const [key,value] of Object.entries(wordMap)){
-                let currentWordCount = totalMap[key]
-                let count = currentWordCount ? currentWordCount : 0;
-                totalMap[key] = count + value
-
-            }
+        console.log(currentData.wordMap);
+        console.log("CurrentData:", currentData);
+        const relevantInformation = {
+          companyName: currentData.companyName,
+          jobTitle: currentData.jobTitle,
+          companyLocation: currentData.companyLocation,
+          dateOfSubmission: currentData.dateOfSubmission,
+          companyURL: currentData.companyURL,
         }
+        totalCompany.push(relevantInformation);
+          for (const [key,value] of Object.entries(currentData.wordMap)){
+              let currentWordCount = totalMap[key]
+              let count = currentWordCount ? currentWordCount : 0;
+              totalMap[key] = count + value
+
+          }
     }
 
     const sortedDict = Object.fromEntries(
         Object.entries(totalMap).sort(([,a],[,b]) => b-a)
     );
     console.log('totalMap===', sortedDict);
-    res.send({sortedDict, length: data.length});
+    res.send({sortedDict, length: data.length, relevantInformation: totalCompany});
 });
 
 // Handling shutdown server

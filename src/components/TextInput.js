@@ -24,11 +24,11 @@ function TextInput() {
 
         const data = {
             userInput,
-            companyName: companyName.trimEnd(),
-            jobTitle: jobTitle.trimEnd(),
-            companyLocation: companyLocation.trimEnd(),
+            companyName: companyName.trimEnd().trimStart(),
+            jobTitle: jobTitle.trimEnd().trimStart(),
+            companyLocation: companyLocation.trimEnd().trimStart(),
             dateOfSubmission,
-            companyURL: companyURL.trimEnd()
+            companyURL: companyURL.trimEnd().trimStart()
         }
 
         
