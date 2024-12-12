@@ -132,7 +132,7 @@ app.post('/global-statistics', async (req, res) => {
     }
     collection = await conn.db("company").collection('information');
   } catch (error) {
-    console.error("ERROR OCCURRED DURING POST", error);
+    console.error("ERROR OCCURRED DURING POST", error, conn, connectionString, client);
     res.status(400).send("FAILED REQUEST");
   }
     const agg = [
