@@ -73,3 +73,13 @@ table{
     background-color: yellow !important;
     font-size: larger;
 }
+
+.content{
+    background-color: lightcyan;
+}
+
+
+.result{
+    width: 75%;
+}
+

@@ -19,6 +19,7 @@ function GlobalStatisticsPage() {
               `${process.env.REACT_APP_SERVER_URL}/global-statistics`,
             ).then(response => { 
               setGlobalStatistics(response.data.sortedDict);
+              console.log(response.data.sortedDict);
               setNumberOfDocuments(response.data.length);
               setRelevantCompanyInformation(response.data.relevantInformation);
               setHasRetrieve(true);
@@ -33,11 +34,45 @@ function GlobalStatisticsPage() {
           <h1>Global Statistics for <text style={{ color: 'blue' }}>{numberOfDocuments}</text> documents</h1>
           <div className='content'>
               <div className='result'>
-                  {Object.entries(globalStatistics).map(([key, value]) =>
-                      <div>
-                          {key} - {value}
-                      </div>
-                  )}
+                    {Object.entries(globalStatistics).map(([key, value], index) => {
+                      const tableIndex = Math.floor(index / 15);
+                      const rowIndex = index % 15;
+
+                      return (
+                        <div key={index}>
+                          {rowIndex === 0 && (
+                            <table>
+                              <thead>
+                                <tr className='table-headers'>
+                                  <th>Index</th>
+                                  <th>Skill</th>
+                                  <th>Count</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+
+                                {[...Array(15)].map((_,  i) => {
+                                  const tableIndexOffset = tableIndex * 15 + i;
+                                  if  (tableIndexOffset < Object.entries(globalStatistics).length) {
+                                    const [currentKey, currentValue] = Object.entries(globalStatistics)[tableIndexOffset];
+                                    return (
+                                      <tr key ={tableIndexOffset + 1}>
+                                        <td>{tableIndexOffset + 1}</td>
+                                        <td>{currentKey}</td>
+                                        <td>{currentValue}</td>
+                                      </tr>
+                                    );
+                                  
+                                  }
+                                  return null;
+                                })}
+                              </tbody>
+                            </table>
+                          )}
+                        </div>
+                      )
+                    }
+                    )}
               </div>
           </div>
 
