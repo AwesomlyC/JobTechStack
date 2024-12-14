@@ -52,8 +52,7 @@ const TOOLS = ['postman', 'jira', 'selenium', 'docker', 'kubernetes', 'kubernete
 
   app.get('/', (req, res) => {
     console.log("WORKS");
-    // res.header("Access-Control-Allow-Origin", "*");
-    res.send('Hello World! v1.6')
+    res.send('Hello World! v1.7')
 });
 
 const connectionString = process.env.ATLAS_URI || "";
