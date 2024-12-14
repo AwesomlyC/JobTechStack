@@ -3,6 +3,7 @@ import axios from 'axios'
 import DatePicker from "react-datepicker";
 import '../styles/TextInput.css'
 import 'react-datepicker/dist/react-datepicker.css'
+import DisplayParseResults from './DisplayParseResults';
 
 function TextInput() {
 
@@ -82,14 +83,7 @@ function TextInput() {
                         placeholder='Job Title'
                         required
                     />
-                    {/* <input 
-                        className='company-information'
-                        type='text'
-                        value={companyLocation}
-                        onChange={(e) => setCompanyLocation(e.target.value)}
-                        placeholder='Company Location'
-                        required
-                    /> */}
+
 
                     <select
                         className='company-information'
@@ -129,15 +123,7 @@ function TextInput() {
         >
             Parse Input
         </button>
-        <div className='result'>
-
-            {Object.entries(wordMap).map( ([key,value]) =>
-                <div>
-                    {key} - {value}
-                </div>   
-            )}
-
-        </div>
+        <DisplayParseResults wordMap = {wordMap} />
     </div>
   )
 }
