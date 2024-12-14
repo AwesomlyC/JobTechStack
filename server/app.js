@@ -52,7 +52,7 @@ const TOOLS = ['postman', 'jira', 'selenium', 'docker', 'kubernetes', 'kubernete
 
   app.get('/', (req, res) => {
     console.log("WORKS");
-    res.send('Hello World! v1.7')
+    res.send('Hello World! v1.8')
 });
 
 const connectionString = process.env.ATLAS_URI || "";
