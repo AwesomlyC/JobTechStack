@@ -5,14 +5,14 @@ const port = process.env.PORT || 5000
 const cors = require('cors');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const dotenv = require('dotenv');
-// dotenv.config({path: './../.env'});
 
-// app.use(cors());
 
-// app.use(cors({
-//     origin: 'http://localhost:3000', // Replace with your allowed origin
-//     methods: ["GET", "POST"],
-// }));
+
+if (!process.env.DEVELOPMENT){
+  dotenv.config({path: './../.env'});
+}
+
+
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -178,7 +178,8 @@ app.post('/global-statistics', async (req, res) => {
     const sortedDict = Object.fromEntries(
         Object.entries(totalMap).sort(([,a],[,b]) => b-a)
     );
-    console.log('totalMap===', sortedDict);
+    console.log('totalMap ===', sortedDict);
+    console.log(Object.keys(sortedDict).length);
     res.send({sortedDict, length: data.length, relevantInformation: totalCompany});
 });
 
