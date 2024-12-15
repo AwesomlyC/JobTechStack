@@ -9,6 +9,7 @@ function GlobalStatisticsPage() {
     const [hasRetrieve, setHasRetrieve] = useState(false);
     const [numberOfDocuments, setNumberOfDocuments] = useState(0);
     const [relevantCompanyInformation, setRelevantCompanyInformation] = useState([]);
+    const [deleteMode, setDeleteMode] = useState(false);
 
 
     useEffect( () => {
@@ -33,14 +34,25 @@ function GlobalStatisticsPage() {
       setNumberOfDocuments(data.length);
       setRelevantCompanyInformation(data.relevantInformation);
     }
+    const flipDeleteMode = () => {
+      setDeleteMode((e) => !e);
+    }
   return (
       <div>
           <h1>Global Statistics for <text style={{ color: 'blue' }}>{numberOfDocuments}</text> documents</h1>
           <div className='content'>
                 <GlobalKeywordTable globalStatistics = {globalStatistics}/>
           </div>
-        
-        <GlobalCompanyInformation relevantCompanyInformation = {relevantCompanyInformation}/>
+
+        <div className = "statistics-container">
+          <button 
+            className='delete-button'
+            onClick={flipDeleteMode}
+            >
+            <b><strong>Delete</strong></b>
+          </button>
+          <GlobalCompanyInformation relevantCompanyInformation = {relevantCompanyInformation} deleteMode = {deleteMode}/>
+      </div>
       </div>
   )
 }

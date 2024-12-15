@@ -57,30 +57,63 @@ h1{
     text-overflow: ellipsis;
 }
 
-tr.table-result-row>th{
-    padding-bottom: 10px;
-}
 
 tr:nth-child(odd){
     background-color: #EB5E66;
 }
-
-table{
-    height: min(100%, 75vh);
-    display: inline-block;
-    overflow: auto;
-    background-color: lightseagreen
+tr:nth-child(even){
+    background-color: lightseagreen;
 }
 
+table{
+    height: 40vh;
+    display: inline-block;
+    overflow: auto;
+    background-color: lightseagreen;
+    border-collapse: collapse;
+    border-spacing: 0 1rem;
+}
+.table-table{
+    height: 75vh;
+    background-color: lightgray
+}
 .table-headers{
     background-color: yellow !important;
     font-size: larger;
 }
-
-
-
-
+th{
+    border: 1px solid #080808;
+}
 .result{
     width: 75%;
 }
+.statistics-container{
+    position: relative;
+    
+}
+.delete-button{
+    position: absolute;
+    right: 5px;
+    top: 25%;
+    font-size: 16px;
+    padding: 0.4rem;
+    background-color: #a28089;
+}
 
+.table-delete{
+    background-color: lightgray;
+    border-collapse: collapse;
+    width: 50px;
+    text-align: center;
+    border-spacing: 0;
+    border: 0px;
+}
+
+.row-delete{
+    text-align: center;
+    background-color: lightgray;
+}
+
+.table-result-row>td{
+    padding-bottom: 0.5rem;
+}
