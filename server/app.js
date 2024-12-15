@@ -34,12 +34,12 @@ const STOPWORDS = ['i','me','my','myself','we','our','ours','ourselves','you','y
 
 const LANGAUGES = ['python', 'c', 'java', 'react', 'reactjs', 'javascript', 'typescript','php', 'ruby', 'swift', 'r', 'html', 'css',
      'html5', 'git', 'vuejs', 'vue', 'angularjs', 'angular', 'nodejs', 'node', 'tailwind', 'j2ee', 'playwright', 'bootstrap', 'foundation',
-     'materialize', 'rust', 'css3', 'obj'
+     'materialize', 'rust', 'css3', 'obj', 'go',
     ]
 
 const DATABASES = ['nosql', 'mysql', 'postgresql', 'postgres', 'mongodb', 'cassandra', 'spark', 'sparks','sql', 'sqlite', 'msql','databricks', 
     'databrick', 'azure', 'redis','apache','amazon','dynamodb', 'dynamo', 'couchbase', 'neo4j', 'graphql', 'aurora', 'rds', 'eks', 
-    'mssql',  'oracle', 'cloud', 'gcp']
+    'mssql',  'oracle', 'cloud', 'gcp', 'kafka', 'pinot', 'redshift',]
 
 const METHODOLOGY = ['agile', 'scrum', 'sdlc', 'qa', 'seo',]
 
@@ -47,7 +47,8 @@ const OTHERS = ['rest' ,'restful', 'restfuls', 'api', 'apis', 'xml', 'json', 'aw
   'django', 'flask', 'ec2', 'ci', 'cd', 'cicd', 'vpc', 's3', 'jquery', 'ajax', 'etl', 'tomcat']
 
 const TOOLS = ['postman', 'jira', 'selenium', 'docker', 'kubernetes', 'kubernete',  'lambda', 'devops', 'devop', 'terraform',
-   'cloudformation', 'bash', 'linux', 'macos','unix', 'windows', 'macintosh', 'ansible', 'jest', 'mocha', 'informatica', 'tabkeau']
+   'cloudformation', 'bash', 'linux', 'macos','unix', 'windows', 'macintosh', 'ansible', 'jest', 'mocha', 'informatica', 'tabkeau',
+  'circleci']
 
 
   app.get('/', (req, res) => {
