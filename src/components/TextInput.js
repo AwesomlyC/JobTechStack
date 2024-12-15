@@ -79,7 +79,7 @@ function TextInput() {
                         className='company-information'
                         type='text'
                         value={jobTitle}
-                        onChange={(e) => setJobTitle(e.target.value.trimEnd())}
+                        onChange={(e) => setJobTitle(e.target.value)}
                         placeholder='Job Title'
                         required
                     />
@@ -88,7 +88,7 @@ function TextInput() {
                     <select
                         className='company-information'
                         value={companyLocation}
-                        onChange={(e) => setCompanyLocation(e.target.value.trimEnd())}
+                        onChange={(e) => setCompanyLocation(e.target.value)}
                     >
                         <option value='Remote'>Remote</option>
                         <option value='United_States'>United States</option>
@@ -99,7 +99,7 @@ function TextInput() {
                         className='company-information'
                         type='text'
                         value={companyURL}
-                        onChange={(e) => setCompanyURL(e.target.value.trimEnd())}
+                        onChange={(e) => setCompanyURL(e.target.value)}
                         placeholder='URL'
                     />
 
