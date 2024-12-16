@@ -51,7 +51,12 @@ function GlobalStatisticsPage() {
             >
             <b><strong>Delete</strong></b>
           </button>
-          <GlobalCompanyInformation relevantCompanyInformation = {relevantCompanyInformation} deleteMode = {deleteMode}/>
+          <GlobalCompanyInformation 
+          relevantCompanyInformation = {relevantCompanyInformation} 
+          deleteMode = {deleteMode}
+          flipDeleteMode = {flipDeleteMode}
+          setHasRetrieve = {setHasRetrieve}
+          />
       </div>
       </div>
   )

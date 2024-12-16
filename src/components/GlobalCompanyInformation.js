@@ -1,7 +1,22 @@
 import React from 'react'
 import { FaMinusCircle } from "react-icons/fa";
-function GlobalCompanyInformation({relevantCompanyInformation, deleteMode}) {
+import axios from 'axios';
+function GlobalCompanyInformation({relevantCompanyInformation, deleteMode, flipDeleteMode, setHasRetrieve}) {
 
+
+  const deleteID = (info) => {
+    console.log("CLICKED", info);
+    axios.delete(
+      `${process.env.REACT_APP_SERVER_URL}/delete-post`,
+      {data: info}
+    ).then (response => {
+      console.log(response.data);
+      flipDeleteMode();
+      setHasRetrieve(false);
+    }).catch(error => {
+      console.error("Occurred during axios callback:", error);
+    })
+  }
   return (
     <div className='table-job-information'>
     <table className='table-table'>
@@ -18,7 +33,12 @@ function GlobalCompanyInformation({relevantCompanyInformation, deleteMode}) {
       {relevantCompanyInformation.map( 
         (info, index) => (
           <tr key={index} className='table-result-row'>
-            {deleteMode && (<td className='row-delete'><FaMinusCircle /></td>)}
+            {deleteMode && (
+              <td className='row-delete'>
+                <FaMinusCircle onClick={() => deleteID(info)}/> 
+                  
+                </td>
+              )}
             <td className='table-result-data'>{index + 1}</td>
             <td className='table-result-data'>{info.companyName}</td>
             <td className='table-result-data'>{info.jobTitle}</td>

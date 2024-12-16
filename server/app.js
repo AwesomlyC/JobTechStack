@@ -12,13 +12,14 @@ if (!process.env.DEVELOPMENT){
   dotenv.config({path: './../.env'});
 }
 
+app.use(express.json());
 
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Credentials", "true");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, DELETE");
   next();
 });
 
@@ -59,11 +60,11 @@ const TOOLS = ['postman', 'jira', 'selenium', 'docker', 'kubernetes', 'kubernete
 const connectionString = process.env.ATLAS_URI || "";
 const client = new MongoClient(connectionString);
 
-let conn;
+// let conn;
 
 async function connection() {
     try {
-        conn = await client.connect();
+        let conn = await client.connect();
         return conn;
       } catch(e) {
         console.error(e);
@@ -187,6 +188,41 @@ app.get('/global-statistics', async (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.send("This is the global-statistics-page")
 });
+
+app.delete('/delete-post', async (req, res) => {
+  console.log(req.body);
+  const {companyName, jobTitle, companyLocation, dateOfSubmission, companyURL} = req.body;
+  let conn;
+  try{
+    conn = await connection(); 
+  } catch (error){
+    console.error('error occurred during delete-post');
+    console.error("connection:", conn);
+    res.status(400).send("Connection with db failed");
+  }
+  try{
+    const collection = await conn.db("company").collection("information");
+    const query = {
+      companyName,
+      jobTitle,
+      companyLocation,
+      dateOfSubmission,
+      companyURL
+    }
+    const result = await collection.deleteOne(query);
+    if (result.deletedCount === 1){
+      console.log("Successfully delete:", companyName, jobTitle);
+    } else{
+      console.log("No documents matched the query. Deleted 0 documents.");
+    }
+  } catch (error) {
+    console.error('error occurred during deleting from database')
+    res.status(403).send("Deletion in DB rejected");
+  }
+  
+  res.send("Delete process succesful");
+});
+
 
 // Handling shutdown server
 // Error Handling

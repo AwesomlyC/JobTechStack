@@ -10,7 +10,7 @@ function GlobalKeywordTable({globalStatistics}) {
         return (
           <div key={index}>
             {rowIndex === 0 && (
-              <table>
+              <table className ='table-skills'>
                 <thead>
                   <tr className='table-headers'>
                     <th>Index</th>
