@@ -32,38 +32,21 @@ function DeleteModal({isOpen, onClose, flipDeleteMode, setHasRetrieve, currentDe
     return (
         <div
             onClick={onClose}
-            style={{
-                position: "fixed",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                background: "rgba(0, 0, 0, 0.5)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-            }}
+            className='modal-popup'
         >
-            <div
-                style={{
-                    background: "white",
-                    height: 150,
-                    width: 240,
-                    margin: "auto",
-                    padding: "2%",
-                    border: "2px solid #000",
-                    borderRadius: "10px",
-                    boxShadow: "2px solid black",
-                }}
-            >
+            <div className='modal'>
             <>
                 <span className='trash-icon'><FaTrashCan /></span>
-                <span><strong>You are about to delete this posting</strong></span>
-                <span>Are you sure?</span>
+
                 
+                <div className='delete-text'>
+                    <span><strong>You are about to delete this posting</strong></span>
+                    <span>Are you sure?</span>
+                    
+                </div>
                 <div className='delete-options'>
-                    <button onClick = {cancelModal}>Cancel</button>
-                    <button onClick = {(info) => deleteID(info)}>Delete</button>
+                    <button className = 'cancel' onClick = {cancelModal}>Cancel</button>
+                    <button className = 'delete' onClick = {(info) => deleteID(info)}>Delete</button>
 
                 </div>
             </>

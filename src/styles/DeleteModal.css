@@ -1,6 +1,72 @@
+.modal-popup{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center,
+}
+.modal{
+    position: relative;
+    background: white;
+    height: 200px;
+    width: 240px;
+    margin: auto;
+    padding: 2%;
+    border: 2px solid #000;
+    border-radius: 10px;
+    box-shadow: 2px solid black;
+}
+
 .trash-icon {
     font-size: 48px;
     text-align: center;
     display: flex;
     justify-content: center;
+    padding: 10px;
+}
+
+.delete-text{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.delete-options{
+    position: absolute;
+    display: flex;
+    right: 10px;
+    bottom: 16px;
+    gap: 10px;
+    font-size: 32px;
+}
+
+button.cancel{
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+}
+
+button.cancel:hover{
+    background-color: lightgray;
+    transition: background-color 2s;
+    border-radius: 10px;
+}
+
+button.delete{
+    font-size: 16px;
+    border-radius: 10px;
+    padding: 8px 20px;
+    background-color: red;
+    color: white;
+}
+
+button.delete:hover{
+    font-weight: bolder;
+    padding: 8px 19px;
 }

@@ -158,8 +158,8 @@ app.post('/global-statistics', async (req, res) => {
     let totalCompany = []
     for (let i = 0; i < data.length; i++){
         let currentData = data[i]
-        console.log(currentData.wordMap);
-        console.log("CurrentData:", currentData);
+        // console.log(currentData.wordMap);
+        // console.log("CurrentData:", currentData);
         const relevantInformation = {
           companyName: currentData.companyName,
           jobTitle: currentData.jobTitle,
@@ -179,8 +179,8 @@ app.post('/global-statistics', async (req, res) => {
     const sortedDict = Object.fromEntries(
         Object.entries(totalMap).sort(([,a],[,b]) => b-a)
     );
-    console.log('totalMap ===', sortedDict);
-    console.log(Object.keys(sortedDict).length);
+    // console.log('totalMap ===', sortedDict);
+    // console.log(Object.keys(sortedDict).length);
     res.send({sortedDict, length: data.length, relevantInformation: totalCompany});
 });
 
@@ -190,7 +190,7 @@ app.get('/global-statistics', async (req, res) => {
 });
 
 app.delete('/delete-post', async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const {companyName, jobTitle, companyLocation, dateOfSubmission, companyURL} = req.body;
   let conn;
   try{
