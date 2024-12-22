@@ -4,13 +4,11 @@ import { FaTrashCan } from "react-icons/fa6";
 import axios from 'axios';
 
 function DeleteModal({isOpen, onClose, flipDeleteMode, setHasRetrieve, currentDeleteInfo, setCurrentDeleteInfo}) {
-    console.log("DELETEMODAL - ", isOpen);
     if (!isOpen){
         return null;
     }
 
     const deleteID = (info) => {
-        console.log("CLICKED", info);
         axios.delete(
           `${process.env.REACT_APP_SERVER_URL}/delete-post`,
           { data: currentDeleteInfo }

@@ -1,0 +1,15 @@
+.filter-field-container{
+    display: flex;
+    justify-items: auto;
+    justify-content: space-evenly;
+}
+
+.filter-field{
+    padding: 0.3rem;
+}
+
+.filter-field:focus{
+    border-color: rgba(229, 103, 23, 0.8);
+    box-shadow: 0 1px 1px rgba(229, 103, 23, 0.075) inset, 0 0 8px rgba(229, 103, 23, 0.6);
+    outline: 0 none;
+}

@@ -32,7 +32,6 @@ function GlobalCompanyInformation({ relevantCompanyInformation, deleteMode, flip
             <tr key={index} className='table-result-row'>
               {deleteMode && (
                 <td className='row-delete'>
-                  {/* <FaMinusCircle onClick={() => deleteID(info)} /> */}
                   {<FaMinusCircle onClick= {() => handleOpen(info)} />}
                 </td>
               )}

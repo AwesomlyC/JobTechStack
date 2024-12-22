@@ -3,6 +3,7 @@ import axios from 'axios'
 import GlobalKeywordTable from './GlobalKeywordTable';
 import '../styles/GlobalStatisticsPage.css'
 import GlobalCompanyInformation from './GlobalCompanyInformation';
+import SearchFields from './SearchFields';
 function GlobalStatisticsPage() {
 
     const [globalStatistics, setGlobalStatistics] = useState({});
@@ -11,6 +12,7 @@ function GlobalStatisticsPage() {
     const [relevantCompanyInformation, setRelevantCompanyInformation] = useState([]);
     const [deleteMode, setDeleteMode] = useState(false);
 
+    const [displayResults, setDisplayResults] = useState([]);
 
     useEffect( () => {
         if (hasRetrieve){
@@ -33,6 +35,7 @@ function GlobalStatisticsPage() {
       setGlobalStatistics(data.sortedDict);
       setNumberOfDocuments(data.length);
       setRelevantCompanyInformation(data.relevantInformation);
+      setDisplayResults(data.relevantInformation);
     }
     const flipDeleteMode = () => {
       setDeleteMode((e) => !e);
@@ -51,11 +54,16 @@ function GlobalStatisticsPage() {
             >
             <b><strong>Delete</strong></b>
           </button>
+          <SearchFields 
+            setDisplayResults = {setDisplayResults}
+            relevantCompanyInformation = {relevantCompanyInformation}
+          
+          />
           <GlobalCompanyInformation 
-          relevantCompanyInformation = {relevantCompanyInformation} 
-          deleteMode = {deleteMode}
-          flipDeleteMode = {flipDeleteMode}
-          setHasRetrieve = {setHasRetrieve}
+            relevantCompanyInformation = {displayResults}
+            deleteMode = {deleteMode}
+            flipDeleteMode = {flipDeleteMode}
+            setHasRetrieve = {setHasRetrieve}
           />
       </div>
       </div>
