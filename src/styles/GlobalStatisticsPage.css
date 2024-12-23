@@ -58,10 +58,10 @@ h1{
 }
 
 
-tr:nth-child(odd){
+tbody:nth-child(odd){
     background-color: #EB5E66;
 }
-tr:nth-child(even){
+tbody:nth-child(even){
     background-color: lightseagreen;
 }
 
