@@ -5,8 +5,10 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "chart.js": "^4.4.7",
     "cra-template": "1.2.0",
     "react": "^19.0.0",
+    "react-chartjs-2": "^5.2.0",
     "react-datepicker": "^7.5.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.4.0",

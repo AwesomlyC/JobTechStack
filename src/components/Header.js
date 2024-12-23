@@ -7,17 +7,23 @@ import '../styles/Header.css'
 function Header() {
   const navigate = useNavigate();
   return (
-    <navbar
-      className='navbar'
-    >
+    <navbar className='navbar'>
 
       <a href='/'><strong>JobTechStack</strong></a>
-      <button
-        className='navbar-button'
-        onClick={() => {navigate('/global-statistics')}}
-      >
-        Global Statistics
-      </button>
+      <div>
+        <button
+          className='navbar-button'
+          onClick={() => { navigate('/global-statistics') }}
+        >
+          Global Statistics
+        </button>
+        <button
+          className='navbar-button'
+          onClick={() => { navigate('/analytics') }}
+        >
+          Analytics
+        </button>
+      </div>
     </navbar>
   )
 }

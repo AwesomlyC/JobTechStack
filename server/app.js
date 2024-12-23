@@ -121,10 +121,7 @@ app.get('/parse', async (req, res) => {
     res.send(wordMap);
 });
 
-
-// Retrieve all documents but only keeping the wordMap
-app.post('/global-statistics', async (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
+async function retrieveAllStatistics() {
   let collection;
   let conn;
   try{
@@ -158,8 +155,6 @@ app.post('/global-statistics', async (req, res) => {
     let totalCompany = []
     for (let i = 0; i < data.length; i++){
         let currentData = data[i]
-        // console.log(currentData.wordMap);
-        // console.log("CurrentData:", currentData);
         const relevantInformation = {
           companyName: currentData.companyName,
           jobTitle: currentData.jobTitle,
@@ -173,15 +168,18 @@ app.post('/global-statistics', async (req, res) => {
               let count = currentWordCount ? currentWordCount : 0;
               totalMap[key] = count + value
 
-          }
+        }
     }
-
     const sortedDict = Object.fromEntries(
-        Object.entries(totalMap).sort(([,a],[,b]) => b-a)
-    );
-    // console.log('totalMap ===', sortedDict);
-    // console.log(Object.keys(sortedDict).length);
-    res.send({sortedDict, length: data.length, relevantInformation: totalCompany});
+      Object.entries(totalMap).sort(([,a],[,b]) => b-a)
+  );
+  return {sortedDict, length: data.length, relevantInformation: totalCompany};
+}
+
+// Retrieve all documents but only keeping the wordMap
+app.post('/global-statistics', async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.send(await retrieveAllStatistics());
 });
 
 app.get('/global-statistics', async (req, res) => {
@@ -257,6 +255,33 @@ app.get("/updateTime", async (req, res) => {
   } catch (error) {
     console.error(error);
   }
+});
+
+app.post('/display-data-pie', async (req, res) => {
+  const statistics = await retrieveAllStatistics();
+  // console.log(statistics.sortedDict);
+  const mapOfRelevantKeywords = statistics.sortedDict;
+  
+  console.log(mapOfRelevantKeywords['sdlc'])
+
+  let labels = [], dataCounts = [];
+  let others = 'others', freq = 0;
+  console.log(Object.keys(mapOfRelevantKeywords));
+  for (const keyword of Object.keys(mapOfRelevantKeywords)){
+    // console.log(keyword, ':',mapOfRelevantKeywords[keyword])
+    if (mapOfRelevantKeywords[keyword] > 6){
+      labels.push(keyword)
+      dataCounts.push(mapOfRelevantKeywords[keyword]);
+    } else {
+      // others.push(keyword)
+      freq = freq + mapOfRelevantKeywords[keyword];
+    }
+  }
+
+  labels.push(others);
+  dataCounts.push(freq);
+
+  res.send({labels, dataCounts});
 });
 
 // Handling shutdown server
