@@ -223,6 +223,41 @@ app.delete('/delete-post', async (req, res) => {
   res.send("Delete process succesful");
 });
 
+// Correct time generated from JS Date Object
+// Format to yyyy-mm-dd
+app.get("/updateTime", async (req, res) => {
+  let conn;
+  try{
+    conn = await connection(); 
+  } catch (error){
+    console.error('error occurred during delete-post');
+    console.error("connection:", conn);
+    res.status(400).send("Connection with db failed");
+  }
+
+  try{
+    const collection = await conn.db("company").collection("information");
+
+    const cursor = collection.find({},{});
+    if ((await collection.countDocuments({})) === 0) {
+      console.log("No documents found!");
+    }
+    for await (const doc of cursor){
+
+      const filter = {_id: doc._id}
+      const updateDoc = {
+        $set: {
+          dateOfSubmission: doc.dateOfSubmission.split('T')[0]
+        }
+      }
+      const foundDoc = await collection.updateOne(filter, updateDoc, {})
+      console.log(foundDoc);
+    }
+    res.send("Called Time");
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 // Handling shutdown server
 // Error Handling

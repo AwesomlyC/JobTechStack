@@ -17,6 +17,7 @@ function GlobalCompanyInformation({ relevantCompanyInformation, deleteMode, flip
   return (
     <div className='table-job-information'>
       <table className='table-table'>
+        <tbody>
         <tr className='table-headers'>
 
           {deleteMode && (<th className='table-delete'></th>)}
@@ -27,6 +28,7 @@ function GlobalCompanyInformation({ relevantCompanyInformation, deleteMode, flip
           <th className='table-date'>Date Submitted</th>
           <th className='table-url'>URL</th>
         </tr>
+        </tbody>
         {relevantCompanyInformation.map(
           (info, index) => (
             <tr key={index} className='table-result-row'>
@@ -39,7 +41,7 @@ function GlobalCompanyInformation({ relevantCompanyInformation, deleteMode, flip
               <td className='table-result-data'>{info.companyName}</td>
               <td className='table-result-data'>{info.jobTitle}</td>
               <td className='table-result-data'>{info.companyLocation === "United_States" ? "United States" : info.companyLocation}</td>
-              <td className='table-result-data'>{info.dateOfSubmission}</td>
+              <td className='table-result-data table-date-of-submission'>{info.dateOfSubmission}</td>
               <td className='table-result-data'>
                 <a href={info.companyURL} className='row-url'>
                   {info.companyURL}

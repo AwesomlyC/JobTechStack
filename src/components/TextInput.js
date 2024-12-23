@@ -22,13 +22,12 @@ function TextInput() {
             console.log(userInput ,companyName ,companyLocation,jobTitle) 
             return;
         }
-
         const data = {
             userInput,
             companyName: companyName.trimEnd().trimStart(),
             jobTitle: jobTitle.trimEnd().trimStart(),
             companyLocation: companyLocation.trimEnd().trimStart(),
-            dateOfSubmission,
+            dateOfSubmission  : dateOfSubmission.toISOString().split('T')[0],       // Only keep the date, not the time
             companyURL: companyURL.trimEnd().trimStart()
         }
 

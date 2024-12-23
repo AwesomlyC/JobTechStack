@@ -118,7 +118,6 @@ th{
     padding-bottom: 0.5rem;
 }
 
-/* .table-skills{
-    overflow: hidden;
-    height: 100%;
-} */
+.table-results-date, .table-date-of-submission{
+    text-align: center;
+}

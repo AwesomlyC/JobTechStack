@@ -35,6 +35,9 @@ function GlobalStatisticsPage() {
       setGlobalStatistics(data.sortedDict);
       setNumberOfDocuments(data.length);
       setRelevantCompanyInformation(data.relevantInformation);
+      data.relevantInformation.map((company) => {
+        console.log(typeof company.dateOfSubmission);
+      })
       setDisplayResults(data.relevantInformation);
     }
     const flipDeleteMode = () => {
