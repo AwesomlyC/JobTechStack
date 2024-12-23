@@ -2,15 +2,15 @@ import React from 'react'
 
 function GlobalKeywordTable({globalStatistics}) {
   return (
-    <div className='result'>                    
-        {Object.entries(globalStatistics).map(([key, value], index) => {
+    <div className='result'>
+      {Object.entries(globalStatistics).map(([key, value], index) => {
         const tableIndex = Math.floor(index / 15);
         const rowIndex = index % 15;
 
         return (
           <div key={index}>
             {rowIndex === 0 && (
-              <table className ='table-skills'>
+              <table className='table-skills'>
                 <thead>
                   <tr className='table-headers'>
                     <th>Index</th>
@@ -18,30 +18,31 @@ function GlobalKeywordTable({globalStatistics}) {
                     <th>Count</th>
                   </tr>
                 </thead>
-                <tbody>
 
-                  {[...Array(15)].map((_,  i) => {
-                    const tableIndexOffset = tableIndex * 15 + i;
-                    if  (tableIndexOffset < Object.entries(globalStatistics).length) {
-                      const [currentKey, currentValue] = Object.entries(globalStatistics)[tableIndexOffset];
-                      return (
-                        <tr key ={tableIndexOffset + 1}>
+                {[...Array(15)].map((_, i) => {
+                  const tableIndexOffset = tableIndex * 15 + i;
+                  if (tableIndexOffset < Object.entries(globalStatistics).length) {
+                    const [currentKey, currentValue] = Object.entries(globalStatistics)[tableIndexOffset];
+                    return (
+                      <tbody>
+                        <tr key={tableIndexOffset + 1}>
                           <td>{tableIndexOffset + 1}</td>
                           <td>{currentKey}</td>
                           <td>{currentValue}</td>
                         </tr>
-                      );
-                    
-                    }
-                    return null;
-                  })}
-                </tbody>
+                      </tbody>
+                    );
+
+                  }
+                  return null;
+                })}
               </table>
             )}
           </div>
         )
       }
-      )}</div>
+      )}
+    </div>
   )
 }
 
