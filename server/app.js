@@ -284,6 +284,71 @@ app.post('/display-data-pie', async (req, res) => {
   res.send({labels, dataCounts});
 });
 
+
+app.post('/display-data-line', async (req, res) => {
+  const statistics = await retrieveAllStatistics();
+  let conn;
+  try{
+    conn = await connection(); 
+  } catch (error){
+    console.error('error occurred during delete-post');
+    console.error("connection:", conn);
+    res.status(400).send("Connection with db failed");
+  }
+
+  try{
+    const collection = await conn.db("company").collection("information");
+    const {start, range, end} =  await getRangeOfDates(collection);
+    console.log(start, range, end);
+
+    const labels = [], dataPoints = new Array(range+1).fill(0);
+
+    // Labels: [start, end] inclusive
+    for (let i = 0; i < range + 1; i++){
+      const currentDate = new Date();
+      
+      const nextDate = new Date(currentDate.setDate(start.getDate() + i));
+      const date = nextDate.toISOString().split('T')[0]
+      labels.push(date);
+    }
+
+
+    console.log(typeof statistics.relevantInformation)
+    for (const key in statistics.relevantInformation){
+      const docDate = statistics.relevantInformation[key].dateOfSubmission
+      dataPoints[getDaysDifference(start, new Date(docDate))]++;
+    }
+
+    console.log(dataPoints);
+    const startDateString = start.toISOString().split('T')[0]
+    const endDateString = end.toISOString().split('T')[0]
+    res.send({labels, dataPoints, startDateString, endDateString});
+  }
+  catch (error){
+    console.error("Error with display-data-line ---",error);
+  }
+});
+async function getRangeOfDates(collection){
+  const query = {}
+  const maximum = {
+    sort: {"dateOfSubmission": -1},
+    projection: {_id: 0, 'dateOfSubmission': 1}
+  }
+  const minimum = {
+    sort: {"dateOfSubmission": 1},
+    projection: {_id: 0, 'dateOfSubmission': 1}
+  }
+  const maximumDate = new Date((await collection.findOne(query, maximum)).dateOfSubmission);
+  const minimumDate = new Date((await collection.findOne(query, minimum)).dateOfSubmission);
+
+  return {start: minimumDate, range: getDaysDifference(minimumDate, maximumDate), end: maximumDate }
+}
+function getDaysDifference(date1, date2){
+  const diffInMilliseconds = date2.getTime() - date1.getTime();
+  const millisecondsPerDay = 1000 * 60 * 60 * 24;
+  return Math.round(diffInMilliseconds / millisecondsPerDay);
+}
+
 // Handling shutdown server
 // Error Handling
 process.on("SIGINT", async () => {
