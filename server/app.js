@@ -259,16 +259,11 @@ app.get("/updateTime", async (req, res) => {
 
 app.post('/display-data-pie', async (req, res) => {
   const statistics = await retrieveAllStatistics();
-  // console.log(statistics.sortedDict);
   const mapOfRelevantKeywords = statistics.sortedDict;
   
-  console.log(mapOfRelevantKeywords['sdlc'])
-
   let labels = [], dataCounts = [];
   let others = 'others', freq = 0;
-  console.log(Object.keys(mapOfRelevantKeywords));
   for (const keyword of Object.keys(mapOfRelevantKeywords)){
-    // console.log(keyword, ':',mapOfRelevantKeywords[keyword])
     if (mapOfRelevantKeywords[keyword] > 6){
       labels.push(keyword)
       dataCounts.push(mapOfRelevantKeywords[keyword]);
@@ -299,27 +294,24 @@ app.post('/display-data-line', async (req, res) => {
   try{
     const collection = await conn.db("company").collection("information");
     const {start, range, end} =  await getRangeOfDates(collection);
-    console.log(start, range, end);
 
     const labels = [], dataPoints = new Array(range+1).fill(0);
 
     // Labels: [start, end] inclusive
     for (let i = 0; i < range + 1; i++){
       const currentDate = new Date();
-      
       const nextDate = new Date(currentDate.setDate(start.getDate() + i));
       const date = nextDate.toISOString().split('T')[0]
       labels.push(date);
     }
 
 
-    console.log(typeof statistics.relevantInformation)
     for (const key in statistics.relevantInformation){
       const docDate = statistics.relevantInformation[key].dateOfSubmission
       dataPoints[getDaysDifference(start, new Date(docDate))]++;
     }
 
-    console.log(dataPoints);
+    // console.log(dataPoints);
     const startDateString = start.toISOString().split('T')[0]
     const endDateString = end.toISOString().split('T')[0]
     res.send({labels, dataPoints, startDateString, endDateString});

@@ -3,7 +3,7 @@ import {Pie, Line} from 'react-chartjs-2';
 import axios from 'axios';
 import 'chart.js/auto';
 
-function PieChartData() {
+function AnalyticsPage() {
   const [chartData, setChartData] = useState(null);
   const [lineData, setLineData] = useState(null);
 
@@ -61,7 +61,7 @@ function PieChartData() {
     }
 
     return (
-        <div style={{ width: '50%', margin: 'auto' }}>
+        <div className='analytics-graphs' style={{ width: '25%', margin: 'auto' }}>
             <Pie 
                 data={chartData} 
                 options = {{
@@ -111,4 +111,4 @@ function PieChartData() {
   )
 }
 
-export default PieChartData
+export default AnalyticsPage
