@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Pie, Line} from 'react-chartjs-2';
 import axios from 'axios';
 import 'chart.js/auto';
+import './../styles/AnalyticsPage.css'
 
 function AnalyticsPage() {
   const [chartData, setChartData] = useState(null);
@@ -10,6 +11,7 @@ function AnalyticsPage() {
     useEffect(() => {
         
         const retrieveChartData = async () => {
+            console.log("CALLED");
             await axios.post(
                 `${process.env.REACT_APP_SERVER_URL}/display-data-pie`,
             ).then(response => {
@@ -61,19 +63,28 @@ function AnalyticsPage() {
     }
 
     return (
-        <div className='analytics-graphs' style={{ width: '25%', margin: 'auto' }}>
-            <Pie 
+        <div className='analytics-graphs'>
+            <h2>Pie Chart: Distribution of Keywords</h2>
+            <Pie
+                // width='200px'
+                height='200px' 
+                
                 data={chartData} 
-                options = {{
+                options = {
+                    {
                     plugins: {
                         legend: {
                             display: true,
-                            position: 'left',
+                            position: 'bottom',
                         },
-                    }}
+                    },
+                    maintainAspectRatio: false
+                }
+
                 }
             />
 
+            <h2>Time Graph</h2>
             <Line 
                 data =  {lineData}
                 options={{
