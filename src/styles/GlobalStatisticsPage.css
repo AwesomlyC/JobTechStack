@@ -77,23 +77,30 @@ table{
     height: 75vh;
     background-color: lightgray
 }
+
+.table-skills{
+    overflow: hidden;
+}
 .table-headers{
     background-color: yellow !important;
     font-size: larger;
 }
+
 th{
     border: 1px solid #080808;
 }
+
 .result{
     width: 75%;
 }
+
 .statistics-container{
     position: relative;
     
 }
 .delete-button{
     position: absolute;
-    right: 5px;
+    right: 10px;
     top: 25%;
     font-size: 16px;
     padding: 0.4rem;

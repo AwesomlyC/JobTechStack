@@ -57,7 +57,6 @@ function GlobalStatisticsPage() {
           <SearchFields 
             setDisplayResults = {setDisplayResults}
             relevantCompanyInformation = {relevantCompanyInformation}
-          
           />
           <GlobalCompanyInformation 
             relevantCompanyInformation = {displayResults}

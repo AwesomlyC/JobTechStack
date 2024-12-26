@@ -35,7 +35,7 @@ const STOPWORDS = ['i','me','my','myself','we','our','ours','ourselves','you','y
 
 const LANGAUGES = ['python', 'c', 'java', 'react', 'reactjs', 'javascript', 'typescript','php', 'ruby', 'swift', 'r', 'html', 'css',
      'html5', 'git', 'vuejs', 'vue', 'angularjs', 'angular', 'nodejs', 'node', 'tailwind', 'j2ee', 'playwright', 'bootstrap', 'foundation',
-     'materialize', 'rust', 'css3', 'obj', 'go',
+     'materialize', 'rust', 'css3', 'obj', 'go', 'scala'
     ]
 
 const DATABASES = ['nosql', 'mysql', 'postgresql', 'postgres', 'mongodb', 'cassandra', 'spark', 'sparks','sql', 'sqlite', 'msql','databricks', 
@@ -49,7 +49,7 @@ const OTHERS = ['rest' ,'restful', 'restfuls', 'api', 'apis', 'xml', 'json', 'aw
 
 const TOOLS = ['postman', 'jira', 'selenium', 'docker', 'kubernetes', 'kubernete',  'lambda', 'devops', 'devop', 'terraform',
    'cloudformation', 'bash', 'linux', 'macos','unix', 'windows', 'macintosh', 'ansible', 'jest', 'mocha', 'informatica', 'tabkeau',
-  'circleci']
+  'circleci', 'snowflake']
 
 
   app.get('/', (req, res) => {
@@ -76,7 +76,7 @@ function countRepeatedWords(sentence) {
 
     let words = sentence
         .toLowerCase()
-        .replace(/[/]/g, ' ')
+        .replace(/[/,]/g, ' ')
         .replace(/[^\w\s/]/g, '')
         .split(/\s/)
         .filter(word => relevantKeyword(word));
@@ -151,6 +151,7 @@ async function retrieveAllStatistics() {
       ];
 
     let data = await collection.aggregate(agg).toArray();
+    // console.log(data)
     let totalMap =  {}
     let totalCompany = []
     for (let i = 0; i < data.length; i++){
