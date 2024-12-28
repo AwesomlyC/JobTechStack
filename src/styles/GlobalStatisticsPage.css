@@ -103,11 +103,19 @@ th{
     right: 10px;
     top: 25%;
     font-size: 16px;
-    padding: 0.4rem;
+    padding: 0.4rem 0.6rem;
     background-color: #a28089;
 }
 
-.table-delete{
+.update-button{
+    position: absolute;
+    right: 10px;
+    top: 20%;
+    font-size: 16px;
+    padding: 0.4rem;
+    background-color: #32de84;
+}
+.table-action{
     background-color: lightgray;
     border-collapse: collapse;
     width: 50px;
@@ -116,7 +124,7 @@ th{
     border: 0px;
 }
 
-.row-delete{
+.row-action{
     text-align: center;
     background-color: lightgray;
 }

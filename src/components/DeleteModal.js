@@ -14,15 +14,13 @@ function DeleteModal({isOpen, onClose, flipDeleteMode, setHasRetrieve, currentDe
           { data: currentDeleteInfo }
         ).then(response => {
           console.log(response.data);
-          flipDeleteMode();
-          setHasRetrieve(false);
-          setCurrentDeleteInfo({});
+          cancelDeleteModal();
         }).catch(error => {
-          console.error("Occurred during axios callback:", error);
+          console.error("Occurred during axios callback - delete:", error);
         })
       };
 
-      const cancelModal = () => {
+      const cancelDeleteModal = () => {
         flipDeleteMode(false);
         setHasRetrieve(false);
         setCurrentDeleteInfo({});
@@ -43,9 +41,8 @@ function DeleteModal({isOpen, onClose, flipDeleteMode, setHasRetrieve, currentDe
                     
                 </div>
                 <div className='delete-options'>
-                    <button className = 'cancel' onClick = {cancelModal}>Cancel</button>
+                    <button className = 'cancel' onClick = {cancelDeleteModal}>Cancel</button>
                     <button className = 'delete' onClick = {(info) => deleteID(info)}>Delete</button>
-
                 </div>
             </>
             </div>

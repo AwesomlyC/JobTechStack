@@ -1,16 +1,27 @@
 import React, {useState} from 'react'
 import { FaMinusCircle } from "react-icons/fa";
 import DeleteModal from './DeleteModal'
-function GlobalCompanyInformation({ relevantCompanyInformation, deleteMode, flipDeleteMode, setHasRetrieve }) {
-  const [open, setOpen] = useState(false);
+import UpdateModal from './UpdateModal';
+function GlobalCompanyInformation({ relevantCompanyInformation, deleteMode, flipDeleteMode,
+   setHasRetrieve, updateMode, flipUpdateMode }) {
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [currentDeleteInfo, setCurrentDeleteInfo] = useState({});
+
+  const [updateModalOpen, setUpdateModalOpen] = useState(false);
+  const [currentUpdateInfo, setCurrentUpdateInfo] = useState({});
   const handleClose = () => {
-    setOpen(false);
+    setDeleteModalOpen(false);
+    setUpdateModalOpen(false);
   }
 
-  const handleOpen = (info) => {
-    setOpen(true);
+  const handleDeleteInfo = (info) => {
+    setDeleteModalOpen(true);
     setCurrentDeleteInfo(info);
+  }
+
+  const handleUpdateInfo = (info) => {
+    setUpdateModalOpen(true);
+    setCurrentUpdateInfo(info);
   }
 
 
@@ -20,7 +31,9 @@ function GlobalCompanyInformation({ relevantCompanyInformation, deleteMode, flip
         <tbody>
           <tr className='table-headers'>
 
-            {deleteMode && (<th className='table-delete'></th>)}
+            {deleteMode && (<th className='table-action'></th>)}
+            {updateMode && (<th className='table-action'></th>)}
+
             <th className='table-number'>No.</th>
             <th className='table-name'>Company Name</th>
             <th className='table-title'>Job Title</th>
@@ -34,8 +47,13 @@ function GlobalCompanyInformation({ relevantCompanyInformation, deleteMode, flip
             <tbody key={index}>
               <tr key={index} className='table-result-row'>
                 {deleteMode && (
-                  <td className='row-delete'>
-                    {<FaMinusCircle onClick= {() => handleOpen(info)} />}
+                  <td className='row-action'>
+                    {<FaMinusCircle onClick= {() => handleDeleteInfo(info)} />}
+                  </td>
+                )}
+                {updateMode && (
+                  <td className='row-action'>
+                    <button onClick={() => handleUpdateInfo(info)}>Update</button>
                   </td>
                 )}
                 <td className='table-result-data'>{index + 1}</td>
@@ -54,9 +72,16 @@ function GlobalCompanyInformation({ relevantCompanyInformation, deleteMode, flip
           )
         )}
       </table>
-
+        <UpdateModal 
+          isOpen={updateModalOpen}
+          onClose={handleClose}
+          flipUpdateMode={flipUpdateMode}
+          setHasRetrieve={setHasRetrieve}
+          currentUpdateInfo={currentUpdateInfo}
+          setCurrentUpdateInfo={setCurrentUpdateInfo}
+        />
       <DeleteModal 
-        isOpen={open} 
+        isOpen={deleteModalOpen} 
         onClose={handleClose} 
         flipDeleteMode = {flipDeleteMode} 
         setHasRetrieve={setHasRetrieve} 

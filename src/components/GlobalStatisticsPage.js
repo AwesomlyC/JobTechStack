@@ -10,7 +10,9 @@ function GlobalStatisticsPage() {
     const [hasRetrieve, setHasRetrieve] = useState(false);
     const [numberOfDocuments, setNumberOfDocuments] = useState(0);
     const [relevantCompanyInformation, setRelevantCompanyInformation] = useState([]);
+
     const [deleteMode, setDeleteMode] = useState(false);
+    const [updateMode, setUpdateMode] = useState(false);
 
     const [displayResults, setDisplayResults] = useState([]);
 
@@ -40,6 +42,11 @@ function GlobalStatisticsPage() {
     const flipDeleteMode = () => {
       setDeleteMode((e) => !e);
     }
+
+    const flipUpdateMode = () => {
+      console.log("FLIPPING", updateMode)
+      setUpdateMode((e) =>!e);
+    }
   return (
       <div>
           <h1>Global Statistics for <text style={{ color: 'blue' }}>{numberOfDocuments}</text> documents</h1>
@@ -48,6 +55,13 @@ function GlobalStatisticsPage() {
           </div>
 
         <div className = "statistics-container">
+          <button
+            className='update-button'
+            onClick={flipUpdateMode}
+          >
+            <b><strong>Update</strong></b>
+
+          </button>
           <button 
             className='delete-button'
             onClick={flipDeleteMode}
@@ -60,9 +74,12 @@ function GlobalStatisticsPage() {
           />
           <GlobalCompanyInformation 
             relevantCompanyInformation = {displayResults}
+            setHasRetrieve = {setHasRetrieve}
             deleteMode = {deleteMode}
             flipDeleteMode = {flipDeleteMode}
-            setHasRetrieve = {setHasRetrieve}
+
+            updateMode = {updateMode}
+            flipUpdateMode = {flipUpdateMode}
           />
       </div>
       </div>
