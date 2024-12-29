@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import { FaMinusCircle } from "react-icons/fa";
+import { FaRegEdit } from "react-icons/fa";
+
 import DeleteModal from './DeleteModal'
 import UpdateModal from './UpdateModal';
 function GlobalCompanyInformation({ relevantCompanyInformation, deleteMode, flipDeleteMode,
@@ -53,7 +55,7 @@ function GlobalCompanyInformation({ relevantCompanyInformation, deleteMode, flip
                 )}
                 {updateMode && (
                   <td className='row-action'>
-                    <button onClick={() => handleUpdateInfo(info)}>Update</button>
+                    <FaRegEdit onClick={() => handleUpdateInfo(info)} />
                   </td>
                 )}
                 <td className='table-result-data'>{index + 1}</td>
