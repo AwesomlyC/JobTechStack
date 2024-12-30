@@ -59,17 +59,16 @@ h1{
 
 
 tbody:nth-child(odd){
-    background-color: #EB5E66;
+    background-color: #c0c0c0;
 }
 tbody:nth-child(even){
-    background-color: lightseagreen;
+    background-color: #4682b4;
 }
 
 table{
     height: 40vh;
     display: inline-block;
     overflow: auto;
-    background-color: lightseagreen;
     border-collapse: collapse;
     border-spacing: 0 1rem;
 }
