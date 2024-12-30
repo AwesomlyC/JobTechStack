@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FaRegEdit } from "react-icons/fa";
 import DatePicker from "react-datepicker";
@@ -6,7 +6,7 @@ import DatePicker from "react-datepicker";
 import './../styles/UpdateModal.css'
 import 'react-datepicker/dist/react-datepicker.css'
 
-function UpdateModal({isOpen, onClose, flipUpdateMode, setHasRetrieve, currentUpdateInfo, setCurrentUpdateInfo}) {
+function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentUpdateInfo, setCurrentUpdateInfo }) {
 
     const [companyName, setCompanyName] = useState('');
     const [jobTitle, setJobTitle] = useState('');
@@ -14,43 +14,61 @@ function UpdateModal({isOpen, onClose, flipUpdateMode, setHasRetrieve, currentUp
     const [dateOfSubmission, setDateOfSubmission] = useState(null);
     const [companyURL, setCompanyURL] = useState('');
     const [userInput, setUserInput] = useState('');
-    
+
+    const [documentID, setDocumentID] = useState(null);
+
     // if (!isOpen){
     //     return null;
     // }
 
     useEffect(() => {
-        if (isOpen){
-            console.log(currentUpdateInfo);
-            console.log(dateOfSubmission);
+        if (isOpen) {
             setUpdateInfo();
         }
     }, [isOpen]);
 
-    if (!isOpen){
+    if (!isOpen) {
         return null;
     }
     const setUpdateInfo = () => {
         setCompanyName(currentUpdateInfo.companyName);
         setJobTitle(currentUpdateInfo.jobTitle);
         setCompanyLocation(currentUpdateInfo.companyLocation)
-        if (currentUpdateInfo.dateOfSubmission){
-            const [year,monthIndex,day] = currentUpdateInfo.dateOfSubmission.split('-')
+        if (currentUpdateInfo.dateOfSubmission) {
+            const [year, monthIndex, day] = currentUpdateInfo.dateOfSubmission.split('-')
             setDateOfSubmission(new Date(year, monthIndex - 1, day))
-        } else{
+        } else {
             setDateOfSubmission(new Date());
         }
         setCompanyURL(currentUpdateInfo.companyURL)
         setUserInput(currentUpdateInfo.userInput);
-    }
-    const updateID = (info) => {
-        // axios.post(
 
-        // ).then(response =>{
-        //     console.log(response.data);
-        // }).catch(error =>  {
-        //     console.error("Occurred during axios callback - update:", error);
-        // });
+        setDocumentID(currentUpdateInfo.documentID);
+    }
+    const updateID = async (info) => {
+        if (!userInput || !companyName || !companyLocation || !jobTitle) {
+            console.log(userInput, companyName, companyLocation, jobTitle)
+            return;
+        }
+        const data = {
+            userInput: userInput,
+            companyName: companyName.trimEnd().trimStart(),
+            jobTitle: jobTitle.trimEnd().trimStart(),
+            companyLocation: companyLocation.trimEnd().trimStart(),
+            dateOfSubmission: dateOfSubmission.toISOString().split('T')[0],       // Only keep the date, not the time
+            companyURL: companyURL.trimEnd().trimStart(),
+            documentID: documentID,
+        }
+
+
+        await axios.post(
+            `${process.env.REACT_APP_SERVER_URL}/update-info`,
+            data
+        ).then(response =>{
+            setHasRetrieve(false);
+        }).catch(error =>  {
+            console.error("Occurred during axios callback - update:", error);
+        });
 
         cancelDeleteModal();
     }
@@ -63,83 +81,83 @@ function UpdateModal({isOpen, onClose, flipUpdateMode, setHasRetrieve, currentUp
     }
 
     return (
-    <div
-        // onClick={onClose}
-        className='modal-popup'
-    >
-        <div className='update-modal'>
-            <>
-                <span className='update-icon'><FaRegEdit /></span>
+        <div
+            // onClick={onClose}
+            className='modal-popup'
+        >
+            <div className='update-modal'>
+                <>
+                    <span className='update-icon'><FaRegEdit /></span>
 
-                <div className='update-container'>
-                    <div className='update-description'>
-                    <label>Job Description:</label>
-                        <textarea 
-                            className='text-input'
-                            type="text"
-                            value={userInput}
-                            onChange={(e) => setUserInput(e.target.value)}
-                        />
+                    <div className='update-container'>
+                        <div className='update-description'>
+                            <label>Job Description:</label>
+                            <textarea
+                                className='text-input'
+                                type="text"
+                                value={userInput}
+                                onChange={(e) => setUserInput(e.target.value)}
+                            />
+                        </div>
+                        <div className='update-fields'>
+                            <label>Company Name:</label>
+                            <input
+                                className='company-information'
+                                type='text'
+                                value={companyName}
+                                onChange={(e) => setCompanyName(e.target.value)}
+                                placeholder='Company Name'
+                                required
+                            />
+                            <label>Job Title:</label>
+                            <input
+                                className='company-information'
+                                type='text'
+                                value={jobTitle}
+                                onChange={(e) => setJobTitle(e.target.value)}
+                                placeholder='Job Title'
+                                required
+                            />
+
+                            <label>Location: </label>
+                            <select
+                                className='company-information'
+                                value={companyLocation}
+                                onChange={(e) => setCompanyLocation(e.target.value)}
+                            >
+                                <option value='Remote'>Remote</option>
+                                <option value='United_States'>United States</option>
+                                <option value='California'>California</option>
+
+                            </select>
+
+                            <label>URL:</label>
+                            <input
+                                className='company-information'
+                                type='text'
+                                value={companyURL}
+                                onChange={(e) => setCompanyURL(e.target.value)}
+                                placeholder='URL'
+                            />
+                            <label>Date submitted:</label>
+                            <DatePicker
+                                selected={dateOfSubmission}
+                                onChange={(date) => setDateOfSubmission(date)}
+                            />
+                        </div>
                     </div>
-                    <div className='update-fields'>
-                    <label>Company Name:</label>
-                    <input 
-                        className='company-information'
-                        type='text'
-                        value={companyName}
-                        onChange={(e) => setCompanyName(e.target.value)}
-                        placeholder='Company Name'
-                        required
-                    />
-                    <label>Job Title:</label>
-                    <input 
-                        className='company-information'
-                        type='text'
-                        value={jobTitle}
-                        onChange={(e) => setJobTitle(e.target.value)}
-                        placeholder='Job Title'
-                        required
-                    />
 
-                    <label>Location: </label>
-                    <select
-                        className='company-information'
-                        value={companyLocation}
-                        onChange={(e) => setCompanyLocation(e.target.value)}
-                    >
-                        <option value='Remote'>Remote</option>
-                        <option value='United_States'>United States</option>
-                        <option value='California'>California</option>
-
-                    </select>
-
-                    <label>URL:</label>
-                    <input 
-                        className='company-information'
-                        type='text'
-                        value={companyURL}
-                        onChange={(e) => setCompanyURL(e.target.value)}
-                        placeholder='URL'
-                    />
-                    <label>Date submitted:</label>
-                    <DatePicker 
-                        selected={dateOfSubmission}
-                        onChange={(date) => setDateOfSubmission(date)} 
-                        />
+                    <div className='button-options' id = 'update-modal-options'>
+                        <button className='cancel' onClick={cancelDeleteModal}>Cancel</button>
+                        <button className='update' onClick={(info) => updateID(info)}>Update</button>
                     </div>
-                </div>
+                </>
+            </div>
 
-                <div className='delete-options'>
-                    <button className = 'cancel' onClick = {cancelDeleteModal}>Cancel</button>
-                    <button className = 'delete' onClick = {(info) => updateID(info)}>Update</button>
-                </div>
-            </>
+
+
         </div>
-        
-
-
-    </div>
-  )
+    )
 }
 
 export default UpdateModal

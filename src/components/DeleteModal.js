@@ -40,7 +40,7 @@ function DeleteModal({isOpen, onClose, flipDeleteMode, setHasRetrieve, currentDe
                     <span>Are you sure?</span>
                     
                 </div>
-                <div className='delete-options'>
+                <div className='button-options'>
                     <button className = 'cancel' onClick = {cancelDeleteModal}>Cancel</button>
                     <button className = 'delete' onClick = {(info) => deleteID(info)}>Delete</button>
                 </div>
