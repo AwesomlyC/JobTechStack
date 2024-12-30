@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { FaRegEdit } from "react-icons/fa";
 import DatePicker from "react-datepicker";
@@ -17,9 +17,8 @@ function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentU
 
     const [documentID, setDocumentID] = useState(null);
 
-    // if (!isOpen){
-    //     return null;
-    // }
+    const modalRef = useRef(null);
+
 
     useEffect(() => {
         if (isOpen) {
@@ -30,6 +29,7 @@ function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentU
     if (!isOpen) {
         return null;
     }
+
     const setUpdateInfo = () => {
         setCompanyName(currentUpdateInfo.companyName);
         setJobTitle(currentUpdateInfo.jobTitle);
@@ -45,6 +45,7 @@ function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentU
 
         setDocumentID(currentUpdateInfo.documentID);
     }
+
     const updateID = async (info) => {
         if (!userInput || !companyName || !companyLocation || !jobTitle) {
             console.log(userInput, companyName, companyLocation, jobTitle)
@@ -70,22 +71,29 @@ function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentU
             console.error("Occurred during axios callback - update:", error);
         });
 
-        cancelDeleteModal();
+        cancelUpdateModal();
     }
 
-    const cancelDeleteModal = () => {
+    const cancelUpdateModal = () => {
         flipUpdateMode(false);
         setHasRetrieve(false);
         setCurrentUpdateInfo({});
         onClose();
     }
 
+    const handleClickOutside = (event) => {
+        if (modalRef.current && !modalRef.current.contains(event.target)) {
+            cancelUpdateModal();
+            onClose();
+        }
+    }
+
     return (
         <div
-            // onClick={onClose}
             className='modal-popup'
+            onClick={handleClickOutside}
         >
-            <div className='update-modal'>
+            <div className='update-modal' ref = {modalRef}>
                 <>
                     <span className='update-icon'><FaRegEdit /></span>
 
@@ -148,7 +156,7 @@ function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentU
                     </div>
 
                     <div className='button-options' id = 'update-modal-options'>
-                        <button className='cancel' onClick={cancelDeleteModal}>Cancel</button>
+                        <button className='cancel' onClick={cancelUpdateModal}>Cancel</button>
                         <button className='update' onClick={(info) => updateID(info)}>Update</button>
                     </div>
                 </>

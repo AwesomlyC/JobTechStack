@@ -1,9 +1,13 @@
-import React from 'react'
+import React, {useRef} from 'react'
 import './../styles/DeleteModal.css'
 import { FaTrashCan } from "react-icons/fa6";
 import axios from 'axios';
 
 function DeleteModal({isOpen, onClose, flipDeleteMode, setHasRetrieve, currentDeleteInfo, setCurrentDeleteInfo}) {
+    
+  
+    const modalRef = useRef(null);
+    
     if (!isOpen){
         return null;
     }
@@ -14,10 +18,12 @@ function DeleteModal({isOpen, onClose, flipDeleteMode, setHasRetrieve, currentDe
           { data: currentDeleteInfo }
         ).then(response => {
           console.log(response.data);
-          cancelDeleteModal();
         }).catch(error => {
           console.error("Occurred during axios callback - delete:", error);
         })
+
+        cancelDeleteModal();
+
       };
 
       const cancelDeleteModal = () => {
@@ -25,12 +31,19 @@ function DeleteModal({isOpen, onClose, flipDeleteMode, setHasRetrieve, currentDe
         setHasRetrieve(false);
         setCurrentDeleteInfo({});
       }
+
+      const handleClickOutside = (event) => {
+        if (modalRef.current && !modalRef.current.contains(event.target)) {
+          cancelDeleteModal();
+            onClose();
+        }
+    }
     return (
         <div
-            onClick={onClose}
             className='modal-popup'
+            onClick={handleClickOutside}
         >
-            <div className='modal'>
+            <div className='modal' ref={modalRef}>
             <>
                 <span className='trash-icon'><FaTrashCan /></span>
 

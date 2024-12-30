@@ -336,9 +336,15 @@ async function getRangeOfDates(collection) {
 
   return { start: minimumDate, range: getDaysDifference(minimumDate, maximumDate), end: maximumDate }
 };
+const HOURS_PER_DAY = 24;
+const MINUTES_PER_HOUR = 60;
+const SECONDS_PER_MINUTE = 60;
+const MILISECONDS_PER_SECOND = 1000;
 function getDaysDifference(date1, date2) {
   const diffInMilliseconds = date2.getTime() - date1.getTime();
-  const millisecondsPerDay = 1000 * 60 * 60 * 24;
+  const millisecondsPerDay = MILISECONDS_PER_SECOND * SECONDS_PER_MINUTE *
+                              MINUTES_PER_HOUR * HOURS_PER_DAY
+
   return Math.round(diffInMilliseconds / millisecondsPerDay);
 };
 
@@ -364,10 +370,7 @@ app.post('/update-info', async (req, res) => {
       }
     }
     let collection = await conn.db("company").collection('information');
-    // console.log("PASSED");
     let result = await collection.updateOne(query, updateValues);
-    // console.log(documentID);
-    // let result = await collection.findOne(query);
     console.log("Update document:", result);
   } catch (error) {
     console.error("ERROR OCCURRED DURING PARSE - UPDATE-INFO", error);
