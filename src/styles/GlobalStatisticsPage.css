@@ -135,3 +135,7 @@ th{
 .table-results-date, .table-date-of-submission{
     text-align: center;
 }
+
+.table-result-note{
+    text-align: center;
+}

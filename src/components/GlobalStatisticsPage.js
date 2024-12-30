@@ -13,6 +13,7 @@ function GlobalStatisticsPage() {
 
     const [deleteMode, setDeleteMode] = useState(false);
     const [updateMode, setUpdateMode] = useState(false);
+    const [notesMode, setNotesMode] = useState(false);
 
     const [displayResults, setDisplayResults] = useState([]);
 
@@ -41,16 +42,20 @@ function GlobalStatisticsPage() {
     }
     const flipDeleteMode = () => {
       setDeleteMode((e) => !e);
-      if (updateMode){
-        flipUpdateMode();
-      }
+      setUpdateMode(false);
+      setNotesMode(false);
     }
 
     const flipUpdateMode = () => {
       setUpdateMode((e) =>!e);
-      if (deleteMode){
-        flipDeleteMode();
-      }
+      setDeleteMode(false);
+      setNotesMode(false);
+    }
+
+    const flipNotesMode = () => {
+      setNotesMode( (e) => !e);
+      setUpdateMode(false);
+      setDeleteMode(false);
     }
   return (
       <div>
@@ -85,6 +90,9 @@ function GlobalStatisticsPage() {
 
             updateMode = {updateMode}
             flipUpdateMode = {flipUpdateMode}
+
+            notesMode = {notesMode}
+            flipNotesMode = {flipNotesMode}
           />
       </div>
       </div>
