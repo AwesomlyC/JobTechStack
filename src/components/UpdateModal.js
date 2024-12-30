@@ -84,7 +84,6 @@ function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentU
     const handleClickOutside = (event) => {
         if (modalRef.current && !modalRef.current.contains(event.target)) {
             cancelUpdateModal();
-            onClose();
         }
     }
 
@@ -95,7 +94,7 @@ function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentU
         >
             <div className='update-modal' ref = {modalRef}>
                 <>
-                    <span className='update-icon'><FaRegEdit /></span>
+                    <span className='update-icon'>Edit Information<FaRegEdit /></span>
 
                     <div className='update-container'>
                         <div className='update-description'>

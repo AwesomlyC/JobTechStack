@@ -30,12 +30,12 @@ function DeleteModal({isOpen, onClose, flipDeleteMode, setHasRetrieve, currentDe
         flipDeleteMode(false);
         setHasRetrieve(false);
         setCurrentDeleteInfo({});
+        onClose();
       }
 
       const handleClickOutside = (event) => {
         if (modalRef.current && !modalRef.current.contains(event.target)) {
           cancelDeleteModal();
-            onClose();
         }
     }
     return (
