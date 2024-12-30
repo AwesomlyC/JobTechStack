@@ -8,11 +8,12 @@ import 'react-datepicker/dist/react-datepicker.css'
 
 function UpdateModal({isOpen, onClose, flipUpdateMode, setHasRetrieve, currentUpdateInfo, setCurrentUpdateInfo}) {
 
-    const [companyName, setCompanyName] = useState(currentUpdateInfo.companyName);
-    const [jobTitle, setJobTitle] = useState(currentUpdateInfo.jobTitle);
-    const [companyLocation, setCompanyLocation] = useState(currentUpdateInfo.companyLocation);
-    const [dateOfSubmission, setDateOfSubmission] = useState(currentUpdateInfo.dateOfSubmission  ? new Date(currentUpdateInfo.dateOfSubmission) : new Date());
-    const [companyURL, setCompanyURL] = useState(currentUpdateInfo.companyURL);
+    const [companyName, setCompanyName] = useState('');
+    const [jobTitle, setJobTitle] = useState('');
+    const [companyLocation, setCompanyLocation] = useState('');
+    const [dateOfSubmission, setDateOfSubmission] = useState(null);
+    const [companyURL, setCompanyURL] = useState('');
+    const [userInput, setUserInput] = useState('');
     
     // if (!isOpen){
     //     return null;
@@ -32,9 +33,15 @@ function UpdateModal({isOpen, onClose, flipUpdateMode, setHasRetrieve, currentUp
     const setUpdateInfo = () => {
         setCompanyName(currentUpdateInfo.companyName);
         setJobTitle(currentUpdateInfo.jobTitle);
-        setDateOfSubmission(currentUpdateInfo.companyLocation)
-        setDateOfSubmission(currentUpdateInfo.dateOfSubmission)
+        setCompanyLocation(currentUpdateInfo.companyLocation)
+        if (currentUpdateInfo.dateOfSubmission){
+            const [year,monthIndex,day] = currentUpdateInfo.dateOfSubmission.split('-')
+            setDateOfSubmission(new Date(year, monthIndex - 1, day))
+        } else{
+            setDateOfSubmission(new Date());
+        }
         setCompanyURL(currentUpdateInfo.companyURL)
+        setUserInput(currentUpdateInfo.userInput);
     }
     const updateID = (info) => {
         // axios.post(
@@ -60,11 +67,21 @@ function UpdateModal({isOpen, onClose, flipUpdateMode, setHasRetrieve, currentUp
         // onClick={onClose}
         className='modal-popup'
     >
-        <div className='modal'>
+        <div className='update-modal'>
             <>
                 <span className='update-icon'><FaRegEdit /></span>
 
-                <div className='update-fields'>
+                <div className='update-container'>
+                    <div className='update-description'>
+                    <label>Job Description:</label>
+                        <textarea 
+                            className='text-input'
+                            type="text"
+                            value={userInput}
+                            onChange={(e) => setUserInput(e.target.value)}
+                        />
+                    </div>
+                    <div className='update-fields'>
                     <label>Company Name:</label>
                     <input 
                         className='company-information'
@@ -109,6 +126,7 @@ function UpdateModal({isOpen, onClose, flipUpdateMode, setHasRetrieve, currentUp
                         selected={dateOfSubmission}
                         onChange={(date) => setDateOfSubmission(date)} 
                         />
+                    </div>
                 </div>
 
                 <div className='delete-options'>

@@ -41,11 +41,16 @@ function GlobalStatisticsPage() {
     }
     const flipDeleteMode = () => {
       setDeleteMode((e) => !e);
+      if (updateMode){
+        flipUpdateMode();
+      }
     }
 
     const flipUpdateMode = () => {
-      console.log("FLIPPING", updateMode)
       setUpdateMode((e) =>!e);
+      if (deleteMode){
+        flipDeleteMode();
+      }
     }
   return (
       <div>

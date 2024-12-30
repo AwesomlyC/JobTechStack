@@ -145,7 +145,8 @@ async function retrieveAllStatistics() {
             "companyLocation": 1,
             "dateOfSubmission": 1,
             "companyURL": 1,
-            "wordMap": 1
+            "wordMap": 1,
+            "userInput": 1,
           }
         }
       ];
@@ -162,6 +163,7 @@ async function retrieveAllStatistics() {
           companyLocation: currentData.companyLocation,
           dateOfSubmission: currentData.dateOfSubmission,
           companyURL: currentData.companyURL,
+          userInput: currentData.userInput,
         }
         totalCompany.push(relevantInformation);
           for (const [key,value] of Object.entries(currentData.wordMap)){
