@@ -37,7 +37,7 @@ function TextInput() {
             { params: data }
             
         ).then ( res => {
-            console.log("Returned Data -->", res.data);
+            // console.log("Returned Data -->", res.data);
             setWordMap(res.data);
             resetFields();
         }).catch(error => {

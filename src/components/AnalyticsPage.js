@@ -11,7 +11,6 @@ function AnalyticsPage() {
     useEffect(() => {
         
         const retrieveChartData = async () => {
-            console.log("CALLED");
             await axios.post(
                 `${process.env.REACT_APP_SERVER_URL}/display-data-pie`,
             ).then(response => {
@@ -35,7 +34,6 @@ function AnalyticsPage() {
             await axios.post(
                 `${process.env.REACT_APP_SERVER_URL}/display-data-line`,
             ).then(response => {
-                console.log(response.data)
                 const data = response.data;
                 setLineData({
                     labels: data.labels,
