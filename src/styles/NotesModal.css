@@ -1,0 +1,27 @@
+.notes-modal{
+    position: relative;
+    background: white;
+    margin: auto;
+    padding: 2%;
+    border: 2px solid #000;
+    border-radius: 10px;
+    box-shadow: 2px solid black;
+    width: 50%;
+    
+}
+
+.notes-title{
+    font-size: 24px;
+}
+
+.notes-description{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.notes-description .text-input{
+    resize: vertical;
+    width: inherit;
+}

@@ -160,9 +160,6 @@ function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentU
                     </div>
                 </>
             </div>
-
-
-
         </div>
     )
 }

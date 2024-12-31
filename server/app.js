@@ -145,6 +145,7 @@ async function retrieveAllStatistics() {
         "companyURL": 1,
         "wordMap": 1,
         "userInput": 1,
+        "notes": 1,
       }
     }
   ];
@@ -162,6 +163,7 @@ async function retrieveAllStatistics() {
       companyURL: currentData.companyURL,
       userInput: currentData.userInput,
       documentID: currentData._id,
+      notes: currentData.notes,
     }
     totalCompany.push(relevantInformation);
     for (const [key, value] of Object.entries(currentData.wordMap)) {
@@ -357,7 +359,7 @@ app.post('/update-info', async (req, res) => {
       conn = await connection();
     }
 
-    const query = {_id: new ObjectId(documentID)}
+    const query = {_id: ObjectId.createFromHexString(documentID)}
     const updateValues = {
       $set: {
         companyName: companyName,
@@ -378,6 +380,30 @@ app.post('/update-info', async (req, res) => {
   res.send(wordMap);
 });
 
+app.post('/update-notes', async (req, res) => {
+  const {documentID, userNotes} = req.body;
+  let conn;
+  try {
+    if (!conn || conn === null) {
+      conn = await connection();
+    }
+
+    const query = {_id: ObjectId.createFromHexString(documentID)}
+    const notesValues ={
+      $set: {
+        notes: userNotes,
+      }
+    }
+    let collection = await conn.db("company").collection('information');
+    let result = await collection.updateOne(query, notesValues);
+
+    console.log("Update document:", result);
+  } catch (error) {
+    console.error("Error occurred during notes submit", error);
+    res.status(400).send("Error occurred during notes submit", error);
+  }
+  res.send(userNotes);
+});
 // Handling shutdown server
 // Error Handling
 process.on("SIGINT", async () => {
