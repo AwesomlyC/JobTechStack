@@ -23,5 +23,5 @@
 
 .notes-description .text-input{
     resize: vertical;
-    width: inherit;
+    width: 75%;
 }
