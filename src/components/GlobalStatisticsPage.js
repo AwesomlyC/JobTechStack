@@ -4,12 +4,13 @@ import GlobalKeywordTable from './GlobalKeywordTable';
 import '../styles/GlobalStatisticsPage.css'
 import GlobalCompanyInformation from './GlobalCompanyInformation';
 import SearchFields from './SearchFields';
+import LoadingSpinner from './LoadingSpinner';
 function GlobalStatisticsPage() {
 
-    const [globalStatistics, setGlobalStatistics] = useState({});
+    const [globalStatistics, setGlobalStatistics] = useState(null);
     const [hasRetrieve, setHasRetrieve] = useState(false);
     const [numberOfDocuments, setNumberOfDocuments] = useState(0);
-    const [relevantCompanyInformation, setRelevantCompanyInformation] = useState([]);
+    const [relevantCompanyInformation, setRelevantCompanyInformation] = useState(null);
 
     const [deleteMode, setDeleteMode] = useState(false);
     const [updateMode, setUpdateMode] = useState(false);
@@ -56,6 +57,10 @@ function GlobalStatisticsPage() {
       setNotesMode( (e) => !e);
       setUpdateMode(false);
       setDeleteMode(false);
+    }
+
+    if (!globalStatistics || !relevantCompanyInformation){
+      return <div><LoadingSpinner /></div>
     }
   return (
       <div>

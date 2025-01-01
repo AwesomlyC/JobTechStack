@@ -3,6 +3,7 @@ import {Pie, Line} from 'react-chartjs-2';
 import axios from 'axios';
 import 'chart.js/auto';
 import './../styles/AnalyticsPage.css'
+import LoadingSpinner from './LoadingSpinner';
 
 function AnalyticsPage() {
   const [chartData, setChartData] = useState(null);
@@ -57,7 +58,7 @@ function AnalyticsPage() {
 
 
     if (!chartData || !lineData){
-        return <div>Loading...</div>
+        return <div><LoadingSpinner /></div>
     }
 
     return (
