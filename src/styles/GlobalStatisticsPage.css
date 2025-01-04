@@ -64,6 +64,9 @@ tbody:nth-child(odd){
 tbody:nth-child(even){
     background-color: #4682b4;
 }
+.table-result-row:hover{
+    background-color: #fffacd;
+}
 
 table{
     height: 40vh;
@@ -139,3 +142,5 @@ th{
 .table-result-note{
     text-align: center;
 }
+
+
