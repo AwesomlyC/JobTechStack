@@ -11,15 +11,14 @@ function TextInput() {
     const [wordMap, setWordMap] = useState({});
     const [companyName, setCompanyName] = useState('');
     const [companyLocation, setCompanyLocation] = useState('Remote'); 
-    const [dateOfSubmission, setDateOfSubmission] = useState(new Date());   // Calendar Icon
+    const [dateOfSubmission, setDateOfSubmission] = useState(new Date().toLocaleString('en-US'));   // Calendar Icon
     const [jobTitle, setJobTitle] = useState('');   // Calendar Icon
 
     const [companyURL, setCompanyURL] = useState(''); // optional
 
     const submitChanges = () => {
-
         if (!userInput || !companyName || !companyLocation || !jobTitle){
-            console.log(userInput ,companyName ,companyLocation,jobTitle) 
+            // console.log("Input:",userInput ,"CompanyName:",companyName ,"Location:",companyLocation,"Title:", jobTitle) 
             return;
         }
         const data = {
@@ -30,6 +29,7 @@ function TextInput() {
             dateOfSubmission  : dateOfSubmission.toISOString().split('T')[0],       // Only keep the date, not the time
             companyURL: companyURL.trimEnd().trimStart()
         }
+        
 
         
         axios.get(
