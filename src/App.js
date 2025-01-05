@@ -1,5 +1,6 @@
 import './App.css';
 import Header from './components/Header';
+import Footer from './components/Footer';
 import MainPage from './components/MainPage';
 import GlobalStatisticsPage from './components/GlobalStatisticsPage';
 import AnalyticsPage from './components/AnalyticsPage';
@@ -10,11 +11,12 @@ function App() {
     <div>
       <BrowserRouter>
       <Header />
-      <Routes>
-        <Route path ='/' Component={MainPage} />
-        <Route path='/global-statistics' Component = {GlobalStatisticsPage} />
-        <Route path='/analytics' Component =  {AnalyticsPage} />
-      </Routes>
+          <Routes>
+            <Route path ='/' Component={MainPage} />
+            <Route path='/global-statistics' Component = {GlobalStatisticsPage} />
+            <Route path='/analytics' Component =  {AnalyticsPage} />
+          </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );

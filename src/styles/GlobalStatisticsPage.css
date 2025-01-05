@@ -118,17 +118,17 @@ th{
     background-color: #32de84;
 }
 .table-action{
-    background-color: lightgray;
     border-collapse: collapse;
     width: 50px;
     text-align: center;
     border-spacing: 0;
     border: 0px;
 }
-
+.table-action, .row-action{
+    background-color: #DCDCDC;
+}
 .row-action{
     text-align: center;
-    background-color: lightgray;
 }
 
 .table-result-row>td{

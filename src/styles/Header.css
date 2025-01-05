@@ -3,7 +3,7 @@
     width: 100%;
     display: flex;
     text-align: center;
-    background-color: lightcoral;
+    background-color: #4682B4;
     position: static;
     justify-content: space-between;
     align-items: center;
@@ -18,15 +18,29 @@
 
 .navbar-button{
     border-radius: 10px;
-    background: linear-gradient(to top, #09203f 0%, #537895 100%);
-    font-size: 24px;
-    color: white;
+    font-size: 18px;
     padding: 0.5rem;
     cursor: pointer;
+    background-color: #4682B4;
+    border-style: none;
+    color: blue;
+
+}
+
+.navbar-button:hover{
+    background-color: #2F4F4F;
+    transition: all 1.5s;
 }
 
 a {
     text-decoration: none;
-    color: blue;
+}
+.home-page {
+    color: #FFB800;
     font-size: 36px;
+}
+
+.navbar-pages{
+    font-size: 18px;
+    color: blue;
 }

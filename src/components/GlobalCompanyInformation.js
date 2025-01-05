@@ -36,7 +36,7 @@ function GlobalCompanyInformation({ relevantCompanyInformation, deleteMode, flip
   const handleNotesInfo = (info) => {
     setNotesModalOpen(true);
     setCurrentNotesInfo(info);
-    console.log("|TAPPED NOTES|", info);
+    // console.log("|TAPPED NOTES|", info);
   }
 
 
