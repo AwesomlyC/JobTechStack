@@ -260,6 +260,50 @@ app.get("/updateTime", async (req, res) => {
   }
 });
 
+
+app.get("/updateDate", async (req, res) => {
+  let conn;
+  try {
+    conn = await connection();
+  } catch (error) {
+    console.error('error occurred during delete-post');
+    console.error("connection:", conn);
+    res.status(400).send("Connection with db failed");
+  }
+
+  try {
+    const collection = await conn.db("company").collection("information");
+
+    const cursor = collection.find({}, {});
+    if ((await collection.countDocuments({})) === 0) {
+      console.log("No documents found!");
+    }
+    for await (const doc of cursor) {
+
+      let  [month, day, year] = doc.dateOfSubmission.split('/');
+      if (month === '1'){
+        month = '01';
+      }
+
+      if (year === '2025'){
+        day = '0' + day[0];
+      }
+      // console.log(doc.companyName, year + '/' + month + '/' + day );
+      const filter = { _id: doc._id }
+      const updateDoc = {
+        $set: {
+          dateOfSubmission: year + '/' + month + '/' + day,
+        }
+      }
+      const foundDoc = await collection.updateOne(filter, updateDoc, {})
+      console.log(foundDoc);
+    }
+    res.send("Called Time");
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 app.post('/display-data-pie', async (req, res) => {
   const statistics = await retrieveAllStatistics();
   const mapOfRelevantKeywords = statistics.sortedDict;
@@ -299,14 +343,16 @@ app.post('/display-data-line', async (req, res) => {
     const { start, range, end } = await getRangeOfDates(collection);
 
     const labels = [], dataPoints = new Array(range + 1).fill(0);
-
+    console.log(start, range, end);
     // Labels: [start, end] inclusive
     for (let i = 0; i < range + 1; i++) {
       const currentDate = new Date();
       const nextDate = new Date(currentDate.setDate(start.getDate() + i));
-      const date = nextDate.toISOString().split('T')[0]
+      const date = nextDate.toLocaleDateString('en-US');
       labels.push(date);
     }
+
+    console.log(labels);
 
 
     for (const key in statistics.relevantInformation) {
@@ -333,6 +379,7 @@ async function getRangeOfDates(collection) {
     sort: { "dateOfSubmission": 1 },
     projection: { _id: 0, 'dateOfSubmission': 1 }
   }
+  // console.log(await collection.findOne(query, maximum), await collection.findOne(query, minimum));
   const maximumDate = new Date((await collection.findOne(query, maximum)).dateOfSubmission);
   const minimumDate = new Date((await collection.findOne(query, minimum)).dateOfSubmission);
 
@@ -342,6 +389,7 @@ const HOURS_PER_DAY = 24;
 const MINUTES_PER_HOUR = 60;
 const SECONDS_PER_MINUTE = 60;
 const MILISECONDS_PER_SECOND = 1000;
+
 function getDaysDifference(date1, date2) {
   const diffInMilliseconds = date2.getTime() - date1.getTime();
   const millisecondsPerDay = MILISECONDS_PER_SECOND * SECONDS_PER_MINUTE *

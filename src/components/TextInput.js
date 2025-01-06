@@ -15,20 +15,32 @@ function TextInput() {
     const [jobTitle, setJobTitle] = useState('');   // Calendar Icon
 
     const [companyURL, setCompanyURL] = useState(''); // optional
+    const modifyDate = (dateString) => {
+        console.log(dateString);
+        let [month, day, year] = dateString.split('/');
 
+        if (month.length === 1){
+            month = '0' + month[0];
+        }
+
+        if (day.length === 1){
+            day = '0' + day[0];
+        }
+
+        return year + '/' + month + '/' + day;
+    }
     const submitChanges = () => {
 
         if (!userInput || !companyName || !companyLocation || !jobTitle){
             // console.log("Input:",userInput ,"CompanyName:",companyName ,"Location:",companyLocation,"Title:", jobTitle) 
             return;
         }
-
         const data = {
             userInput,
             companyName: companyName.trimEnd().trimStart(),
             jobTitle: jobTitle.trimEnd().trimStart(),
             companyLocation: companyLocation.trimEnd().trimStart(),
-            dateOfSubmission  : dateOfSubmission.toLocaleDateString('en-US'),       
+            dateOfSubmission  : modifyDate(dateOfSubmission.toLocaleDateString('en-US')),       
             companyURL: companyURL.trimEnd().trimStart()
         }
         axios.get(

@@ -37,6 +37,7 @@ function AnalyticsPage() {
                 `${process.env.REACT_APP_SERVER_URL}/display-data-line`,
             ).then(response => {
                 const data = response.data;
+                console.log(data);
                 setLineData({
                     labels: data.labels,
                     datasets: [
