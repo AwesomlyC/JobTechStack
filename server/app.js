@@ -343,24 +343,19 @@ app.post('/display-data-line', async (req, res) => {
     const { start, range, end } = await getRangeOfDates(collection);
 
     const labels = [], dataPoints = new Array(range + 1).fill(0);
-    console.log(start, range, end);
     // Labels: [start, end] inclusive
     for (let i = 0; i < range + 1; i++) {
-      const currentDate = new Date();
+      const currentDate = new Date(start);
       const nextDate = new Date(currentDate.setDate(start.getDate() + i));
-      const date = nextDate.toLocaleDateString('en-US');
+      const date = nextDate.toISOString().split('T')[0]
       labels.push(date);
     }
-
-    console.log(labels);
-
 
     for (const key in statistics.relevantInformation) {
       const docDate = statistics.relevantInformation[key].dateOfSubmission
       dataPoints[getDaysDifference(start, new Date(docDate))]++;
     }
 
-    // console.log(dataPoints);
     const startDateString = start.toISOString().split('T')[0]
     const endDateString = end.toISOString().split('T')[0]
     res.send({ labels, dataPoints, startDateString, endDateString });
@@ -379,7 +374,6 @@ async function getRangeOfDates(collection) {
     sort: { "dateOfSubmission": 1 },
     projection: { _id: 0, 'dateOfSubmission': 1 }
   }
-  // console.log(await collection.findOne(query, maximum), await collection.findOne(query, minimum));
   const maximumDate = new Date((await collection.findOne(query, maximum)).dateOfSubmission);
   const minimumDate = new Date((await collection.findOne(query, minimum)).dateOfSubmission);
 
