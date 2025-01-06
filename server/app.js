@@ -350,6 +350,28 @@ function getDaysDifference(date1, date2) {
   return Math.round(diffInMilliseconds / millisecondsPerDay);
 };
 
+app.post('/display-location-pie', async (req, res) => {
+  const statistics = await retrieveAllStatistics();
+  const relevantInformation = statistics.relevantInformation;
+
+  const locationMap = {};
+  for (let i = 0; i < relevantInformation.length; i++){
+    const companyData = relevantInformation[i];
+    const companyLocation = companyData.companyLocation;
+    if (locationMap[companyLocation]){
+      locationMap[companyLocation]++;
+    } else {
+      locationMap[companyLocation] = 1;
+    }
+  }
+
+
+  const labels = Object.keys(locationMap), dataCounts = Object.values(locationMap);
+  res.send({labels, dataCounts});
+
+});
+
+
 app.post('/update-info', async (req, res) => {
   const { userInput, jobTitle, companyName, companyLocation, dateOfSubmission, companyURL, documentID } = req.body;
   const wordMap = countRepeatedWords(userInput);

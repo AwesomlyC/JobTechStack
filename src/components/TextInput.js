@@ -11,27 +11,26 @@ function TextInput() {
     const [wordMap, setWordMap] = useState({});
     const [companyName, setCompanyName] = useState('');
     const [companyLocation, setCompanyLocation] = useState('Remote'); 
-    const [dateOfSubmission, setDateOfSubmission] = useState(new Date().toLocaleString('en-US'));   // Calendar Icon
+    const [dateOfSubmission, setDateOfSubmission] = useState(new Date());   // Calendar Icon
     const [jobTitle, setJobTitle] = useState('');   // Calendar Icon
 
     const [companyURL, setCompanyURL] = useState(''); // optional
 
     const submitChanges = () => {
+
         if (!userInput || !companyName || !companyLocation || !jobTitle){
             // console.log("Input:",userInput ,"CompanyName:",companyName ,"Location:",companyLocation,"Title:", jobTitle) 
             return;
         }
+
         const data = {
             userInput,
             companyName: companyName.trimEnd().trimStart(),
             jobTitle: jobTitle.trimEnd().trimStart(),
             companyLocation: companyLocation.trimEnd().trimStart(),
-            dateOfSubmission  : dateOfSubmission.toISOString().split('T')[0],       // Only keep the date, not the time
+            dateOfSubmission  : dateOfSubmission.toLocaleDateString('en-US'),       
             companyURL: companyURL.trimEnd().trimStart()
         }
-        
-
-        
         axios.get(
             `${process.env.REACT_APP_SERVER_URL}/parse`,
             { params: data }
