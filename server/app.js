@@ -35,7 +35,7 @@ const STOPWORDS = ['i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 
 
 const LANGAUGES = ['python', 'c', 'java', 'react', 'reactjs', 'javascript', 'typescript', 'php', 'ruby', 'swift', 'r', 'html', 'css',
   'html5', 'git', 'vuejs', 'vue', 'angularjs', 'angular', 'nodejs', 'node', 'tailwind', 'j2ee', 'playwright', 'bootstrap', 'foundation',
-  'materialize', 'rust', 'css3', 'obj', 'go', 'scala'
+  'materialize', 'rust', 'css3', 'obj', 'go', 'scala', 'nextjs'
 ]
 
 const DATABASES = ['nosql', 'mysql', 'postgresql', 'postgres', 'mongodb', 'cassandra', 'spark', 'sparks', 'sql', 'sqlite', 'msql', 'databricks',
@@ -45,22 +45,24 @@ const DATABASES = ['nosql', 'mysql', 'postgresql', 'postgres', 'mongodb', 'cassa
 const METHODOLOGY = ['agile', 'scrum', 'sdlc', 'qa', 'seo',]
 
 const OTHERS = ['rest', 'restful', 'restfuls', 'api', 'apis', 'xml', 'json', 'aws', 'microservices', 'microservice', 'spring', 'boot',
-  'django', 'flask', 'ec2', 'ci', 'cd', 'cicd', 'vpc', 's3', 'jquery', 'ajax', 'etl', 'tomcat']
+  'django', 'flask', 'ec2', 'ci', 'cd', 'cicd', 'vpc', 's3', 'jquery', 'ajax', 'etl', 'tomcat', 'blockchain']
 
 const TOOLS = ['postman', 'jira', 'selenium', 'docker', 'kubernetes', 'kubernete', 'lambda', 'devops', 'devop', 'terraform',
   'cloudformation', 'bash', 'linux', 'macos', 'unix', 'windows', 'macintosh', 'ansible', 'jest', 'mocha', 'informatica', 'tabkeau',
   'circleci', 'snowflake']
 
+const CERTIFICATIONS = ['comptia', 'federal', 'clearance']
+const DEGREES = ['bachelor', 'bachelors', 'master', 'masters']
+
 
 app.get('/', (req, res) => {
-  console.log("WORKS");
-  res.send('Hello World! v2.0')
+  // console.log("WORKS");
+  res.send('Hello World! v3.0')
 });
 
 const connectionString = process.env.ATLAS_URI || "";
 const client = new MongoClient(connectionString);
 
-// let conn;
 
 async function connection() {
   try {
@@ -97,7 +99,8 @@ function countRepeatedWords(sentence) {
 function relevantKeyword(word) {
 
   return !STOPWORDS.includes(word) &&
-    (LANGAUGES.includes(word) || DATABASES.includes(word) || METHODOLOGY.includes(word) || OTHERS.includes(word) || TOOLS.includes(word));
+    (LANGAUGES.includes(word) || DATABASES.includes(word) || METHODOLOGY.includes(word) || 
+    OTHERS.includes(word) || TOOLS.includes(word) || CERTIFICATIONS.includes(word) || DEGREES.includes(word));
 }
 
 // Parse the user's input and store in the database
