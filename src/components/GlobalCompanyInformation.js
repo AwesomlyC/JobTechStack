@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { FaMinusCircle } from "react-icons/fa";
 import { FaRegEdit } from "react-icons/fa";
 import { FaNoteSticky } from "react-icons/fa6";
-
+import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import DeleteModal from './DeleteModal'
 import UpdateModal from './UpdateModal';
 import NotesModal from './NotesModal';
@@ -16,6 +16,8 @@ function GlobalCompanyInformation({ relevantCompanyInformation, deleteMode, flip
 
   const [notesModalOpen, setNotesModalOpen] = useState(false);
   const [currentNotesInfo, setCurrentNotesInfo] = useState({});
+
+  const [sorted, setSorted] = useState({sorted: "id", reversed: false});
 
   const handleClose = () => {
     setDeleteModalOpen(false);
@@ -36,10 +38,36 @@ function GlobalCompanyInformation({ relevantCompanyInformation, deleteMode, flip
   const handleNotesInfo = (info) => {
     setNotesModalOpen(true);
     setCurrentNotesInfo(info);
-    // console.log("|TAPPED NOTES|", info);
   }
 
+  const renderArrow = () => {
+    if (sorted.reversed) {
+      return <FaArrowUp />;
+    } 
+    return <FaArrowDown />;
+  }
 
+  const sortByName = () => {
+
+    setSorted({ sorted: "name", reversed: !sorted.reversed });
+  }
+
+  const sortByTitle = () =>{
+
+    setSorted({ sorted: "title", reversed: !sorted.reversed });
+
+  }
+
+  const sortByLocation = () => {
+
+    setSorted({ sorted: "location", reversed: !sorted.reversed });
+  }
+
+  const sortByDate = () => {
+
+    setSorted({ sorted: "date", reversed: !sorted.reversed });
+
+  }
   return (
     <div className='table-job-information'>
       <table className='table-table'>
@@ -50,10 +78,28 @@ function GlobalCompanyInformation({ relevantCompanyInformation, deleteMode, flip
             {updateMode && (<th className='table-action'></th>)}
 
             <th className='table-number'>No.</th>
-            <th className='table-name'>Company Name</th>
-            <th className='table-title'>Job Title</th>
-            <th className='table-location'>Location</th>
-            <th className='table-date'>Date Submitted</th>
+            <th className='table-name' onClick={sortByName}>
+              <span style={{ marginRight: 10 }}>Company Name</span>
+              {sorted.sorted === "name" ? renderArrow() : null}
+              
+            </th>
+            <th className='table-title' onClick={sortByTitle}>
+              <span style={{ marginRight: 10 }}>Job Title</span>
+              {sorted.sorted === "title" ? renderArrow() : null}
+
+              </th>
+
+            <th className='table-location' onClick={sortByLocation}>
+              <span style={{ marginRight: 10 }}>Location</span>
+              {sorted.sorted === "location" ? renderArrow() : null}
+
+              </th>
+
+            <th className='table-date' onClick={sortByDate}>
+              <span style={{ marginRight: 10 }}>Date Submitted</span>
+              {sorted.sorted === "date" ? renderArrow() : null}
+
+              </th>
             <th className='table-url'>URL</th>
             <th className='table-notes'>Notes</th>
 

@@ -75,7 +75,6 @@ async function connection() {
 connection();
 
 function countRepeatedWords(sentence) {
-
   let words = sentence
     .toLowerCase()
     .replace(/[/,]/g, ' ')
@@ -84,7 +83,6 @@ function countRepeatedWords(sentence) {
     .filter(word => relevantKeyword(word));
 
   let wordMap = {};
-  // console.log(sentence.toLowerCase().replace(/[/]/g, ' ').replace(/[^\w\s]/g, ''));
   for (let i = 0; i < words.length; i++) {
     if (words[i] === '') {
       continue;
@@ -96,8 +94,8 @@ function countRepeatedWords(sentence) {
   return wordMap;
 }
 
+// Only want technical keywords, discard everything else.
 function relevantKeyword(word) {
-
   return !STOPWORDS.includes(word) &&
     (LANGAUGES.includes(word) || DATABASES.includes(word) || METHODOLOGY.includes(word) || 
     OTHERS.includes(word) || TOOLS.includes(word) || CERTIFICATIONS.includes(word) || DEGREES.includes(word));
