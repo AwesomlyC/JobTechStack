@@ -144,3 +144,7 @@ th{
 }
 
 
+.table-headers>#table-sort:hover{
+    cursor: pointer;
+}
+

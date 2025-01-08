@@ -18,8 +18,6 @@ function GlobalStatisticsPage() {
 
   const [displayResults, setDisplayResults] = useState([]);
 
-  const [sortIndex, setSortIndex] = useState(0);
-  const sortArray = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
   useEffect(() => {
     if (hasRetrieve) {
       return;
@@ -65,9 +63,6 @@ function GlobalStatisticsPage() {
     return <div><LoadingSpinner /></div>
   }
 
-  const changeSortIndex = (index) => {
-    setSortIndex(index);
-  }
   return (
     <div>
       <h1>Global Statistics for <text style={{ color: 'blue' }}>{numberOfDocuments}</text> documents</h1>
@@ -95,6 +90,7 @@ function GlobalStatisticsPage() {
         />
         <GlobalCompanyInformation
           relevantCompanyInformation={displayResults}
+          setDisplayResults = {setDisplayResults}
           setHasRetrieve={setHasRetrieve}
           deleteMode={deleteMode}
           flipDeleteMode={flipDeleteMode}

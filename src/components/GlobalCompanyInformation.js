@@ -6,7 +6,7 @@ import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import DeleteModal from './DeleteModal'
 import UpdateModal from './UpdateModal';
 import NotesModal from './NotesModal';
-function GlobalCompanyInformation({ relevantCompanyInformation, deleteMode, flipDeleteMode,
+function GlobalCompanyInformation({ relevantCompanyInformation, setDisplayResults, deleteMode, flipDeleteMode,
    setHasRetrieve, updateMode, flipUpdateMode, notesMode, flipNotesMode }) {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [currentDeleteInfo, setCurrentDeleteInfo] = useState({});
@@ -48,25 +48,64 @@ function GlobalCompanyInformation({ relevantCompanyInformation, deleteMode, flip
   }
 
   const sortByName = () => {
-
+    const relevantCompanyCopy = [...relevantCompanyInformation];
+    relevantCompanyCopy.sort((companyA, companyB) => {
+      const nameA = companyA.companyName.trimStart().trimEnd();
+      const nameB = companyB.companyName.trimStart().trimEnd();
+      if (sorted.reversed){
+        return nameB.localeCompare(nameA);
+      }
+      return nameA.localeCompare(nameB);
+      
+    });
+    setDisplayResults(relevantCompanyCopy);
     setSorted({ sorted: "name", reversed: !sorted.reversed });
   }
 
   const sortByTitle = () =>{
-
+    const relevantCompanyCopy = [...relevantCompanyInformation];
+    relevantCompanyCopy.sort((companyA, companyB) => {
+      const titleA = companyA.jobTitle.trimStart().trimEnd();
+      const titleB = companyB.jobTitle.trimStart().trimEnd();
+      if (sorted.reversed){
+        return titleB.localeCompare(titleA);
+      }
+      return titleA.localeCompare(titleB);
+      
+    });
+    setDisplayResults(relevantCompanyCopy);
     setSorted({ sorted: "title", reversed: !sorted.reversed });
 
   }
 
   const sortByLocation = () => {
-
+    const relevantCompanyCopy = [...relevantCompanyInformation];
+    relevantCompanyCopy.sort((companyA, companyB) => {
+      const locationA = companyA.companyLocation.trimStart().trimEnd();
+      const locationB = companyB.companyLocation.trimStart().trimEnd();
+      if (sorted.reversed){
+        return locationB.localeCompare(locationA);
+      }
+      return locationA.localeCompare(locationB);
+      
+    });
+    setDisplayResults(relevantCompanyCopy);
     setSorted({ sorted: "location", reversed: !sorted.reversed });
   }
 
   const sortByDate = () => {
-
+    const relevantCompanyCopy = [...relevantCompanyInformation];
+    relevantCompanyCopy.sort((companyA, companyB) => {
+      const dateA = companyA.dateOfSubmission.trimStart().trimEnd();
+      const dateB = companyB.dateOfSubmission.trimStart().trimEnd();
+      if (sorted.reversed){
+        return dateB.localeCompare(dateA);
+      }
+      return dateA.localeCompare(dateB);
+      
+    });
+    setDisplayResults(relevantCompanyCopy);
     setSorted({ sorted: "date", reversed: !sorted.reversed });
-
   }
   return (
     <div className='table-job-information'>
@@ -78,29 +117,29 @@ function GlobalCompanyInformation({ relevantCompanyInformation, deleteMode, flip
             {updateMode && (<th className='table-action'></th>)}
 
             <th className='table-number'>No.</th>
-            <th className='table-name' onClick={sortByName}>
+            <th className='table-name' id='table-sort' onClick={sortByName}>
               <span style={{ marginRight: 10 }}>Company Name</span>
               {sorted.sorted === "name" ? renderArrow() : null}
               
             </th>
-            <th className='table-title' onClick={sortByTitle}>
+            <th className='table-title' id='table-sort' onClick={sortByTitle}>
               <span style={{ marginRight: 10 }}>Job Title</span>
               {sorted.sorted === "title" ? renderArrow() : null}
 
               </th>
 
-            <th className='table-location' onClick={sortByLocation}>
+            <th className='table-location' id='table-sort' onClick={sortByLocation}>
               <span style={{ marginRight: 10 }}>Location</span>
               {sorted.sorted === "location" ? renderArrow() : null}
 
               </th>
 
-            <th className='table-date' onClick={sortByDate}>
+            <th className='table-date' id='table-sort' onClick={sortByDate}>
               <span style={{ marginRight: 10 }}>Date Submitted</span>
               {sorted.sorted === "date" ? renderArrow() : null}
 
               </th>
-            <th className='table-url'>URL</th>
+            {/* <th className='table-url'>URL</th> */}
             <th className='table-notes'>Notes</th>
 
           </tr>
@@ -120,15 +159,15 @@ function GlobalCompanyInformation({ relevantCompanyInformation, deleteMode, flip
                   </td>
                 )}
                 <td className='table-result-data'>{index + 1}</td>
-                <td className='table-result-data'>{info.companyName}</td>
+                <td className='table-result-data'><a href={info.companyURL}>{info.companyName}</a></td>
                 <td className='table-result-data'>{info.jobTitle}</td>
                 <td className='table-result-data'>{info.companyLocation === "United_States" ? "United States" : info.companyLocation}</td>
                 <td className='table-result-data table-date-of-submission'>{info.dateOfSubmission}</td>
-                <td className='table-result-data'>
+                {/* <td className='table-result-data'>
                   <a href={info.companyURL} className='row-url'>
                     {info.companyURL}
                   </a>
-                </td>
+                </td> */}
                 <td className='table-result-note'>
                 <FaNoteSticky onClick={() => handleNotesInfo(info)} />
                 </td>
