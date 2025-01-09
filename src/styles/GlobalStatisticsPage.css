@@ -20,6 +20,7 @@ h1{
     align-items: center;
     justify-content: center;
     padding: 1rem;
+    margin-bottom: 2.5rem;
     
 }
 .table-number{
@@ -86,16 +87,25 @@ table{
 .table-headers{
     background-color: yellow !important;
     font-size: larger;
+    border-spacing: 0 10px;
 }
 
+.header{
+    padding: 0 0.5rem;
+}
 th{
     border: 1px solid #080808;
 }
 
 .result{
-    width: 75%;
+    width: 100%;
+    text-align: center;
 }
 
+#header-skill{
+    padding: 0 1.5rem;
+
+}
 .statistics-container{
     position: relative;
     
@@ -135,7 +145,7 @@ th{
     padding-bottom: 0.5rem;
 }
 
-.table-results-date, .table-date-of-submission{
+.table-results-date> .table-date-of-submission{
     text-align: center;
 }
 

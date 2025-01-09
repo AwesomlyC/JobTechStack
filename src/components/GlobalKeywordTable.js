@@ -11,11 +11,11 @@ function GlobalKeywordTable({globalStatistics}) {
           <div key={index}>
             {rowIndex === 0 && (
               <table className='table-skills'>
-                <thead>
+                <thead className='table-description'>
                   <tr className='table-headers'>
-                    <th>Index</th>
-                    <th>Skill</th>
-                    <th>Count</th>
+                    <th className='header'>Index</th>
+                    <th className='header' id ='header-skill'>Skill</th>
+                    <th className='header'>Count</th>
                   </tr>
                 </thead>
 
@@ -24,11 +24,11 @@ function GlobalKeywordTable({globalStatistics}) {
                   if (tableIndexOffset < Object.entries(globalStatistics).length) {
                     const [currentKey, currentValue] = Object.entries(globalStatistics)[tableIndexOffset];
                     return (
-                      <tbody>
+                      <tbody className='keyword-data'>
                         <tr key={tableIndexOffset + 1}>
                           <td>{tableIndexOffset + 1}</td>
-                          <td>{currentKey}</td>
-                          <td>{currentValue}</td>
+                          <td className='keyword-skill'>{currentKey}</td>
+                          <td><b>{currentValue}</b></td>
                         </tr>
                       </tbody>
                     );

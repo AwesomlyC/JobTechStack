@@ -1,5 +1,5 @@
 # Personal Project: Job Tech Stack
-Project Stack: React, ExpressJS, NodeJS, MongoDB, CSS, Axios, ChartJS
+Project Stack: React, ExpressJS, NodeJS, MongoDB, CSS, Axios, ChartJS, JavaScript
 
 ## Purpose
 - Full-Stack Project to display and job applications, as well as parsing job description 
@@ -29,7 +29,6 @@ show all user's submitted details in table-format.
 - Add job "status"
   - Submitted, Rejected, Ghosted
 - Ability to update status
-- Pie chart of location (similar to relevant keyword)
 - Combine technical keywords
   - i.e. APIs + API
-- Sort submitted jobs by company name, job title, location, or date-submitted
+- Possible Project Name Change to SkillSift

@@ -35,12 +35,12 @@ const STOPWORDS = ['i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 
 
 const LANGAUGES = ['python', 'c', 'java', 'react', 'reactjs', 'javascript', 'typescript', 'php', 'ruby', 'swift', 'r', 'html', 'css',
   'html5', 'git', 'vuejs', 'vue', 'angularjs', 'angular', 'nodejs', 'node', 'tailwind', 'j2ee', 'playwright', 'bootstrap', 'foundation',
-  'materialize', 'rust', 'css3', 'obj', 'go', 'scala', 'nextjs'
+  'materialize', 'rust', 'css3', 'obj', 'go', 'scala', 'nextjs', 'remix', 'golang'
 ]
 
 const DATABASES = ['nosql', 'mysql', 'postgresql', 'postgres', 'mongodb', 'cassandra', 'spark', 'sparks', 'sql', 'sqlite', 'msql', 'databricks',
   'databrick', 'azure', 'redis', 'apache', 'amazon', 'dynamodb', 'dynamo', 'couchbase', 'neo4j', 'graphql', 'aurora', 'rds', 'eks',
-  'mssql', 'oracle', 'cloud', 'gcp', 'kafka', 'pinot', 'redshift',]
+  'mssql', 'oracle', 'cloud', 'gcp', 'kafka', 'pinot', 'redshift', 'duckdb']
 
 const METHODOLOGY = ['agile', 'scrum', 'sdlc', 'qa', 'seo',]
 

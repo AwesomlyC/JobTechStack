@@ -17,7 +17,7 @@ function GlobalCompanyInformation({ relevantCompanyInformation, setDisplayResult
   const [notesModalOpen, setNotesModalOpen] = useState(false);
   const [currentNotesInfo, setCurrentNotesInfo] = useState({});
 
-  const [sorted, setSorted] = useState({sorted: "id", reversed: false});
+  const [sorted, setSorted] = useState({sorted: "date", reversed: false});
 
   const handleClose = () => {
     setDeleteModalOpen(false);
