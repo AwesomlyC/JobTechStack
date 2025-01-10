@@ -1,11 +1,13 @@
 import React from 'react'
 
 function GlobalKeywordTable({globalStatistics}) {
+
+  const NUM_ROWS = 20;
   return (
-    <div className='result'>
+    <div className='keyword-result'>
       {Object.entries(globalStatistics).map(([key, value], index) => {
-        const tableIndex = Math.floor(index / 15);
-        const rowIndex = index % 15;
+        const tableIndex = Math.floor(index / NUM_ROWS);
+        const rowIndex = index % NUM_ROWS;
 
         return (
           <div key={index}>
@@ -19,8 +21,8 @@ function GlobalKeywordTable({globalStatistics}) {
                   </tr>
                 </thead>
 
-                {[...Array(15)].map((_, i) => {
-                  const tableIndexOffset = tableIndex * 15 + i;
+                {[...Array(NUM_ROWS)].map((_, i) => {
+                  const tableIndexOffset = tableIndex * NUM_ROWS + i;
                   if (tableIndexOffset < Object.entries(globalStatistics).length) {
                     const [currentKey, currentValue] = Object.entries(globalStatistics)[tableIndexOffset];
                     return (

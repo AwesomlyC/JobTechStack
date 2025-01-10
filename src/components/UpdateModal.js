@@ -35,7 +35,7 @@ function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentU
         setJobTitle(currentUpdateInfo.jobTitle);
         setCompanyLocation(currentUpdateInfo.companyLocation)
         if (currentUpdateInfo.dateOfSubmission) {
-            const [year, monthIndex, day] = currentUpdateInfo.dateOfSubmission.split('-')
+            const [year, monthIndex, day] = currentUpdateInfo.dateOfSubmission.split('/')
             setDateOfSubmission(new Date(year, monthIndex - 1, day))
         } else {
             setDateOfSubmission(new Date());
