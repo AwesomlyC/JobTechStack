@@ -55,3 +55,11 @@
     border-radius: 10px;
     font-size: large;
 }
+
+.error-description{
+    margin-top: 4rem;
+    color: red;
+    font-size: 32px;
+    text-align: center;
+
+}

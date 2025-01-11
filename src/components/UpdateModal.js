@@ -19,6 +19,7 @@ function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentU
 
     const modalRef = useRef(null);
 
+    const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
         if (isOpen) {
@@ -28,6 +29,26 @@ function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentU
 
     if (!isOpen) {
         return null;
+    }
+
+    const verifyUserInputDetails = () => {
+
+        if (!userInput || !companyName || !companyLocation || !jobTitle || !companyURL){
+            console.log(userInput, companyName, companyLocation, jobTitle);
+            if (!userInput){
+                setErrorMessage("Missing Job's Description!");
+            } else if (!companyName){
+                setErrorMessage("Missing Company's Name!");
+            } else if (!jobTitle){
+                setErrorMessage("Missing Job's Title");
+            } else if (!companyLocation){
+                setErrorMessage("Missing Job's Location");
+            } else if (!companyURL.includes('http') || !companyURL.includes('www')){
+                setErrorMessage("Missing Job's URL")
+            }
+            return false;
+        }
+        return true;
     }
 
     const setUpdateInfo = () => {
@@ -47,8 +68,7 @@ function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentU
     }
 
     const updateID = async (info) => {
-        if (!userInput || !companyName || !companyLocation || !jobTitle) {
-            console.log(userInput, companyName, companyLocation, jobTitle)
+        if (!verifyUserInputDetails()){
             return;
         }
         const data = {
@@ -67,11 +87,14 @@ function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentU
             data
         ).then(response =>{
             setHasRetrieve(false);
+            setErrorMessage('');
+        
+            cancelUpdateModal();
+
         }).catch(error =>  {
             console.error("Occurred during axios callback - update:", error);
         });
 
-        cancelUpdateModal();
     }
 
     const cancelUpdateModal = () => {
@@ -153,6 +176,8 @@ function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentU
                             />
                         </div>
                     </div>
+                    {errorMessage &&
+              <div className='error-description'>Error: {errorMessage}</div>}
 
                     <div className='button-options' id = 'update-modal-options'>
                         <button className='cancel' onClick={cancelUpdateModal}>Cancel</button>

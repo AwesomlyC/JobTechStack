@@ -60,3 +60,9 @@
     filter: brightness(75%);
     transition: 0.75s;
 }
+
+.error-description{
+    margin-top: 4rem;
+    color: red;
+    font-size: 32px;
+}

@@ -15,6 +15,10 @@ function TextInput() {
     const [jobTitle, setJobTitle] = useState('');   // Calendar Icon
 
     const [companyURL, setCompanyURL] = useState(''); // optional
+
+    const [errorMessage, setErrorMessage] = useState('');
+
+    
     const modifyDate = (dateString) => {
         console.log(dateString);
         let [month, day, year] = dateString.split('/');
@@ -29,10 +33,28 @@ function TextInput() {
 
         return year + '/' + month + '/' + day;
     }
-    const submitChanges = () => {
 
-        if (!userInput || !companyName || !companyLocation || !jobTitle){
-            // console.log("Input:",userInput ,"CompanyName:",companyName ,"Location:",companyLocation,"Title:", jobTitle) 
+    const verifyUserInputDetails = () => {
+
+        if (!userInput || !companyName || !companyLocation || !jobTitle || !companyURL){
+            console.log(userInput, companyName, companyLocation, jobTitle);
+            if (!userInput){
+                setErrorMessage("Missing Job's Description!");
+            } else if (!companyName){
+                setErrorMessage("Missing Company's Name!");
+            } else if (!jobTitle){
+                setErrorMessage("Missing Job's Title");
+            } else if (!companyLocation){
+                setErrorMessage("Missing Job's Location");
+            } else if (!companyURL.includes('http') || !companyURL.includes('www')){
+                setErrorMessage("Missing Job's URL")
+            }
+            return false;
+        }
+        return true;
+    }
+    const submitChanges = async () => {
+        if (!verifyUserInputDetails()){
             return;
         }
         const data = {
@@ -43,12 +65,12 @@ function TextInput() {
             dateOfSubmission  : modifyDate(dateOfSubmission.toLocaleDateString('en-US')),       
             companyURL: companyURL.trimEnd().trimStart()
         }
-        axios.get(
+
+        await axios.get(
             `${process.env.REACT_APP_SERVER_URL}/parse`,
             { params: data }
             
         ).then ( res => {
-            // console.log("Returned Data -->", res.data);
             setWordMap(res.data);
             resetFields();
         }).catch(error => {
@@ -64,6 +86,7 @@ function TextInput() {
         setJobTitle('');
         setCompanyURL('');
         setDateOfSubmission(new Date());
+        setErrorMessage('');
 
     }
   return (
@@ -73,6 +96,7 @@ function TextInput() {
                 <textarea 
                     className='text-input'
                     type="text"
+                    placeholder="Enter Job Description..."
                     value={userInput}
                     onChange={(e) => setUserInput(e.target.value)}
                 />
@@ -133,7 +157,9 @@ function TextInput() {
         >
             Parse Input
         </button>
-        <DisplayParseResults wordMap = {wordMap} />
+          {errorMessage ?
+              <div className='error-description'>Error: {errorMessage}</div> :
+              <DisplayParseResults wordMap={wordMap} />}
     </div>
   )
 }
