@@ -14,82 +14,73 @@ function AnalyticsPage() {
     const [endDateString, setEndDateString] = useState(null);
 
     useEffect(() => {
-
-        const retrieveChartData = async () => {
-            await axios.post(
-                `${process.env.REACT_APP_SERVER_URL}/display-data-pie`,
-            ).then(response => {
-                const data = response.data;
-                setKeywordChartData({
-                    labels: data.labels,
-                    datasets: [
-                        {
-                            data: data.dataCounts,
-                            borderWidth: 1,
-                            hoverOffset: 4,
-                        },
-                    ],
-                });
-            }).catch(error => {
-                console.error("Error when retrieving Chart data ---", error);
-            })
+        const setKeywordChart = (keywordLabel, keywordDataCounts) => {
+            setKeywordChartData({
+                labels: keywordLabel,
+                datasets: [
+                    {
+                        data: keywordDataCounts,
+                        borderWidth: 1,
+                        hoverOffset: 4,
+                    },
+                ],});
         };
 
-        const retrieveLineData = async () => {
-            await axios.post(
-                `${process.env.REACT_APP_SERVER_URL}/display-data-line`,
-            ).then(response => {
-                const data = response.data;
-                console.log(data);
-                setStartDateString(data.startDateString);
-                setEndDateString(data.endDateString);
+        const setJobsChart = (jobsLabel, jobsDataPoints, avgJobsAppliedDataPoints, startDateString, endDateString) => {
+            setStartDateString(startDateString);
+                setEndDateString(endDateString);
                 setLineData({
-                    labels: data.labels,
+                    labels: jobsLabel,
                     datasets: [
                         {
                             label: `Jobs Applied`,
-                            data: data.dataPoints,
+                            data: jobsDataPoints,
                             fill: false,
                             borderColor: `rgb(75,192,192)`,
                             tension: 0.1,
                         },
                         {
                             label: "Average applied jobs",
-                            data: data.avg_dataPoints,
+                            data: avgJobsAppliedDataPoints,
                             fill: false,
                             borderColor: `rgb(255,69,0)`,
                             tension: 0.1,
                         }
                     ]
-                })
-            }).catch(error => {
-                console.error("Error when retrieving Line Data ---", error);
-            })
+                });
         };
 
-        const retrieveLocationData = async () => {
-            await axios.post(
-                `${process.env.REACT_APP_SERVER_URL}/display-location-pie`,
-            ).then(response => {
-                const data = response.data;
-                // console.log(data);
-                setLocationChartData({
-                    labels: data.labels,
-                    datasets: [
-                        {
-                            data: data.dataCounts,
-                            borderWidth: 1,
-                            hoverOffset: 3,
-                        },
-                    ],
-                });
-            }).catch(error => {
-                console.error("Error retrieving location data ---", error);
+        const setLocationChart = (locationLabel, locationDataCounts) => {
+            setLocationChartData({
+                labels: locationLabel,
+                datasets: [
+                    {
+                        data: locationDataCounts,
+                        borderWidth: 1,
+                        hoverOffset: 3,
+                    },
+                ],
             });
         };
-        retrieveChartData();
-        retrieveLocationData();
-        retrieveLineData();
+        const retrieveAllAnalyticData = async () => {
+            await axios.post(
+                `${process.env.REACT_APP_SERVER_URL}/display-all-data`
+            ).then(response => {
+                const data = response.data;
+                const {
+                    keywordLabel, keywordDataCounts,
+                    jobsLabel, jobsDataPoints, avgJobsAppliedDataPoints, startDateString, endDateString,
+                    locationLabel, locationDataCounts,
+                } = data;
+                setKeywordChart(keywordLabel, keywordDataCounts);
+                setJobsChart(jobsLabel, jobsDataPoints, avgJobsAppliedDataPoints, startDateString, endDateString);
+                setLocationChart(locationLabel, locationDataCounts);
+            }).catch(error => {
+                console.error("Error occurred during analytics retrieval --", error);
+            });
+        };
+
+        retrieveAllAnalyticData();
 
     }, []);
 
