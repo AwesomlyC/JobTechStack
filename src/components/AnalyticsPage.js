@@ -10,6 +10,9 @@ function AnalyticsPage() {
     const [lineData, setLineData] = useState(null);
     const [locationChartData, setLocationChartData] = useState(null);
 
+    const [startDateString, setStartDateString] = useState(null);
+    const [endDateString, setEndDateString] = useState(null);
+
     useEffect(() => {
 
         const retrieveChartData = async () => {
@@ -38,14 +41,23 @@ function AnalyticsPage() {
             ).then(response => {
                 const data = response.data;
                 console.log(data);
+                setStartDateString(data.startDateString);
+                setEndDateString(data.endDateString);
                 setLineData({
                     labels: data.labels,
                     datasets: [
                         {
-                            label: `Timeline from ${data.startDateString} - ${data.endDateString}`,
+                            label: `Jobs Applied`,
                             data: data.dataPoints,
                             fill: false,
                             borderColor: `rgb(75,192,192)`,
+                            tension: 0.1,
+                        },
+                        {
+                            label: "Average applied jobs",
+                            data: data.avg_dataPoints,
+                            fill: false,
+                            borderColor: `rgb(255,69,0)`,
                             tension: 0.1,
                         }
                     ]
@@ -147,7 +159,7 @@ function AnalyticsPage() {
             </div>
 
 
-            <h2>Time Graph</h2>
+            <h2>Time Graph: Between <text style={{color:'blue'}}>{startDateString}</text> to <text style={{color:'blue'}}>{endDateString}</text></h2>
             <Line
                 data={lineData}
                 options={{

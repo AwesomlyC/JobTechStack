@@ -47,7 +47,7 @@ function TextInput() {
             } else if (!companyLocation){
                 setErrorMessage("Missing Job's Location");
             } else if (!companyURL.includes('http') || !companyURL.includes('www')){
-                setErrorMessage("Missing Job's URL")
+                setErrorMessage("Invalid Job's URL")
             }
             return false;
         }

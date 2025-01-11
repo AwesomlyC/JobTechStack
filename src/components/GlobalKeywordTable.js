@@ -28,7 +28,7 @@ function GlobalKeywordTable({globalStatistics}) {
                   if (tableIndexOffset < Object.entries(globalStatistics).length) {
                     const [currentKey, currentValue] = Object.entries(globalStatistics)[tableIndexOffset];
                     return (
-                      <tbody className='keyword-data'>
+                      <tbody className='keyword-data' key = {i}>
                         <tr key={tableIndexOffset + 1}>
                           <td>{tableIndexOffset + 1}</td>
                           <td className='keyword-skill'>{currentKey}</td>

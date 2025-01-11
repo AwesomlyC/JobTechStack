@@ -56,8 +56,7 @@ const DEGREES = ['bachelor', 'bachelors', 'master', 'masters']
 
 
 app.get('/', (req, res) => {
-  // console.log("WORKS");
-  res.send('Hello World! v3.0')
+  res.send('Hello World! v3.1')
 });
 
 const connectionString = process.env.ATLAS_URI || "";
@@ -352,14 +351,23 @@ app.post('/display-data-line', async (req, res) => {
       labels.push(date);
     }
 
+
     for (const key in statistics.relevantInformation) {
       const docDate = statistics.relevantInformation[key].dateOfSubmission
       dataPoints[getDaysDifference(start, new Date(docDate))]++;
     }
 
+    let total_count = 0;
+    
+    const avg_dataPoints = []
+    for (let i = 0; i < dataPoints.length; i++){
+      total_count += dataPoints[i];
+      avg_dataPoints.push( total_count / (avg_dataPoints.length + 1) );
+    }
+    
     const startDateString = start.toISOString().split('T')[0]
     const endDateString = end.toISOString().split('T')[0]
-    res.send({ labels, dataPoints, startDateString, endDateString });
+    res.send({ labels, dataPoints, avg_dataPoints, startDateString, endDateString });
   }
   catch (error) {
     console.error("Error with display-data-line ---", error);
