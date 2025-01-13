@@ -1,10 +1,12 @@
 import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import MainPage from './components/MainPage';
-import GlobalStatisticsPage from './components/GlobalStatisticsPage';
-import AnalyticsPage from './components/AnalyticsPage';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {lazy} from 'react';
+
+const MainPage = lazy(() => import('./components/MainPage'));
+const GlobalStatisticsPage = lazy(() => import('./components/GlobalStatisticsPage'));
+const AnalyticsPage = lazy(() => import('./components/AnalyticsPage'));
 
 function App() {
   return (
