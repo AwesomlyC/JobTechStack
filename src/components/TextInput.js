@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import '../styles/TextInput.css'
 import 'react-datepicker/dist/react-datepicker.css'
 import DisplayParseResults from './DisplayParseResults';
+import LoadingSpinner from './LoadingSpinner';
 
 function TextInput() {
 
@@ -18,6 +19,7 @@ function TextInput() {
 
     const [errorMessage, setErrorMessage] = useState('');
 
+    const [isLoading, setIsLoading] = useState(false);
     
     const modifyDate = (dateString) => {
         console.log(dateString);
@@ -65,7 +67,7 @@ function TextInput() {
             dateOfSubmission  : modifyDate(dateOfSubmission.toLocaleDateString('en-US')),       
             companyURL: companyURL.trimEnd().trimStart()
         }
-
+        setIsLoading(true);
         await axios.get(
             `${process.env.REACT_APP_SERVER_URL}/parse`,
             { params: data }
@@ -76,6 +78,7 @@ function TextInput() {
         }).catch(error => {
             console.error("error occurred:", error);
         });
+        setIsLoading(false);
         
     }
 
@@ -88,6 +91,11 @@ function TextInput() {
         setDateOfSubmission(new Date());
         setErrorMessage('');
 
+    }
+
+
+    if (isLoading){
+        return <LoadingSpinner />
     }
   return (
     <div className='text-container'>
@@ -155,7 +163,7 @@ function TextInput() {
             className='text-submit-button'
             onClick={submitChanges}
         >
-            Parse Input
+            Submit Job Details
         </button>
           {errorMessage ?
               <div className='error-description'>Error: {errorMessage}</div> :
