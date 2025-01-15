@@ -1,6 +1,6 @@
 import React, {createContext, useContext, useEffect, useState} from 'react'
 import {useUser} from "@clerk/clerk-react";
-
+import LoadingSpinner from './LoadingSpinner';
 const UserContext = createContext(null);
 
 function UserProvider({children}) {
@@ -16,7 +16,7 @@ function UserProvider({children}) {
 
   // Debug to verify rendering
   if (!isLoaded) {
-    return <div>Loading...</div>; // Render a fallback while Clerk loads
+    return <LoadingSpinner />; // Render a fallback while Clerk loads
   }
   return (
     <UserContext.Provider value={userId}>
