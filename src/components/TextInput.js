@@ -1,10 +1,11 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import axios from 'axios'
 import DatePicker from "react-datepicker";
 import '../styles/TextInput.css'
 import 'react-datepicker/dist/react-datepicker.css'
 import DisplayParseResults from './DisplayParseResults';
 import LoadingSpinner from './LoadingSpinner';
+
 
 function TextInput() {
 
@@ -14,11 +15,9 @@ function TextInput() {
     const [companyLocation, setCompanyLocation] = useState('Remote'); 
     const [dateOfSubmission, setDateOfSubmission] = useState(new Date());   // Calendar Icon
     const [jobTitle, setJobTitle] = useState('');   // Calendar Icon
-
     const [companyURL, setCompanyURL] = useState(''); // optional
 
     const [errorMessage, setErrorMessage] = useState('');
-
     const [isLoading, setIsLoading] = useState(false);
     
     const modifyDate = (dateString) => {

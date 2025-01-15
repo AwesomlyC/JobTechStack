@@ -12,7 +12,7 @@ function Header() {
       <div>
         <button
           className='navbar-button'
-          onClick={() => { navigate('/') }}
+          onClick={() => { navigate('/main') }}
         >
           Home
         </button>

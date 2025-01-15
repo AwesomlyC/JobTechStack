@@ -23,6 +23,10 @@ show all user's submitted details in table-format.
 
 ## Website Link
 - [Webpage](https://job-tech-stack-frontend.vercel.app)
+- Test User Credentials:
+  - Email: test@email.com
+  - Password: testuser123456789
+  
 ## Future Features
 - Dynamic Analytics Modification
   - i.e. user can change line graph to show days/months/years or a specific range
