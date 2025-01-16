@@ -5,6 +5,7 @@ import '../styles/GlobalStatisticsPage.css'
 import GlobalCompanyInformation from './GlobalCompanyInformation';
 import SearchFields from './SearchFields';
 import LoadingSpinner from './LoadingSpinner';
+import { useUserContext } from './UserProvider';
 function GlobalStatisticsPage() {
 
   const [globalStatistics, setGlobalStatistics] = useState(null);
@@ -18,13 +19,15 @@ function GlobalStatisticsPage() {
 
   const [displayResults, setDisplayResults] = useState([]);
 
+  const userID = useUserContext();
   useEffect(() => {
-    if (hasRetrieve) {
+    if (hasRetrieve || !userID) {
       return;
     }
     const retrieveGlobalStatistics = async () => {
       await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/global-statistics`,
+        {userID},
       ).then(response => {
         setInformation(response.data);
         setHasRetrieve(true);
@@ -32,8 +35,9 @@ function GlobalStatisticsPage() {
         console.error("Error when retrieving global statistics ---", error);
       });
     };
+    console.log("CALLED");
     retrieveGlobalStatistics();
-  }, [hasRetrieve])
+  }, [hasRetrieve, userID]);
 
   const setInformation = (data) => {
     setGlobalStatistics(data.sortedDict);

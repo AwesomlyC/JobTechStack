@@ -3,7 +3,7 @@ import {useUser} from "@clerk/clerk-react";
 import LoadingSpinner from './LoadingSpinner';
 const UserContext = createContext(null);
 
-function UserProvider({children}) {
+export function UserProvider({children}) {
   const { user, isLoaded  } = useUser();
   const [userId, setUserId] = useState(null);
 
@@ -24,5 +24,7 @@ function UserProvider({children}) {
     </UserContext.Provider>
   );
 }
-
+export function useUserContext(){
+  return useContext(UserContext);
+}
 export default UserProvider;

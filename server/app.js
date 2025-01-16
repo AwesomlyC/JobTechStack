@@ -104,7 +104,7 @@ function relevantKeyword(word) {
 app.get('/parse', async (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
 
-  const { userInput, jobTitle, companyName, companyLocation, dateOfSubmission, companyURL } = req.query;
+  const { userInput, jobTitle, companyName, companyLocation, dateOfSubmission, companyURL, userID } = req.query;
   const wordMap = countRepeatedWords(userInput);
   let conn;
   try {
@@ -182,6 +182,8 @@ async function retrieveAllStatistics() {
 // Retrieve all documents but only keeping the wordMap
 app.post('/global-statistics', async (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
+  const {userID} = req.body;
+  console.log(userID);
   res.send(await retrieveAllStatistics());
 });
 
@@ -504,7 +506,7 @@ function getLocationData(relevantInformation){
 
 app.post("/display-all-data", async (req, res) => {
   const {sortedDict, length, relevantInformation} = await retrieveAllStatistics();
-
+  console.log(req.body);
   // Data for keyword pie graph
   const {keywordLabel, keywordDataCounts} = getKeywordPieData(sortedDict);
   // Data for location pie graph

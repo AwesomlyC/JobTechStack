@@ -6,14 +6,21 @@ import LoadingSpinner from './LoadingSpinner';
 import KeywordPieChart from './KeywordPieChart';
 import LocationPieChart from './LocationPieChart';
 import JobsAppliedLineChart from './JobsAppliedLineChart';
+import { useUserContext } from './UserProvider';
 
 function AnalyticsPage() {
     const [data, setData] = useState(null);
+    const userID = useUserContext();
 
     useEffect(() => {
+
         const retrieveAllAnalyticData = async () => {
+            if (!userID){
+                return
+            }
             await axios.post(
-                `${process.env.REACT_APP_SERVER_URL}/display-all-data`
+                `${process.env.REACT_APP_SERVER_URL}/display-all-data`,
+                {userID}
             ).then(response => {
                 const data = response.data;
                 setData(data);
@@ -24,7 +31,7 @@ function AnalyticsPage() {
 
         retrieveAllAnalyticData();
 
-    }, []);
+    }, [userID]);
 
 
     if (!data){

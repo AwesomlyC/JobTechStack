@@ -5,6 +5,7 @@ import '../styles/TextInput.css'
 import 'react-datepicker/dist/react-datepicker.css'
 import DisplayParseResults from './DisplayParseResults';
 import LoadingSpinner from './LoadingSpinner';
+import { useUserContext } from './UserProvider';
 
 
 function TextInput() {
@@ -19,7 +20,8 @@ function TextInput() {
 
     const [errorMessage, setErrorMessage] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    
+
+    const userID = useUserContext();
     const modifyDate = (dateString) => {
         console.log(dateString);
         let [month, day, year] = dateString.split('/');
@@ -64,12 +66,13 @@ function TextInput() {
             jobTitle: jobTitle.trimEnd().trimStart(),
             companyLocation: companyLocation.trimEnd().trimStart(),
             dateOfSubmission  : modifyDate(dateOfSubmission.toLocaleDateString('en-US')),       
-            companyURL: companyURL.trimEnd().trimStart()
+            companyURL: companyURL.trimEnd().trimStart(),
+            userID,
         }
         setIsLoading(true);
         await axios.get(
             `${process.env.REACT_APP_SERVER_URL}/parse`,
-            { params: data }
+            { params: data}
             
         ).then ( res => {
             setWordMap(res.data);
