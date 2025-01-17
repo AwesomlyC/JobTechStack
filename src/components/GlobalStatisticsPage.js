@@ -26,7 +26,7 @@ function GlobalStatisticsPage() {
     }
     const retrieveGlobalStatistics = async () => {
       await axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/global-statistics`,
+        `${process.env.REACT_APP_SERVER_URL}/api/stats/global-statistics`,
         {userID},
       ).then(response => {
         setInformation(response.data);

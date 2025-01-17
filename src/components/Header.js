@@ -5,7 +5,6 @@ import '../styles/Header.css'
 
 function Header() {
   const navigate = useNavigate();
-  console.log(SignedIn);
   return (
     <navbar className='navbar'>
 

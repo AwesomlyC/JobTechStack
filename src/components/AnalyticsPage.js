@@ -19,7 +19,7 @@ function AnalyticsPage() {
                 return
             }
             await axios.post(
-                `${process.env.REACT_APP_SERVER_URL}/display-all-data`,
+                `${process.env.REACT_APP_SERVER_URL}/api/analytics/display-all-data`,
                 {userID}
             ).then(response => {
                 const data = response.data;

@@ -71,7 +71,7 @@ function TextInput() {
         }
         setIsLoading(true);
         await axios.get(
-            `${process.env.REACT_APP_SERVER_URL}/parse`,
+            `${process.env.REACT_APP_SERVER_URL}/api/input/parse`,
             { params: data}
             
         ).then ( res => {
