@@ -1,0 +1,141 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: "Arial", sans-serif;
+    line-height: 1.6;
+    color: #333;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  /* About Page Layout */
+  .about-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Hero Section */
+  .hero {
+    text-align: center;
+    background: linear-gradient(135deg, #4caf50, #2e7d32);
+    color: #fff;
+    padding: 50px 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+  }
+  
+  .hero-title {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .hero-button {
+    display: inline-block;
+    background: #fff;
+    color: #4caf50;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+  
+  .hero-button:hover {
+    background: #2e7d32;
+    color: #fff;
+  }
+  
+  /* Features Section */
+  .features {
+    margin: 40px 0;
+  }
+  
+  .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #4caf50;
+  }
+  
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  
+  .feature {
+    text-align: center;
+    background: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+  
+  .feature:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .feature-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+  
+  .feature-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .feature-text {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  /* Vision Section */
+  .vision {
+    text-align: center;
+    margin: 40px 0;
+    padding: 20px;
+    background: #f1f8e9;
+    border-radius: 8px;
+  }
+  
+  .vision-text {
+    font-size: 1.2rem;
+    color: #666;
+  }
+  
+  /* Call to Action */
+  .cta {
+    text-align: center;
+    margin: 40px 0;
+  }
+  
+  .cta-text {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .cta-button {
+    display: inline-block;
+    background: #4caf50;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    transition: background-color 1s ease;
+  }
+  
+  .cta-button:hover {
+    background: #2e7d32;
+  }
+  

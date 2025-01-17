@@ -11,14 +11,9 @@ const MainPage = lazy(() => import('./components/MainPage'));
 const GlobalStatisticsPage = lazy(() => import('./components/GlobalStatisticsPage'));
 const AnalyticsPage = lazy(() => import('./components/AnalyticsPage'));
 const SignInPage = lazy(() => import('./components/SignInPage'));
-
+const AboutPage = lazy(() => import('./components/AboutPage'));
 function App() {
-  // const {isSignedIn, user} = useUser();
-  // console.log(isSignedIn);
 
-  // if (user){
-  //   console.log(user.id);
-  // }
   return (
     <div>
       <BrowserRouter>
@@ -29,6 +24,8 @@ function App() {
             <Route path='/main' Component={MainPage} />
             <Route path='/global-statistics' Component={GlobalStatisticsPage} />
             <Route path='/analytics' Component={AnalyticsPage} />
+            <Route path='/about' Component={AboutPage} />
+
           </Routes>
           <ClerkUserIcon />
         </UserProvider>
