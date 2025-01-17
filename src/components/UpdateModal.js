@@ -30,7 +30,20 @@ function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentU
     if (!isOpen) {
         return null;
     }
+    const modifyDate = (dateString) => {
+        console.log(dateString);
+        let [month, day, year] = dateString.split('/');
 
+        if (month.length === 1){
+            month = '0' + month[0];
+        }
+
+        if (day.length === 1){
+            day = '0' + day[0];
+        }
+
+        return year + '/' + month + '/' + day;
+    }
     const verifyUserInputDetails = () => {
 
         if (!userInput || !companyName || !companyLocation || !jobTitle || !companyURL){
@@ -50,17 +63,38 @@ function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentU
         }
         return true;
     }
-
+    // Helper function to check date and set a valid date
+    const checkDate = (dateOfSubmission) => {
+        if (dateOfSubmission){
+            // There are only two forms that the date string will be in 
+            // yyyy-dd-mm or yyyy/dd/mm
+            const [year, monthIndex, day] = dateOfSubmission.split('/')
+            const newDate = new Date(year, monthIndex - 1, day)
+            
+            // Valid Date with / (slashes)
+            if (!isNaN(newDate.getTime())){
+                setDateOfSubmission(newDate)
+            } else {
+                const [year, monthIndex, day] = dateOfSubmission.split('-')
+                const newDate = new Date(year, monthIndex - 1, day)
+                
+                // If splitting by '-' does not work, simply return today's date.
+                if (!isNaN(newDate.getTime())){
+                    setDateOfSubmission(newDate);
+                } else {
+                    setDateOfSubmission(new Date());
+                }
+            }
+        }
+    }
     const setUpdateInfo = () => {
         setCompanyName(currentUpdateInfo.companyName);
         setJobTitle(currentUpdateInfo.jobTitle);
         setCompanyLocation(currentUpdateInfo.companyLocation)
-        if (currentUpdateInfo.dateOfSubmission) {
-            const [year, monthIndex, day] = currentUpdateInfo.dateOfSubmission.split('/')
-            setDateOfSubmission(new Date(year, monthIndex - 1, day))
-        } else {
-            setDateOfSubmission(new Date());
-        }
+
+        // Find Valid Date
+        checkDate(currentUpdateInfo.dateOfSubmission);
+
         setCompanyURL(currentUpdateInfo.companyURL)
         setUserInput(currentUpdateInfo.userInput);
 
@@ -76,7 +110,7 @@ function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentU
             companyName: companyName.trimEnd().trimStart(),
             jobTitle: jobTitle.trimEnd().trimStart(),
             companyLocation: companyLocation.trimEnd().trimStart(),
-            dateOfSubmission: dateOfSubmission.toISOString().split('T')[0],       // Only keep the date, not the time
+            dateOfSubmission  : modifyDate(dateOfSubmission.toLocaleDateString('en-US')),       
             companyURL: companyURL.trimEnd().trimStart(),
             documentID: documentID,
         }
