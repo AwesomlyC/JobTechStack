@@ -9,8 +9,8 @@ const AnalyticRoute = require('./routes/AnalyticRoute.js');
 const DisplayStatisticsRoute = require('./routes/DisplayStatisticsRoute.js');
 const InputParseRoute = require('./routes/InputParseRoute.js');
 
-const {connection} = require('./utils/connectionDB.js')
-const {countRepeatedWords} = require('./utils/ExtractTechnicalWord.js');
+const { connection } = require('./utils/connectionDB.js')
+const { countRepeatedWords } = require('./utils/ExtractTechnicalWord.js');
 
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const dotenv = require('dotenv');
@@ -133,12 +133,12 @@ app.get("/updateDate", async (req, res) => {
     }
     for await (const doc of cursor) {
 
-      let  [month, day, year] = doc.dateOfSubmission.split('/');
-      if (month === '1'){
+      let [month, day, year] = doc.dateOfSubmission.split('/');
+      if (month === '1') {
         month = '01';
       }
 
-      if (year === '2025'){
+      if (year === '2025') {
         day = '0' + day[0];
       }
       // console.log(doc.companyName, year + '/' + month + '/' + day );
@@ -167,7 +167,7 @@ app.post('/update-info', async (req, res) => {
       conn = await connection();
     }
 
-    const query = {_id: ObjectId.createFromHexString(documentID)}
+    const query = { _id: ObjectId.createFromHexString(documentID) }
     const updateValues = {
       $set: {
         companyName: companyName,
@@ -189,15 +189,15 @@ app.post('/update-info', async (req, res) => {
 });
 
 app.post('/update-notes', async (req, res) => {
-  const {documentID, userNotes} = req.body;
+  const { documentID, userNotes } = req.body;
   let conn;
   try {
     if (!conn || conn === null) {
       conn = await connection();
     }
 
-    const query = {_id: ObjectId.createFromHexString(documentID)}
-    const notesValues ={
+    const query = { _id: ObjectId.createFromHexString(documentID) }
+    const notesValues = {
       $set: {
         notes: userNotes,
       }
@@ -213,3 +213,36 @@ app.post('/update-notes', async (req, res) => {
   res.send(userNotes);
 });
 
+// Set all documents to a specific userID
+//  Only should be used during development phase and with 1 user
+app.post('/set-all-documents-to-user/:id', async (req, res) => {
+  if (!process.env.DEVELOPMENT) {
+    dotenv.config({ path: './../.env' });
+  }
+  const connectionString = process.env.ATLAS_URI || "";
+  const client = new MongoClient(connectionString);
+
+  async function connection() {
+    try {
+      let conn = await client.connect();
+      return conn;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  const userID = req.params.id;
+  console.log(userID);
+
+  let collection;
+  let conn;
+  if (!conn || conn === null) {
+    conn = await connection();
+  }
+  collection = await conn.db("company").collection('information');
+  let result = await collection.updateMany({}, [{ $set: { "userID": userID } }]);
+  
+  console.log(result);
+  res.send("Finished Updating");
+
+});

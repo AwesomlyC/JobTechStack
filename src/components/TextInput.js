@@ -99,6 +99,21 @@ function TextInput() {
     if (isLoading){
         return <LoadingSpinner />
     }
+
+    const TestFeature = async () => {
+        if (!userID){
+            return;
+        }
+        console.log("Passed UserID check -", userID);
+
+        await axios.post(
+            `${process.env.REACT_APP_SERVER_URL}/set-all-documents-to-user/${userID}`
+        ).then(response => {
+            console.log(response.data);
+        }).catch(error => {
+            console.error("error occurred during update all with id," , error);
+        });
+    }
   return (
     <div className='text-container'>
         
@@ -170,6 +185,13 @@ function TextInput() {
           {errorMessage ?
               <div className='error-description'>Error: {errorMessage}</div> :
               <DisplayParseResults wordMap={wordMap} />}
+
+<button 
+            className='text-submit-button'
+            onClick={TestFeature}
+        >
+            REMOVE ME LATER
+        </button>  
     </div>
   )
 }

@@ -17,8 +17,7 @@ async function connection() {
     }
 }
 
-async function retrieveAllStatistics() {
-    console.log("CALLED");
+async function retrieveAllStatistics(userID) {
     let collection;
     let conn;
     try {
@@ -34,6 +33,10 @@ async function retrieveAllStatistics() {
     }
     const agg = [
         {
+            '$match': {
+              'userID': userID,
+            }
+          }, {
             '$project': {
                 '_id': 1,
                 "companyName": 1,
@@ -44,8 +47,9 @@ async function retrieveAllStatistics() {
                 "wordMap": 1,
                 "userInput": 1,
                 "notes": 1,
+                "userID": 1,
             }
-        }
+          }
     ];
 
     let data = await collection.aggregate(agg).toArray();

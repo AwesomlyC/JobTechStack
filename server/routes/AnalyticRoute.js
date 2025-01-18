@@ -3,6 +3,7 @@ const router = express.Router();
 const { connection, retrieveAllStatistics } = require('./../utils/connectionDB')
 
 router.post('/display-keyword-pie', async (req, res) => {
+    console.log("GETTING KEYWORD PIE", req.body)
     const statistics = await retrieveAllStatistics();
     const mapOfRelevantKeywords = statistics.sortedDict;
 
@@ -201,7 +202,8 @@ function getLocationData(relevantInformation) {
 }
 
 router.post("/display-all-data", async (req, res) => {
-    const { sortedDict, length, relevantInformation } = await retrieveAllStatistics();
+    const {userID} = req.body;
+    const { sortedDict, length, relevantInformation } = await retrieveAllStatistics(userID);
     console.log(req.body);
     // Data for keyword pie graph
     const { keywordLabel, keywordDataCounts } = getKeywordPieData(sortedDict);
