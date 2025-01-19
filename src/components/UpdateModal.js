@@ -31,7 +31,6 @@ function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentU
         return null;
     }
     const modifyDate = (dateString) => {
-        console.log(dateString);
         let [month, day, year] = dateString.split('/');
 
         if (month.length === 1){
@@ -47,7 +46,7 @@ function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentU
     const verifyUserInputDetails = () => {
 
         if (!userInput || !companyName || !companyLocation || !jobTitle || !companyURL){
-            console.log(userInput, companyName, companyLocation, jobTitle);
+            // console.log(userInput, companyName, companyLocation, jobTitle);
             if (!userInput){
                 setErrorMessage("Missing Job's Description!");
             } else if (!companyName){

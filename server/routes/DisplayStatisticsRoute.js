@@ -6,7 +6,6 @@ const { retrieveAllStatistics } = require('./../utils/connectionDB')
 router.post('/global-statistics', async (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     const { userID } = req.body;
-    console.log(userID);
     res.send(await retrieveAllStatistics(userID));
 });
 router.get('/global-statistics', async (req, res) => {

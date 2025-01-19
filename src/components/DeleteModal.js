@@ -17,7 +17,7 @@ function DeleteModal({isOpen, onClose, flipDeleteMode, setHasRetrieve, currentDe
           `${process.env.REACT_APP_SERVER_URL}/delete-post`,
           { data: currentDeleteInfo }
         ).then(response => {
-          console.log(response.data);
+          
         }).catch(error => {
           console.error("Occurred during axios callback - delete:", error);
         })

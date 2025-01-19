@@ -15,7 +15,9 @@ router.get('/parse', async (req, res) => {
             conn = await connection();
         }
         let collection = await conn.db("company").collection('information');
-        let results = await collection.insertOne({ companyName, jobTitle, companyLocation, dateOfSubmission, companyURL, wordMap, userInput })
+        let results = await collection.insertOne(
+            { companyName, jobTitle, companyLocation, dateOfSubmission, companyURL, wordMap, userInput, userID }
+        );
     } catch (error) {
         console.error("ERROR OCCURRED DURING PARSE", error);
     }

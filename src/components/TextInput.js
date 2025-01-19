@@ -23,7 +23,6 @@ function TextInput() {
 
     const userID = useUserContext();
     const modifyDate = (dateString) => {
-        console.log(dateString);
         let [month, day, year] = dateString.split('/');
 
         if (month.length === 1){
@@ -40,7 +39,7 @@ function TextInput() {
     const verifyUserInputDetails = () => {
 
         if (!userInput || !companyName || !companyLocation || !jobTitle || !companyURL){
-            console.log(userInput, companyName, companyLocation, jobTitle);
+            // console.log(userInput, companyName, companyLocation, jobTitle);
             if (!userInput){
                 setErrorMessage("Missing Job's Description!");
             } else if (!companyName){
@@ -100,20 +99,7 @@ function TextInput() {
         return <LoadingSpinner />
     }
 
-    const TestFeature = async () => {
-        if (!userID){
-            return;
-        }
-        console.log("Passed UserID check -", userID);
 
-        await axios.post(
-            `${process.env.REACT_APP_SERVER_URL}/set-all-documents-to-user/${userID}`
-        ).then(response => {
-            console.log(response.data);
-        }).catch(error => {
-            console.error("error occurred during update all with id," , error);
-        });
-    }
   return (
     <div className='text-container'>
         
@@ -186,12 +172,6 @@ function TextInput() {
               <div className='error-description'>Error: {errorMessage}</div> :
               <DisplayParseResults wordMap={wordMap} />}
 
-<button 
-            className='text-submit-button'
-            onClick={TestFeature}
-        >
-            REMOVE ME LATER
-        </button>  
     </div>
   )
 }

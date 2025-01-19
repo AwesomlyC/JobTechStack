@@ -10,7 +10,6 @@ export function UserProvider({children}) {
   useEffect(() => {
     if (user) {
       setUserId(user.id);
-      console.log("THIS IS USER", user.id);
     }
   }, [user]);
 

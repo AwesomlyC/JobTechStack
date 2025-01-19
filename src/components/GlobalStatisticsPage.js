@@ -35,7 +35,6 @@ function GlobalStatisticsPage() {
         console.error("Error when retrieving global statistics ---", error);
       });
     };
-    console.log("CALLED");
     retrieveGlobalStatistics();
   }, [hasRetrieve, userID]);
 
