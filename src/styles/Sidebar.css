@@ -1,0 +1,49 @@
+.sidebar{
+    background-color: #2c3e50;
+    color: white;
+    padding: 1rem;
+    width: 25px; /* Default collapsed width */
+    transition: width 0.3s ease; /* Smooth transition */
+    position: fixed; /* Fix sidebar on the left-hand side */
+    top: 10vh; /* Start 10vh below the navbar */
+    bottom: 2vh; /* End 2vh above the footer */
+    z-index: 1; /* Ensure sidebar stays in the correct layer */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar.expanded{
+    width: 125px;
+  }
+
+  .sidebar-toggle-button{
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    padding: 0;
+    padding-bottom: 0.5rem;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .sidebar-content{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    font-size: 24px;
+  }
+
+  .sidebar-icon{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    gap: 1.5rem;
+  }
+  .sidebar-icon:hover{
+    cursor: pointer;
+  }
+  .sidebar-about{
+    margin-top: auto;
+  }
