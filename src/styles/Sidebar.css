@@ -15,8 +15,13 @@
   .sidebar.expanded{
     width: 125px;
   }
-
-  .sidebar-toggle-button{
+.sidebar-button-options{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: 100%;
+}
+  .sidebar-toggle-button, .sidebar-button{
     background: none;
     border: none;
     color: white;
@@ -24,8 +29,27 @@
     padding: 0;
     padding-bottom: 0.5rem;
     cursor: pointer;
+    text-align: left;
+  }
+
+  .sidebar-toggle-button{
     text-align: center;
   }
+
+  .sidebar-button{
+    display: flex;               /* Enable flexbox */
+    justify-content: center;     /* Center horizontally */
+    align-items: center;         /* Center vertically */
+    padding: 0.5rem 1rem;        /* Adjust button padding */
+    font-size: 1rem;             /* Adjust text size */
+    color: lightblue;
+    border-radius: 10px;
+  }
+
+.sidebar-button:hover{
+    background-color: #2F4F4F;
+    transition: all 1s;
+}
 
   .sidebar-content{
     display: flex;
@@ -45,5 +69,13 @@
     cursor: pointer;
   }
   .sidebar-about{
+    display: flex;               /* Enable flexbox */
+    justify-content: center;     /* Center horizontally */
+    align-items: center;         /* Center vertically */
+    padding: 0.5rem 1rem;        /* Adjust button padding */
+    font-size: 1rem;             /* Adjust text size */
     margin-top: auto;
+  }
+  .sidebar-about:hover{
+    cursor: pointer;
   }

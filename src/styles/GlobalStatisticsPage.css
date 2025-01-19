@@ -96,10 +96,11 @@ th{
 }
 
 .keyword-result{
-    width: 90vw;
+    width: 85vw;
     text-align: center;
     display: flex;
     gap: 1px;
+    margin-left: 5rem;
 
 }
 

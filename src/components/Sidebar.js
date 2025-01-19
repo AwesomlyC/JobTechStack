@@ -22,18 +22,51 @@ function Sidebar() {
       </button>
       <div className='sidebar-content'>
         {isExpanded ? (
-          <>
+          <div className='sidebar-button-options'>
             <button
-              className='navbar-button'
+              className='sidebar-button'
               onClick={() => { navigate('/main') }}
             >
               Home
             </button>
 
+            <button
+              className='sidebar-button'
+              onClick={() => { navigate('/global-statistics') }}
+            >
+              Statistics
+            </button>
+
+            <button
+              className='sidebar-button'
+              onClick={() => { navigate('/global-statistics') }}
+            >
+              Job Tracker
+            </button>
+
+            <button
+              className='sidebar-button'
+              onClick={() => { navigate('/analytics') }}
+            >
+              Pie Chart
+            </button>
+
+            <button
+              className='sidebar-button'
+              onClick={() => { navigate('/analytics') }}
+            >
+              Line Graph
+            </button>
+
             <div className='sidebar-about'>
-              ABOUT
+              <button
+                className='sidebar-button'
+                onClick={() => { navigate('/about') }}
+              >
+                About
+              </button>
             </div>
-          </>
+          </div>
         ) : (
 
           <>
