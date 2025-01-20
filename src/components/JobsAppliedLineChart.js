@@ -1,6 +1,9 @@
 import React, { useMemo } from 'react';
 import {Line} from 'react-chartjs-2';
+import 'chart.js/auto';
+
 function JobsAppliedLineChart({ data }) {
+    console.log("JOB LINE DATA",data);
     const jobsAppliedData = useMemo(() => ({
         labels: data.jobsLabel,
         datasets: [
@@ -23,7 +26,7 @@ function JobsAppliedLineChart({ data }) {
     return (
         <>
             <h2>Time Graph: Between
-                <text style={{ color: 'blue' }}>{data.startDateString}</text> to <text style={{ color: 'blue' }}>{data.endDateString}
+                <text style={{ color: 'blue' }}> {data.startDateString}</text> to <text style={{ color: 'blue' }}>{data.endDateString}
                 </text>
             </h2>
             <Line
@@ -39,7 +42,7 @@ function JobsAppliedLineChart({ data }) {
                         y: {
                             title: {
                                 display: true,
-                                text: '# of Jobs Applied',
+                                text: 'Total Jobs Applied',
                                 font: {
                                     size: 12,
                                     weight: 'bold',

@@ -11,44 +11,28 @@ function Header() {
       <a href='/' className='home-page'><strong>JobTechStack</strong></a>
       <div>
         <SignedIn>
-        <button
-          className='navbar-button'
-          onClick={() => { navigate('/main') }}
-        >
-          Home
-        </button>
-
-        <button
-          className='navbar-button'
-          onClick={() => { navigate('/global-statistics') }}
-        >
-          Global Statistics
-        </button>
-
-        <button
-          className='navbar-button'
-          onClick={() => { navigate('/analytics') }}
-        >
-          Analytics
-        </button>
+          <button
+            className='navbar-button'
+            onClick={() => { navigate('/main') }}
+          >
+            Home
+          </button>
         </SignedIn>
         
         <SignedOut>
-        <button
-          className='navbar-button'
-          onClick={() => { navigate('/') }}
-        >
-          Sign Up
+          <button
+            className='navbar-button'
+            onClick={() => { navigate('/') }}
+          >
+            Sign Up
+          </button>
+          <button
+            className='navbar-button'
+            onClick={() => { navigate('/about') }}
+          >
+            About
         </button>
-
         </SignedOut>
-
-        <button
-          className='navbar-button'
-          onClick={() => { navigate('/about') }}
-        >
-          About
-        </button>
       </div>
     </navbar>
   )

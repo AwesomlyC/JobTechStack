@@ -218,6 +218,27 @@ router.post("/display-all-data", async (req, res) => {
     });
 });
 
+router.post('/display-line-graph-data', async (req, res) => {
+    const {userID} = req.body;
+    const {relevantInformation} = await retrieveAllStatistics(userID);
+    const { jobsLabel, jobsDataPoints, avgJobsAppliedDataPoints, startDateString, endDateString } = await getJobsLineData(relevantInformation);
+    res.send({
+        jobsLabel, jobsDataPoints, avgJobsAppliedDataPoints, startDateString, endDateString
+    });
 
+});
 
+router.post('/display-pie-chart-data', async (req, res) => {
+    const {userID} = req.body;
+    const {sortedDict, relevantInformation} = await retrieveAllStatistics(userID);
+    // Data for keyword pie graph
+    const { keywordLabel, keywordDataCounts } = getKeywordPieData(sortedDict);
+    // Data for location pie graph
+    const { locationLabel, locationDataCounts } = getLocationData(relevantInformation);
+
+    res.send({
+        keywordLabel, keywordDataCounts,
+        locationLabel, locationDataCounts
+    });
+});
 module.exports = router;

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
 import './../styles/Sidebar.css'
-import {SignedIn, SignedOut} from '@clerk/clerk-react';
+import {SignedIn} from '@clerk/clerk-react';
 
 
 
@@ -40,7 +40,7 @@ function Sidebar() {
                 className='sidebar-button'
                 onClick={() => { navigate('/global-statistics') }}
               >
-                Statistics
+                Keyword List
               </button>
   
               <button
@@ -52,14 +52,14 @@ function Sidebar() {
   
               <button
                 className='sidebar-button'
-                onClick={() => { navigate('/analytics') }}
+                onClick={() => { navigate('/pie-chart') }}
               >
                 Pie Chart
               </button>
   
               <button
                 className='sidebar-button'
-                onClick={() => { navigate('/analytics') }}
+                onClick={() => { navigate('/line-graph') }}
               >
                 Line Graph
               </button>
@@ -91,12 +91,12 @@ function Sidebar() {
                   />
                   <GiPieChart 
                     title="Pie Charts" 
-                    onClick={() => {navigate('/analytics')}}
+                    onClick={() => {navigate('/pie-chart')}}
   
                   />
                   <VscGraphLine 
                     title="Line Chart" 
-                    onClick={() => {navigate('/analytics')}}
+                    onClick={() => {navigate('/line-graph')}}
   
                   />
               </div>
