@@ -1,6 +1,6 @@
 .content{
     background-color: lightcyan;
-    width: 99vw;
+    width: 100vw;
     padding: 2.5rem 0 2.5rem 0rem;
     margin-bottom: 2rem;
 }
@@ -158,5 +158,10 @@ th{
 
 .table-headers>#table-sort:hover{
     cursor: pointer;
+}
+
+.keyword-header{
+    text-align: center;
+    font-weight: 600;
 }
 

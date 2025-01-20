@@ -2,6 +2,7 @@
     display: flex;
     justify-items: auto;
     justify-content: space-evenly;
+    margin-top: 1.5rem;
 }
 
 .filter-field{

@@ -7,6 +7,9 @@ import {lazy} from 'react';
 // import {SignedIn, SignedOut, RedirectToSignIn, useUser} from "@clerk/clerk-react"
 import ClerkUserIcon from './components/ClerkUserIcon';
 import UserProvider from './components/UserProvider';
+import KeywordTablePage from './components/KeywordTablePage';
+import JobTracker from './components/JobTracker';
+import HomePage from './components/HomePage';
 
 const MainPage = lazy(() => import('./components/MainPage'));
 const GlobalStatisticsPage = lazy(() => import('./components/GlobalStatisticsPage'));
@@ -28,9 +31,11 @@ function App() {
           <UserProvider>
             <Routes>
               <Route path='/' Component={SignInPage} />
+              <Route path='/home' Comopnent={HomePage} />
               <Route path='/main' Component={MainPage} />
-
               <Route path='/global-statistics' Component={GlobalStatisticsPage} />
+              <Route path='/keyword-list' Component={KeywordTablePage} />
+              <Route path='/job-tracker' Component={JobTracker} />
               <Route path='/pie-chart' Component={PieChartPage} />
               <Route path='/line-graph' Component={LineGraphPage} />
 

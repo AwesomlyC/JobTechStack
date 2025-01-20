@@ -38,14 +38,14 @@ function Sidebar() {
   
               <button
                 className='sidebar-button'
-                onClick={() => { navigate('/global-statistics') }}
+                onClick={() => { navigate('/keyword-list') }}
               >
                 Keyword List
               </button>
   
               <button
                 className='sidebar-button'
-                onClick={() => { navigate('/global-statistics') }}
+                onClick={() => { navigate('/job-tracker') }}
               >
                 Job Tracker
               </button>
@@ -83,11 +83,11 @@ function Sidebar() {
                   />
                   <FaRegListAlt
                     title="Job Application Tracker"
-                    onClick={() => {navigate('/global-statistics')}}
+                    onClick={() => {navigate('/job-tracker')}}
                   />
                   <FaTable 
                     title="Technical Keyword Table" 
-                    onClick={() => {navigate('/global-statistics')}}
+                    onClick={() => {navigate('/keyword-list')}}
                   />
                   <GiPieChart 
                     title="Pie Charts" 
