@@ -20,6 +20,7 @@ show all user's submitted details in table-format.
 - User(s) have the ability to update a submitted job description
   - Able to change all information e.g. job description, company name, location, and date
 - User(s) have the ability to put notes for a specific job
+- Added Sidebar for better navigation in application
 
 ## Website Link
 - [Webpage](https://job-tech-stack-frontend.vercel.app)
