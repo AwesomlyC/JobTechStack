@@ -13,9 +13,9 @@ function HomePage() {
       if (!userDetail){
         return;
       }
-      await axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/api`
-      )
+      // await axios.post(
+      //   `${process.env.REACT_APP_SERVER_URL}/api`
+      // )
       console.log(userDetail);
       // Set the name to either their username or primary email address used for sign in.
       setUsername(userDetail.username ? userDetail.username : userDetail.primaryEmailAddress.emailAddress)

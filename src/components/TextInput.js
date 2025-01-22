@@ -21,7 +21,7 @@ function TextInput() {
     const [errorMessage, setErrorMessage] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
-    const userID = useUserContext().id;
+    const user = useUserContext();
     const modifyDate = (dateString) => {
         let [month, day, year] = dateString.split('/');
 
@@ -66,7 +66,7 @@ function TextInput() {
             companyLocation: companyLocation.trimEnd().trimStart(),
             dateOfSubmission  : modifyDate(dateOfSubmission.toLocaleDateString('en-US')),       
             companyURL: companyURL.trimEnd().trimStart(),
-            userID,
+            userID: user.id,
         }
         setIsLoading(true);
         await axios.get(
