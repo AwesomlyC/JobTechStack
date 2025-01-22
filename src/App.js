@@ -31,7 +31,7 @@ function App() {
           <UserProvider>
             <Routes>
               <Route path='/' Component={SignInPage} />
-              <Route path='/home' Comopnent={HomePage} />
+              <Route path='/home' Component={HomePage} />
               <Route path='/main' Component={MainPage} />
               <Route path='/global-statistics' Component={GlobalStatisticsPage} />
               <Route path='/keyword-list' Component={KeywordTablePage} />

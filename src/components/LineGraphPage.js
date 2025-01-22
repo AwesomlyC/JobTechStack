@@ -7,7 +7,7 @@ import { useUserContext } from './UserProvider';
 
 function LineGraphPage() {
     const [data, setData] = useState(null);
-    const userID = useUserContext();
+    const userID = useUserContext().id;
     useEffect(() => {
         const retrieveLineData = async () => {
             if (!userID) {

@@ -19,7 +19,7 @@ function JobTracker() {
   
     const [displayResults, setDisplayResults] = useState([]);
   
-    const userID = useUserContext();
+    const userID = useUserContext().id;
     useEffect(() => {
       if (hasRetrieve || !userID) {
         return;

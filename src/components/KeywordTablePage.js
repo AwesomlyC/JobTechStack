@@ -9,7 +9,7 @@ import { useUserContext } from './UserProvider';
 function KeywordTablePage() {
   const [globalStatistics, setGlobalStatistics] = useState(null);
   const [totalDocuments, setTotalDocuments] = useState(0);
-  const userID = useUserContext();
+  const userID = useUserContext().id;
   useEffect(() => {
     if (!userID) {
       return;

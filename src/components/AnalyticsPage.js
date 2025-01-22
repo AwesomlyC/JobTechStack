@@ -10,7 +10,7 @@ import { useUserContext } from './UserProvider';
 
 function AnalyticsPage() {
     const [data, setData] = useState(null);
-    const userID = useUserContext();
+    const userID = useUserContext().id;
 
     useEffect(() => {
 

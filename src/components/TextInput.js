@@ -21,7 +21,7 @@ function TextInput() {
     const [errorMessage, setErrorMessage] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
-    const userID = useUserContext();
+    const userID = useUserContext().id;
     const modifyDate = (dateString) => {
         let [month, day, year] = dateString.split('/');
 

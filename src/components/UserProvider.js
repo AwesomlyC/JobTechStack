@@ -2,14 +2,15 @@ import React, {createContext, useContext, useEffect, useState} from 'react'
 import {useUser} from "@clerk/clerk-react";
 import LoadingSpinner from './LoadingSpinner';
 const UserContext = createContext(null);
+const UserDetailContext = createContext(null);
 
 export function UserProvider({children}) {
   const { user, isLoaded  } = useUser();
-  const [userId, setUserId] = useState(null);
+  const [userDetails, setUserDetail] = useState(null);
 
   useEffect(() => {
     if (user) {
-      setUserId(user.id);
+      setUserDetail(user);
     }
   }, [user]);
 
@@ -18,7 +19,7 @@ export function UserProvider({children}) {
     return <LoadingSpinner />; // Render a fallback while Clerk loads
   }
   return (
-    <UserContext.Provider value={userId}>
+    <UserContext.Provider value={userDetails}>
       {children}
     </UserContext.Provider>
   );
@@ -26,4 +27,9 @@ export function UserProvider({children}) {
 export function useUserContext(){
   return useContext(UserContext);
 }
+
+export function useUserDetailContext(){
+  return useContext(UserDetailContext);
+}
+
 export default UserProvider;

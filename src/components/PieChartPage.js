@@ -9,7 +9,7 @@ import { useUserContext } from './UserProvider';
 
 function PieChartPage() {
     const [data, setData] = useState(null);
-    const userID = useUserContext();
+    const userID = useUserContext().id;
     useEffect(() => {
         const retrievePieData = async () => {
             if (!userID){

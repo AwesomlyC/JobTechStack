@@ -7,7 +7,7 @@ import {SignedIn} from '@clerk/clerk-react';
 
 // Icon Imports - react-icons
 import { BiArrowToRight, BiArrowToLeft } from "react-icons/bi";
-import { FaInfoCircle, FaHome, FaRegListAlt } from "react-icons/fa";
+import { FaInfoCircle, FaHome, FaRegListAlt, FaSuitcase } from "react-icons/fa";
 import { GiPieChart } from "react-icons/gi";
 import { VscGraphLine } from "react-icons/vsc";
 import { FaTable } from "react-icons/fa6";
@@ -31,9 +31,16 @@ function Sidebar() {
             <div className='sidebar-button-options'>
               <button
                 className='sidebar-button'
-                onClick={() => { navigate('/main') }}
+                onClick={() => { navigate('/home') }}
               >
                 Home
+              </button>
+  
+              <button
+                className='sidebar-button'
+                onClick={() => { navigate('/main') }}
+              >
+                Input Job
               </button>
   
               <button
@@ -77,8 +84,12 @@ function Sidebar() {
   
             <>
               <div className='sidebar-icon'>
-                <FaHome
+              <FaHome
                     title="Home"
+                    onClick={() => { navigate('/home') }}
+                  />
+                <FaSuitcase
+                    title="Input Job"
                     onClick={() => { navigate('/main') }}
                   />
                   <FaRegListAlt
