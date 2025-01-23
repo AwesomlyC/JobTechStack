@@ -16,7 +16,15 @@ async function connection() {
         console.error(e);
     }
 }
-
+async function getCompanyInformationConnection(){
+    try{
+        let conn = await connection();
+        let collection = await conn.db("company").collection('information');
+        return collection;
+    } catch(e) {
+        console.error(e);
+    }
+}
 async function retrieveAllStatistics(userID) {
     let collection;
     let conn;
@@ -80,6 +88,23 @@ async function retrieveAllStatistics(userID) {
     );
     return { sortedDict, length: data.length, relevantInformation: totalCompany };
 }
+
+async function getTotalCount(userID) {
+    let collection = await getCompanyInformationConnection();
+    const query = { "userID": userID };
+    const totalCount = await collection.countDocuments(query);
+    return totalCount;
+}
+
+async function getDateCount(userID, curDate, yesterdayDate) {
+    let collection = await getCompanyInformationConnection();
+    const query = { "userID": userID, "dateOfSubmission": curDate };
+    const curCount = await collection.countDocuments(query);
+    query.dateOfSubmission = yesterdayDate;
+    const yesterdayCount = await collection.countDocuments(query);
+    console.log(curCount, yesterdayCount);
+    return {curCount, yesterdayCount};
+}
 // Handling shutdown server
 // Error Handling
 process.on("SIGINT", async () => {
@@ -92,4 +117,4 @@ process.on("SIGINT", async () => {
         process.exit(1);    // Fatal Error Exit
     }
 });
-module.exports = { connection, retrieveAllStatistics };
+module.exports = { connection, retrieveAllStatistics, getTotalCount, getDateCount };

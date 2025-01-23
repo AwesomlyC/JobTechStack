@@ -24,7 +24,7 @@ const OTHERS = ['rest', 'restful', 'restfuls', 'api', 'apis', 'xml', 'json', 'aw
 
 const TOOLS = ['postman', 'jira', 'selenium', 'docker', 'kubernetes', 'kubernete', 'lambda', 'devops', 'devop', 'terraform',
     'cloudformation', 'bash', 'linux', 'macos', 'unix', 'windows', 'macintosh', 'ansible', 'jest', 'mocha', 'informatica', 'tabkeau',
-    'circleci', 'snowflake']
+    'circleci', 'snowflake', 'ai']
 
 const CERTIFICATIONS = ['comptia', 'federal', 'clearance']
 const DEGREES = ['bachelor', 'bachelors', 'master', 'masters']
