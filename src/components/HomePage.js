@@ -64,7 +64,7 @@ function HomePage() {
 
   const percentangeOfJobSubmitted = (curCount, prevCount) => {
   
-    return Math.round(( Number(prevCount) / Number(curCount) ) * 100, 2)
+    return Math.round(( Number(curCount) / Number(prevCount) ) * 100, 2)
   };
   return (
     <div className='home'>
@@ -77,7 +77,7 @@ function HomePage() {
         <div className='stat-container'>
           <text className='stat-title'>Daily Statistics</text>
           <text>Num. of Submitted Jobs: <b>{numOfCurrentDateCount}</b></text>
-          <text>You've submitted <text style={{color:"blue"}}>{percentangeOfJobSubmitted(numOfCurrentDateCount, numOfYesterdayDateCount)}% </text> more compared to yesterday!
+          <text>You've submitted <text style={{color:"blue"}}>{percentangeOfJobSubmitted(numOfCurrentDateCount, numOfYesterdayDateCount)}% </text> {numOfCurrentDateCount > numOfYesterdayDateCount ? "more" : "less"} compared to yesterday!
           </text>
         </div>
 
