@@ -10,8 +10,9 @@ function HomePage() {
   const [numOfTotalCount, setNumOfTotalCount] = useState(null);
   const [numOfCurrentDateCount, setNumOfCurrentDateCount] = useState(null);
   const [numOfYesterdayDateCount, setNumOfYesterdayDateCount] = useState(null);
-
-
+  const [userCreationDate, setUserCreationDate] = useState(null);
+  const [updateKeywordStatus, setUpdateKeywordStatus] = useState(false);
+  
   const modifyDate = (dateString) => {
     let [month, day, year] = dateString.split('/');
     if (month.length === 1){
@@ -29,6 +30,7 @@ function HomePage() {
       if (!userDetail){
         return;
       }
+      setUserCreationDate(modifyDate(new Date(userDetail.createdAt).toLocaleDateString('en-US')));
       let curDate = new Date();
       let prevDate = new Date()
       
@@ -57,11 +59,21 @@ function HomePage() {
     retrieveUserData();
   }, [userDetail]);
 
-  if (!userDetail || !numOfTotalCount || !numOfCurrentDateCount || !numOfYesterdayDateCount){
-    return <div><LoadingSpinner /></div>
 
+  const updateKeywordList = async () => {
+    
+    setUpdateKeywordStatus(true);
+    
+    await axios.post(
+      `${process.env.REACT_APP_SERVER_URL}/api/stats/user/keyword/update`,
+      {userID: userDetail.id}
+    ).then (response => {
+      setUpdateKeywordStatus(false);
+    }).catch(error => {
+      console.error("Unable to update properly");
+      setUpdateKeywordStatus(false);
+    });
   }
-
   const percentangeOfJobSubmitted = (curCount, prevCount) => {
     let cur = Number(curCount), prev = Number(prevCount);
     // Sanitize prev's value
@@ -71,6 +83,12 @@ function HomePage() {
     // Prevent negative percentange
     return Math.round(Math.abs(( (cur - prev) / prev ) * 100), 2)
   };
+
+  if (!userDetail || !numOfTotalCount || !numOfCurrentDateCount || !numOfYesterdayDateCount || updateKeywordStatus){
+    return <div><LoadingSpinner /></div>
+
+  }
+
   return (
     <div className='home'>
       <div className='upper-container'>
@@ -82,6 +100,8 @@ function HomePage() {
         <div className='stat-container'>
           <text className='stat-title'>Daily Statistics</text>
           <text>Num. of Submitted Jobs: <b>{numOfCurrentDateCount}</b></text>
+          <text>Previous Num: <b>{numOfYesterdayDateCount}</b></text>
+
           <text>You've submitted <text style={{color: numOfCurrentDateCount > numOfYesterdayDateCount ? "blue" : "red", fontSize: "18px", fontWeight: "700"}}>{percentangeOfJobSubmitted(numOfCurrentDateCount, numOfYesterdayDateCount)}% </text> {numOfCurrentDateCount > numOfYesterdayDateCount ? "more" : "less"} compared to yesterday!
           </text>
         </div>
@@ -89,6 +109,9 @@ function HomePage() {
         <div className='stat-container'>
           <text className='stat-title'>Global Statistics</text>
           <text>Num. of Submitted Jobs: <b>{numOfTotalCount}</b></text>
+          <text>Signed Up On: <b>{userCreationDate}</b></text>
+          <button onClick={updateKeywordList}>Update keywords!</button>
+
         </div>
       </div>
     </div>

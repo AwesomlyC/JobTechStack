@@ -21,9 +21,15 @@ router.post('/user', async (req, res) => {
     const {userID, curDate, prevDate} = req.body;
     const totalCount = await getTotalCount(userID);
     const {curCount, yesterdayCount} = await getDateCount(userID, curDate, prevDate);
-    console.log("RETURNING:" ,totalCount, curCount, yesterdayCount)
     res.send({totalCount, curCount, yesterdayCount})
-    // res.send(totalCount)
+});
+
+
+// Update all technical/keyword of user
+router.post('/user/keyword/update', async (req, res) => {
+    const {userID} = req.body;
+
+    res.send("Updated...");
 });
 
 module.exports = router;
