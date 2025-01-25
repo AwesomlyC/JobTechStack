@@ -13,7 +13,7 @@ function Header() {
         <SignedIn>
           <button
             className='navbar-button'
-            onClick={() => { navigate('/main') }}
+            onClick={() => { navigate('/home') }}
           >
             Home
           </button>

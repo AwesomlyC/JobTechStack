@@ -6,7 +6,7 @@ function SignInPage() {
     <div className='clerk-signin'>
       <SignIn 
         fallbackRedirectUrl='/'
-        forceRedirectUrl={'/main'}
+        forceRedirectUrl={'/home'}
       />
     </div>
   )
