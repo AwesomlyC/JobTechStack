@@ -43,12 +43,6 @@ function Sidebar() {
                 Input Job
               </button>
   
-              <button
-                className='sidebar-button'
-                onClick={() => { navigate('/keyword-list') }}
-              >
-                Keyword List
-              </button>
   
               <button
                 className='sidebar-button'
@@ -56,7 +50,14 @@ function Sidebar() {
               >
                 Job Tracker
               </button>
-  
+
+              <button
+                className='sidebar-button'
+                onClick={() => { navigate('/keyword-list') }}
+              >
+                Keyword List
+              </button>
+              
               <button
                 className='sidebar-button'
                 onClick={() => { navigate('/pie-chart') }}

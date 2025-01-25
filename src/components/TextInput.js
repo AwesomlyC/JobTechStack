@@ -39,7 +39,6 @@ function TextInput() {
     const verifyUserInputDetails = () => {
 
         if (!userInput || !companyName || !companyLocation || !jobTitle || !companyURL){
-            // console.log(userInput, companyName, companyLocation, jobTitle);
             if (!userInput){
                 setErrorMessage("Missing Job's Description!");
             } else if (!companyName){

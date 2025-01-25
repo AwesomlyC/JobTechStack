@@ -44,7 +44,6 @@ app.use('/api/analytics', AnalyticRoute);
 
 
 app.delete('/delete-post', async (req, res) => {
-  // console.log(req.body);
   const { companyName, jobTitle, companyLocation, dateOfSubmission, companyURL } = req.body;
   let conn;
   try {
@@ -141,7 +140,6 @@ app.get("/updateDate", async (req, res) => {
       if (year === '2025') {
         day = '0' + day[0];
       }
-      // console.log(doc.companyName, year + '/' + month + '/' + day );
       const filter = { _id: doc._id }
       const updateDoc = {
         $set: {
@@ -232,7 +230,6 @@ app.post('/set-all-documents-to-user/:id', async (req, res) => {
   }
 
   const userID = req.params.id;
-  console.log(userID);
 
   let collection;
   let conn;
@@ -242,7 +239,6 @@ app.post('/set-all-documents-to-user/:id', async (req, res) => {
   collection = await conn.db("company").collection('information');
   let result = await collection.updateMany({}, [{ $set: { "userID": userID } }]);
   
-  console.log(result);
   res.send("Finished Updating");
 
 });

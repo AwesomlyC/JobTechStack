@@ -102,7 +102,6 @@ async function getDateCount(userID, curDate, yesterdayDate) {
     const curCount = await collection.countDocuments(query);
     query.dateOfSubmission = yesterdayDate;
     const yesterdayCount = await collection.countDocuments(query);
-    console.log(curCount, yesterdayCount);
     return {curCount, yesterdayCount};
 }
 // Handling shutdown server

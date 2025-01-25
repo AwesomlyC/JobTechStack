@@ -19,7 +19,6 @@ function KeywordTablePage() {
         `${process.env.REACT_APP_SERVER_URL}/api/stats/global-statistics`,
         {userID},
       ).then(response => {
-        console.log(response.data);
         setInformation(response.data);
         setTotalDocuments(response.data.length);
       }).catch(error => {

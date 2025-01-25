@@ -19,7 +19,6 @@ function PieChartPage() {
                 `${process.env.REACT_APP_SERVER_URL}/api/analytics/display-pie-chart-data`,
                 {userID}
             ).then(response => {
-                console.log(response.data);
                 setData(response.data);
             }).catch(error => {
                 console.error(error);

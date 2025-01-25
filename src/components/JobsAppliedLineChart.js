@@ -3,7 +3,6 @@ import {Line} from 'react-chartjs-2';
 import 'chart.js/auto';
 
 function JobsAppliedLineChart({ data }) {
-    console.log("JOB LINE DATA",data);
     const jobsAppliedData = useMemo(() => ({
         labels: data.jobsLabel,
         datasets: [

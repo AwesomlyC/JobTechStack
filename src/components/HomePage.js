@@ -39,12 +39,10 @@ function HomePage() {
       curDate = modifyDate(curDate.toLocaleDateString('en-US'));
       prevDate = modifyDate(prevDate.toLocaleDateString('en-US'))
       
-      console.log(curDate, prevDate);
       await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/api/stats/user`,
         {userID: userDetail.id, curDate, prevDate},
       ).then(response => {
-        console.log()
         setNumOfTotalCount(response.data.totalCount);
         setNumOfCurrentDateCount(response.data.curCount);
         setNumOfYesterdayDateCount(response.data.yesterdayCount);
@@ -84,7 +82,7 @@ function HomePage() {
     return Math.round(Math.abs(( (cur - prev) / prev ) * 100), 2)
   };
 
-  if (!userDetail || !numOfTotalCount || !numOfCurrentDateCount || !numOfYesterdayDateCount || updateKeywordStatus){
+  if (!userDetail || !numOfTotalCount || numOfCurrentDateCount === null || numOfYesterdayDateCount === null || updateKeywordStatus){
     return <div><LoadingSpinner /></div>
 
   }

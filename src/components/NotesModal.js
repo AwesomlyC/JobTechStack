@@ -38,7 +38,6 @@ function NotesModal({isOpen, onClose, flipNotesMode, setHasRetrieve, currentNote
       `${process.env.REACT_APP_SERVER_URL}/update-notes`,
       data
     ).then(response => {
-      // console.log("added notes succesfully:", response.data);
       
     }).catch(error => {
       console.error("Error occurred during notes submit:", error);
