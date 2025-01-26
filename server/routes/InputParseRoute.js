@@ -27,6 +27,7 @@ router.get('/parse', async (req, res) => {
 // Update all keywords related to a userID
 // Fix any missing parse input due to it being updated.
 router.post("/user/keyword/update", async (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
     const {userID} = req.body;
     console.log(userID);
     try {

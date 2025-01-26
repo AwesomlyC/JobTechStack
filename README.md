@@ -1,5 +1,5 @@
 # Personal Project: Job Tech Stack
-Project Stack: React, ExpressJS, NodeJS, MongoDB, CSS, Axios, ChartJS, JavaScript
+Project Stack: React, ExpressJS, NodeJS, MongoDB, CSS, Axios, ChartJS, JavaScript, Vercel, Clerk
 
 ## Purpose
 - Full-Stack Project to display and job applications, as well as parsing job description 
@@ -21,6 +21,8 @@ show all user's submitted details in table-format.
   - Able to change all information e.g. job description, company name, location, and date
 - User(s) have the ability to put notes for a specific job
 - Added Sidebar for better navigation in application
+- User(s) have the abilit to update their technical keywords with the updated list
+  - Should mainly be used when the list of technical keyword(s) list has been modified.
 
 ## Website Link
 - [Webpage](https://job-tech-stack-frontend.vercel.app)
