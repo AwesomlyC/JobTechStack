@@ -25,12 +25,7 @@ router.post('/user', async (req, res) => {
 });
 
 
-// Update all technical/keyword of user
-router.post('/user/keyword/update', async (req, res) => {
-    const {userID} = req.body;
 
-    res.send("Updated...");
-});
 
 module.exports = router;
 

@@ -104,6 +104,8 @@ async function getDateCount(userID, curDate, yesterdayDate) {
     const yesterdayCount = await collection.countDocuments(query);
     return {curCount, yesterdayCount};
 }
+
+
 // Handling shutdown server
 // Error Handling
 process.on("SIGINT", async () => {
@@ -116,4 +118,4 @@ process.on("SIGINT", async () => {
         process.exit(1);    // Fatal Error Exit
     }
 });
-module.exports = { connection, retrieveAllStatistics, getTotalCount, getDateCount };
+module.exports = { connection, retrieveAllStatistics, getCompanyInformationConnection, getTotalCount, getDateCount };

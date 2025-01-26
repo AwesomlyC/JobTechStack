@@ -63,10 +63,11 @@ function HomePage() {
     setUpdateKeywordStatus(true);
     
     await axios.post(
-      `${process.env.REACT_APP_SERVER_URL}/api/stats/user/keyword/update`,
+      `${process.env.REACT_APP_SERVER_URL}/api/input/user/keyword/update`,
       {userID: userDetail.id}
     ).then (response => {
       setUpdateKeywordStatus(false);
+      console.log(response.data);
     }).catch(error => {
       console.error("Unable to update properly");
       setUpdateKeywordStatus(false);
