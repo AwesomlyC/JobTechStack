@@ -18,6 +18,7 @@ router.get('/parse', async (req, res) => {
         let results = await collection.insertOne(
             { companyName, jobTitle, companyLocation, dateOfSubmission, companyURL, wordMap, userInput, userID }
         );
+        console.log(results)
     } catch (error) {
         console.error("ERROR OCCURRED DURING PARSE", error);
     }
@@ -59,7 +60,7 @@ router.post("/user/keyword/update", async (req, res) => {
                 }
             }
             let result = await collection.updateOne(updateFilter, updateDoc, updateOption);
-
+            console.log(result);
         }
     } catch (error) {
         res.send("FAILED");

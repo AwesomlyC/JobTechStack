@@ -39,3 +39,5 @@ show all user's submitted details in table-format.
 - Combine technical keywords
   - i.e. APIs + API
 - Possible Project Name Change to SkillSift
+- Allow user to open a modal that shows the job's description (or the entire input) of a specific job.
+  - Similar to update modal but for viewing purposes.
