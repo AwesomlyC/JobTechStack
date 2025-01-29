@@ -9,7 +9,7 @@ import { useUserContext } from './UserProvider';
 
 function PieChartPage() {
     const [data, setData] = useState(null);
-    const userID = useUserContext().id;
+    const userID = useUserContext();
     useEffect(() => {
         const retrievePieData = async () => {
             if (!userID){
@@ -17,7 +17,7 @@ function PieChartPage() {
             }
             await axios.post(
                 `${process.env.REACT_APP_SERVER_URL}/api/analytics/display-pie-chart-data`,
-                {userID}
+                {userID: userID.id}
             ).then(response => {
                 setData(response.data);
             }).catch(error => {

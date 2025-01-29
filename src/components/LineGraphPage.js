@@ -7,7 +7,7 @@ import { useUserContext } from './UserProvider';
 
 function LineGraphPage() {
     const [data, setData] = useState(null);
-    const userID = useUserContext().id;
+    const userID = useUserContext();
     useEffect(() => {
         const retrieveLineData = async () => {
             if (!userID) {
@@ -15,7 +15,7 @@ function LineGraphPage() {
             }
             await axios.post(
                 `${process.env.REACT_APP_SERVER_URL}/api/analytics/display-line-graph-data`,
-                { userID }
+                { userID: userID.id }
             ).then(response => {
                 setData(response.data);
             }).catch(error => {

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import GlobalKeywordTable from './GlobalKeywordTable';
 import '../styles/GlobalStatisticsPage.css'
 import GlobalCompanyInformation from './GlobalCompanyInformation';
 import SearchFields from './SearchFields';
@@ -19,7 +18,7 @@ function JobTracker() {
   
     const [displayResults, setDisplayResults] = useState([]);
   
-    const userID = useUserContext().id;
+    const userID = useUserContext();
     useEffect(() => {
       if (hasRetrieve || !userID) {
         return;
@@ -27,7 +26,7 @@ function JobTracker() {
       const retrieveGlobalStatistics = async () => {
         await axios.post(
           `${process.env.REACT_APP_SERVER_URL}/api/stats/global-statistics`,
-          {userID},
+          {userID: userID.id},
         ).then(response => {
           setInformation(response.data);
           setHasRetrieve(true);

@@ -15,7 +15,7 @@ function LocationPieChart({data}) {
   return (
     <div className='keyword-pie'>
 
-        <h2>Pie Chart: Distribution of Keywords</h2>
+        <h2>Pie Chart: Distribution of Locations Applied</h2>
         <Pie
             // width='200px'
             height='200px'

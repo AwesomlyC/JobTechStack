@@ -19,7 +19,7 @@ function GlobalStatisticsPage() {
 
   const [displayResults, setDisplayResults] = useState([]);
 
-  const userID = useUserContext().id;
+  const userID = useUserContext();
   useEffect(() => {
     if (hasRetrieve || !userID) {
       return;
@@ -27,7 +27,7 @@ function GlobalStatisticsPage() {
     const retrieveGlobalStatistics = async () => {
       await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/api/stats/global-statistics`,
-        {userID},
+        {userID: userID.id},
       ).then(response => {
         setInformation(response.data);
         setHasRetrieve(true);

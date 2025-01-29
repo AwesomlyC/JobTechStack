@@ -10,7 +10,7 @@ import { useUserContext } from './UserProvider';
 
 function AnalyticsPage() {
     const [data, setData] = useState(null);
-    const userID = useUserContext().id;
+    const userID = useUserContext();
 
     useEffect(() => {
 
@@ -20,7 +20,7 @@ function AnalyticsPage() {
             }
             await axios.post(
                 `${process.env.REACT_APP_SERVER_URL}/api/analytics/display-all-data`,
-                {userID}
+                {userID: userID.id}
             ).then(response => {
                 const data = response.data;
                 setData(data);

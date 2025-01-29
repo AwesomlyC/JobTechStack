@@ -9,7 +9,7 @@ import { useUserContext } from './UserProvider';
 function KeywordTablePage() {
   const [globalStatistics, setGlobalStatistics] = useState(null);
   const [totalDocuments, setTotalDocuments] = useState(0);
-  const userID = useUserContext().id;
+  const userID = useUserContext();
   useEffect(() => {
     if (!userID) {
       return;
@@ -17,7 +17,7 @@ function KeywordTablePage() {
     const retrieveGlobalStatistics = async () => {
       await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/api/stats/global-statistics`,
-        {userID},
+        {userID: userID.id},
       ).then(response => {
         setInformation(response.data);
         setTotalDocuments(response.data.length);
