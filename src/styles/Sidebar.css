@@ -5,7 +5,7 @@
     width: 25px; /* Default collapsed width */
     transition: width 0.3s ease; /* Smooth transition */
     position: fixed; /* Fix sidebar on the left-hand side */
-    top: 10vh; /* Start 10vh below the navbar */
+    top: 8vh; /* Start 10vh below the navbar */
     bottom: 2vh; /* End 2vh above the footer */
     z-index: 1; /* Ensure sidebar stays in the correct layer */
     display: flex;

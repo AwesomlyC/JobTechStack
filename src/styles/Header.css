@@ -4,11 +4,12 @@
     display: flex;
     text-align: center;
     background-color: #4682B4;
-    position: static;
+    position: fixed;
     justify-content: space-between;
     align-items: center;
-    height: 10vh;
+    height: 8vh;
     z-index: 1000;
+    top: 0;
     
 }
 
