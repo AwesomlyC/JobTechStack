@@ -109,7 +109,7 @@ function HomePage() {
           <text className='stat-title'>Global Statistics</text>
           <text>Num. of Submitted Jobs: <b>{numOfTotalCount}</b></text>
           <text>Signed Up On: <b>{userCreationDate}</b></text>
-          <button onClick={updateKeywordList}>Update keywords!</button>
+          <button onClick={updateKeywordList} className='stat-update-button'>Update keywords!</button>
 
         </div>
       </div>

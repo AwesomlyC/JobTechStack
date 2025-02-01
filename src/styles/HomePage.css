@@ -40,3 +40,16 @@ hr.separator{
     background-color: cyan;
     width: 25vh;
 }  
+
+.stat-update-button{
+    background-color: #32de84;
+    height: 2rem;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 10px;
+}
+
+.stat-update-button:hover{
+    filter: brightness(75%);    
+    transition: filter 0.75s ease;
+}
