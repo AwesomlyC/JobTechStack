@@ -43,3 +43,11 @@ show all user's submitted details in table-format.
   - Similar to update modal but for viewing purposes.
   - Most likely combine update/delete into one modal and remove href from company title and transform it to a button "visit link". This will remove clutter when viewing all job applications sent.
   - Additionally, Allow users to view information, update if needed, or delete when wanted.
+
+  ## How to Run
+  1. Go to the jobtechstack directory
+  2. npm start
+  3. Open new terminal
+  4. Go to the jobtechstack/server directory
+  5. npm run dev
+  6. Open browser and navigate to localhost:3000
