@@ -79,3 +79,8 @@
   .sidebar-about:hover{
     cursor: pointer;
   }
+
+  #highlight{
+    filter: drop-shadow(0 0 8px yellow);
+    color: yellow;
+  }

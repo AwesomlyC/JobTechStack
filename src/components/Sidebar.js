@@ -16,10 +16,11 @@ function Sidebar() {
   const navigate = useNavigate();
 
   const [isExpanded, setIsExpanded] = useState(false);
-
+  const [highlight, setHighlight] = useState('home');
   const toggleSidebar = () => {
     setIsExpanded((e => !e));
   }
+  
   return (
     <SignedIn>
       <aside className={`sidebar ${isExpanded ? 'expanded' : ''}`}>
@@ -31,14 +32,16 @@ function Sidebar() {
             <div className='sidebar-button-options'>
               <button
                 className='sidebar-button'
-                onClick={() => { navigate('/home') }}
+                id = {highlight === 'home' ? 'highlight' : ""}
+                onClick={() => { navigate('/home'); setHighlight('home') }}
               >
                 Home
               </button>
   
               <button
                 className='sidebar-button'
-                onClick={() => { navigate('/main') }}
+                id = {highlight === 'main' ? 'highlight' : ""}
+                onClick={() => { navigate('/main'); setHighlight('main') }}
               >
                 Input Job
               </button>
@@ -46,28 +49,34 @@ function Sidebar() {
   
               <button
                 className='sidebar-button'
-                onClick={() => { navigate('/job-tracker') }}
+                id = {highlight === 'job-tracker' ? 'highlight' : ""}
+                onClick={() => { navigate('/job-tracker'); setHighlight('job-tracker') }}
               >
                 Job Tracker
               </button>
 
               <button
                 className='sidebar-button'
-                onClick={() => { navigate('/keyword-list') }}
+                id = {highlight === 'keyword-list' ? 'highlight' : ""}
+                onClick={() => { navigate('/keyword-list'); setHighlight('keyword-list') }}
               >
                 Keyword List
               </button>
               
               <button
                 className='sidebar-button'
-                onClick={() => { navigate('/pie-chart') }}
+                id = {highlight === 'pie-chart' ? 'highlight' : ""}
+
+                onClick={() => { navigate('/pie-chart'); setHighlight('pie-chart') }}
               >
                 Pie Chart
               </button>
   
               <button
                 className='sidebar-button'
-                onClick={() => { navigate('/line-graph') }}
+                id = {highlight === 'line-graph' ? 'highlight' : ""}
+
+                onClick={() => { navigate('/line-graph'); setHighlight('line-graph') }}
               >
                 Line Graph
               </button>
@@ -75,7 +84,8 @@ function Sidebar() {
               <div className='sidebar-about'>
                 <button
                   className='sidebar-button'
-                  onClick={() => { navigate('/about') }}
+                  id = {highlight === 'about' ? 'highlight' : ""}
+                  onClick={() => { navigate('/about'); setHighlight('about') }}
                 >
                   About
                 </button>
@@ -87,28 +97,43 @@ function Sidebar() {
               <div className='sidebar-icon'>
               <FaHome
                     title="Home"
-                    onClick={() => { navigate('/home') }}
+                    id = {highlight === 'home' ? 'highlight' : ""}
+                    onClick={() => { navigate('/home'); setHighlight('home') }}
                   />
+
                 <FaSuitcase
                     title="Input Job"
-                    onClick={() => { navigate('/main') }}
+                    id = {highlight === 'main' ? 'highlight' : ""}
+
+                    onClick={() => { navigate('/main'); setHighlight('main') }}
                   />
+
                   <FaRegListAlt
                     title="Job Application Tracker"
-                    onClick={() => {navigate('/job-tracker')}}
+                    id = {highlight === 'job-tracker' ? 'highlight' : ""}
+
+                    onClick={() => {navigate('/job-tracker'); setHighlight('job-tracker')}}
                   />
+
                   <FaTable 
                     title="Technical Keyword Table" 
-                    onClick={() => {navigate('/keyword-list')}}
+                    id = {highlight === 'keyword-list' ? 'highlight' : ""}
+
+                    onClick={() => {navigate('/keyword-list'); setHighlight('keyword-list')}}
                   />
+
                   <GiPieChart 
                     title="Pie Charts" 
-                    onClick={() => {navigate('/pie-chart')}}
+                    id = {highlight === 'pie-chart' ? 'highlight' : ""}
+
+                    onClick={() => {navigate('/pie-chart'); setHighlight('pie-chart')}}
   
                   />
                   <VscGraphLine 
                     title="Line Chart" 
-                    onClick={() => {navigate('/line-graph')}}
+                    id = {highlight === 'line-graph' ? 'highlight' : ""}
+
+                    onClick={() => {navigate('/line-graph'); setHighlight('line-graph')}}
   
                   />
               </div>
@@ -116,7 +141,8 @@ function Sidebar() {
               <div className='sidebar-about'>
                 <FaInfoCircle 
                   title="About"
-                  onClick={() => {navigate('/about')}} 
+                  id = {highlight === 'about' ? 'highlight' : ""}
+                  onClick={() => {navigate('/about'); setHighlight('about')}} 
                 />
               </div>
             </>
