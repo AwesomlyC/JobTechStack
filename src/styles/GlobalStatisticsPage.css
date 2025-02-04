@@ -165,3 +165,8 @@ th{
     font-weight: 600;
 }
 
+.open-modal-text{
+    color: blue;
+    cursor: pointer;
+    text-decoration-line: underline;
+}

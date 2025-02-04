@@ -33,7 +33,8 @@ function App() {
               <Route path='/' Component={SignInPage} />
               <Route path='/home' Component={HomePage} />
               <Route path='/main' Component={MainPage} />
-              <Route path='/global-statistics' Component={GlobalStatisticsPage} />
+              {/* DEPRECATED PAGE */}
+              {/* <Route path='/global-statistics' Component={GlobalStatisticsPage} /> */}
               <Route path='/keyword-list' Component={KeywordTablePage} />
               <Route path='/job-tracker' Component={JobTracker} />
               <Route path='/pie-chart' Component={PieChartPage} />

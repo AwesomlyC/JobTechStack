@@ -12,8 +12,8 @@ function JobTracker() {
     const [numberOfDocuments, setNumberOfDocuments] = useState(0);
     const [relevantCompanyInformation, setRelevantCompanyInformation] = useState(null);
   
-    const [deleteMode, setDeleteMode] = useState(false);
-    const [updateMode, setUpdateMode] = useState(false);
+    // const [deleteMode, setDeleteMode] = useState(false);
+    // const [updateMode, setUpdateMode] = useState(false);
     const [notesMode, setNotesMode] = useState(false);
   
     const [displayResults, setDisplayResults] = useState([]);
@@ -43,21 +43,21 @@ function JobTracker() {
       setDisplayResults(data.relevantInformation);
     }
     const flipDeleteMode = () => {
-      setDeleteMode((e) => !e);
-      setUpdateMode(false);
+      // setDeleteMode((e) => !e);
+      // setUpdateMode(false);
       setNotesMode(false);
     }
   
     const flipUpdateMode = () => {
-      setUpdateMode((e) => !e);
-      setDeleteMode(false);
+      // setUpdateMode((e) => !e);
+      // setDeleteMode(false);
       setNotesMode(false);
     }
   
     const flipNotesMode = () => {
       setNotesMode((e) => !e);
-      setUpdateMode(false);
-      setDeleteMode(false);
+      // setUpdateMode(false);
+      // setDeleteMode(false);
     }
   
     if (!relevantCompanyInformation) {
@@ -68,10 +68,8 @@ function JobTracker() {
 
   return (
     <div>
-    {/* <h3>Global Statistics for <text style={{ color: 'blue' }}>{numberOfDocuments}</text> documents</h3> */}
-
     <div className="statistics-container">
-      <button
+      {/* <button
         className='update-button'
         onClick={flipUpdateMode}
       >
@@ -83,7 +81,7 @@ function JobTracker() {
         onClick={flipDeleteMode}
       >
         <b><strong>Delete</strong></b>
-      </button>
+      </button> */}
       <SearchFields
         setDisplayResults={setDisplayResults}
         relevantCompanyInformation={relevantCompanyInformation}
@@ -92,10 +90,10 @@ function JobTracker() {
         relevantCompanyInformation={displayResults}
         setDisplayResults = {setDisplayResults}
         setHasRetrieve={setHasRetrieve}
-        deleteMode={deleteMode}
+        // deleteMode={deleteMode}
         flipDeleteMode={flipDeleteMode}
 
-        updateMode={updateMode}
+        // updateMode={updateMode}
         flipUpdateMode={flipUpdateMode}
 
         notesMode={notesMode}

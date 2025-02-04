@@ -113,8 +113,8 @@ function GlobalCompanyInformation({ relevantCompanyInformation, setDisplayResult
         <tbody>
           <tr className='table-headers'>
 
-            {deleteMode && (<th className='table-action'></th>)}
-            {updateMode && (<th className='table-action'></th>)}
+            {/* {deleteMode && (<th className='table-action'></th>)}
+            {updateMode && (<th className='table-action'></th>)} */}
 
             <th className='table-number'>No.</th>
             <th className='table-name' id='table-sort' onClick={sortByName}>
@@ -148,7 +148,7 @@ function GlobalCompanyInformation({ relevantCompanyInformation, setDisplayResult
           (info, index) => (
             <tbody key={index}>
               <tr key={index} className='table-result-row'>
-                {deleteMode && (
+                {/* {deleteMode && (
                   <td className='row-action'>
                     {<FaMinusCircle onClick= {() => handleDeleteInfo(info)} />}
                   </td>
@@ -157,12 +157,18 @@ function GlobalCompanyInformation({ relevantCompanyInformation, setDisplayResult
                   <td className='row-action'>
                     <FaRegEdit onClick={() => handleUpdateInfo(info)} />
                   </td>
-                )}
+                )} */}
                 <td className='table-result-data'>{index + 1}</td>
-                <td className='table-result-data'><a href={info.companyURL}>{info.companyName}</a></td>
+                <td className='table-result-data'>
+                  
+                  {/* <a href={info.companyURL}>{info.companyName}</a> */}
+                  <text className='open-modal-text' onClick={() => handleUpdateInfo(info)}>{info.companyName}</text>
+                  
+                  </td>
                 <td className='table-result-data'>{info.jobTitle}</td>
                 <td className='table-result-data'>{info.companyLocation === "United_States" ? "United States" : info.companyLocation}</td>
                 <td className='table-result-data table-date-of-submission'>{info.dateOfSubmission}</td>
+                {/* DEPRECATED */}
                 {/* <td className='table-result-data'>
                   <a href={info.companyURL} className='row-url'>
                     {info.companyURL}

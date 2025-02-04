@@ -2,7 +2,10 @@ import React, {useRef} from 'react'
 import './../styles/DeleteModal.css'
 import { FaTrashCan } from "react-icons/fa6";
 import axios from 'axios';
+ 
 
+
+// DEPRECATED
 function DeleteModal({isOpen, onClose, flipDeleteMode, setHasRetrieve, currentDeleteInfo, setCurrentDeleteInfo}) {
     
   

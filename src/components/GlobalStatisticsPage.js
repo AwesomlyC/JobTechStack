@@ -6,6 +6,13 @@ import GlobalCompanyInformation from './GlobalCompanyInformation';
 import SearchFields from './SearchFields';
 import LoadingSpinner from './LoadingSpinner';
 import { useUserContext } from './UserProvider';
+
+// 
+//    DEPRECATED
+// 
+// 
+
+
 function GlobalStatisticsPage() {
 
   const [globalStatistics, setGlobalStatistics] = useState(null);

@@ -49,10 +49,18 @@
     max-height: 50vh;
 }
 
+.button-options{
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+}
 .button-options .update{
     background-color: #4FFFB0;
 }
-
+.options{
+    display: flex;
+    gap: 1.5rem;
+}
 #update-modal-options{
     padding: 1rem;
 }
@@ -72,4 +80,17 @@
     margin-top: 4rem;
     color: red;
     font-size: 32px;
+}
+
+.delete {
+    font-size: 16px;
+    border-radius: 10px;
+    padding: 8px 20px;
+    background-color: red;
+    color: white;
+}
+
+.visit-page{
+    background-color: lightblue;
+    font-weight: 700;
 }

@@ -142,6 +142,19 @@ function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentU
         }
     }
 
+    const deleteID = () => {
+        axios.delete(
+          `${process.env.REACT_APP_SERVER_URL}/delete-post`,
+          { data: currentUpdateInfo }
+        ).then(response => {
+          
+        }).catch(error => {
+          console.error("Occurred during axios callback - delete:", error);
+        })
+
+        cancelUpdateModal();
+
+      };
     return (
         <div
             className='modal-popup'
@@ -211,13 +224,21 @@ function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentU
                     {errorMessage &&
               <div className='error-description'>Error: {errorMessage}</div>}
 
-                    <div className='button-options' id = 'update-modal-options'>
-                        <button className='cancel' onClick={cancelUpdateModal}>Cancel</button>
-                        <button className='update' onClick={(info) => updateID(info)}>Update</button>
-                    </div>
-                </>
-            </div>
+                    <div className='button-options' id='update-modal-options'>
+                        <>
+                            <button className='visit-page' onClick={() => window.open(currentUpdateInfo.companyURL)}>Visit Page</button>
+                        </>
+
+                        <div className='options'>
+                            <button className='cancel' onClick={cancelUpdateModal}>Cancel</button>
+                            <button className='update' onClick={(info) => updateID(info)}>Update</button>
+                            <button className='delete' onClick={() => deleteID()}>Delete</button>
+                        </div>
+                    
+                </div>
+            </>
         </div>
+    </div>
     )
 }
 
