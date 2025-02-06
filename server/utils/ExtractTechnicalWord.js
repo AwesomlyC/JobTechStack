@@ -17,7 +17,7 @@ const DATABASES = ['nosql', 'mysql', 'postgresql', 'postgres', 'mongodb', 'cassa
     'databrick', 'azure', 'redis', 'apache', 'amazon', 'dynamodb', 'dynamo', 'couchbase', 'neo4j', 'graphql', 'aurora', 'rds', 'eks',
     'mssql', 'oracle', 'cloud', 'gcp', 'kafka', 'pinot', 'redshift', 'duckdb']
 
-const METHODOLOGY = ['agile', 'scrum', 'sdlc', 'qa', 'seo',]
+const METHODOLOGY = ['agile', 'scrum', 'sdlc', 'qa', 'seo', 'kanban', ]
 
 const OTHERS = ['rest', 'restful', 'restfuls', 'api', 'apis', 'xml', 'json', 'aws', 'microservices', 'microservice', 'spring', 'boot',
     'django', 'flask', 'ec2', 'ci', 'cd', 'cicd', 'vpc', 's3', 'jquery', 'ajax', 'etl', 'tomcat', 'blockchain']

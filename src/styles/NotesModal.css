@@ -7,11 +7,14 @@
     border-radius: 10px;
     box-shadow: 2px solid black;
     width: 50%;
+    height: 40%;
     
 }
 
 .notes-title{
     font-size: 24px;
+    text-decoration: underline;
+    font-family: cursive;
 }
 
 .notes-description{
@@ -19,9 +22,15 @@
     flex-direction: column;
     gap: 1rem;
     margin-top: 2rem;
+    height: 100%;
 }
-
+.notes-description>.text-input{
+    padding: 0.5rem;
+}
 .notes-description .text-input{
     resize: vertical;
     width: 75%;
+    max-height: 65%;
+    min-height: 30%;
+    height: 50%;
 }
