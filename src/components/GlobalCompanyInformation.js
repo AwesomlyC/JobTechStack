@@ -17,7 +17,7 @@ function GlobalCompanyInformation({ relevantCompanyInformation, setDisplayResult
   const [notesModalOpen, setNotesModalOpen] = useState(false);
   const [currentNotesInfo, setCurrentNotesInfo] = useState({});
 
-  const [sorted, setSorted] = useState({sorted: "date", reversed: false});
+  const [sorted, setSorted] = useState({sorted: "", reversed: false});
 
   const handleClose = () => {
     setDeleteModalOpen(false);
@@ -94,18 +94,19 @@ function GlobalCompanyInformation({ relevantCompanyInformation, setDisplayResult
   }
 
   const sortByDate = () => {
+    console.log("CALLED sortByDate - ", sorted);
     const relevantCompanyCopy = [...relevantCompanyInformation];
     relevantCompanyCopy.sort((companyA, companyB) => {
       const dateA = companyA.dateOfSubmission.trimStart().trimEnd();
       const dateB = companyB.dateOfSubmission.trimStart().trimEnd();
-      if (sorted.reversed){
+      if (!sorted.reversed){
         return dateB.localeCompare(dateA);
       }
       return dateA.localeCompare(dateB);
       
     });
     setDisplayResults(relevantCompanyCopy);
-    setSorted({ sorted: "date", reversed: !sorted.reversed });
+    setSorted({sorted: "date", reversed: !sorted.reversed});
   }
   return (
     <div className='table-job-information'>
