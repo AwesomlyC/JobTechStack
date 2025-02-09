@@ -30,9 +30,9 @@ function GlobalKeywordTable({globalStatistics}) {
                     return (
                       <tbody className='keyword-data' key = {i}>
                         <tr key={tableIndexOffset + 1}>
-                          <td>{tableIndexOffset + 1}</td>
+                          <td className='table-index'>{tableIndexOffset + 1}</td>
                           <td className='keyword-skill'>{currentKey}</td>
-                          <td><b>{currentValue}</b></td>
+                          <td className='table-value'><b>{currentValue}</b></td>
                         </tr>
                       </tbody>
                     );

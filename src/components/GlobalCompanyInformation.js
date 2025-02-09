@@ -160,6 +160,7 @@ function GlobalCompanyInformation({ relevantCompanyInformation, setDisplayResult
                   </td>
                 )} */}
                 <td className='table-result-data'>{index + 1}</td>
+
                 <td className='table-result-data'>
                   
                   {/* <a href={info.companyURL}>{info.companyName}</a> */}
