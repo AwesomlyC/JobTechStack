@@ -7,12 +7,13 @@ function HomePage() {
 
   const userDetail = useUserContext();
   const [username, setUsername] = useState(null);
-  const [numOfTotalCount, setNumOfTotalCount] = useState(null);
+  const [numOfTotalCount, setNumOfTotalCount] = useState(0);
   const [numOfCurrentDateCount, setNumOfCurrentDateCount] = useState(null);
   const [numOfYesterdayDateCount, setNumOfYesterdayDateCount] = useState(null);
   const [userCreationDate, setUserCreationDate] = useState(null);
   const [updateKeywordStatus, setUpdateKeywordStatus] = useState(false);
-  
+  const [retrieveUserStatistics, setRetrieveUserStatistics] = useState(false);
+
   const modifyDate = (dateString) => {
     let [month, day, year] = dateString.split('/');
     if (month.length === 1){
@@ -27,6 +28,7 @@ function HomePage() {
   useEffect(() => {
 
     const retrieveUserData = async () => {
+      console.log(userDetail);
       if (!userDetail){
         return;
       }
@@ -46,6 +48,7 @@ function HomePage() {
         setNumOfTotalCount(response.data.totalCount);
         setNumOfCurrentDateCount(response.data.curCount);
         setNumOfYesterdayDateCount(response.data.yesterdayCount);
+        setRetrieveUserStatistics(true);
 
       }).catch(error =>{
         console.error(error);
@@ -83,7 +86,8 @@ function HomePage() {
     return Math.round(Math.abs(( (cur - prev) / prev ) * 100), 2)
   };
 
-  if (!userDetail || !numOfTotalCount || numOfCurrentDateCount === null || numOfYesterdayDateCount === null || updateKeywordStatus){
+  if (!userDetail || !retrieveUserStatistics || updateKeywordStatus){
+    
     return <div><LoadingSpinner /></div>
 
   }
