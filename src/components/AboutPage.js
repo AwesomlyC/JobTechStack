@@ -48,7 +48,7 @@ function AboutPage() {
               grow their careers with data-driven insights.
             </p>
           </section>
-    
+  
           {/* Call to Action */}
           <footer className="cta">
             <p className="cta-text">Ready to transform your job search?</p>
