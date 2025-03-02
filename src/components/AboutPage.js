@@ -7,7 +7,7 @@ function AboutPage() {
           <header className="hero">
             <h1 className="hero-title">Job Tech Stack</h1>
             <p className="hero-subtitle">Your Career, Visualized</p>
-            <a href="/" className="hero-button">
+            <a href="/sign-in" className="hero-button">
               Start Tracking Jobs Now
             </a>
           </header>
@@ -52,7 +52,7 @@ function AboutPage() {
           {/* Call to Action */}
           <footer className="cta">
             <p className="cta-text">Ready to transform your job search?</p>
-            <a href="/" className="cta-button">
+            <a href="/sign-in" className="cta-button">
               Get Started
             </a>
           </footer>

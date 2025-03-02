@@ -30,9 +30,10 @@ function App() {
           <Sidebar />
           <UserProvider>
             <Routes>
-              <Route path='/' Component={SignInPage} />
+              <Route path='/' Component={AboutPage} />
               <Route path='/home' Component={HomePage} />
               <Route path='/main' Component={MainPage} />
+              <Route path='/sign-in' Component={SignInPage} />
               {/* DEPRECATED PAGE */}
               {/* <Route path='/global-statistics' Component={GlobalStatisticsPage} /> */}
               <Route path='/keyword-list' Component={KeywordTablePage} />
