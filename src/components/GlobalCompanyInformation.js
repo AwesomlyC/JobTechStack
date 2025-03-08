@@ -1,6 +1,4 @@
 import React, {useState} from 'react'
-import { FaMinusCircle } from "react-icons/fa";
-import { FaRegEdit } from "react-icons/fa";
 import { FaNoteSticky } from "react-icons/fa6";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import DeleteModal from './DeleteModal'
@@ -23,11 +21,6 @@ function GlobalCompanyInformation({ relevantCompanyInformation, setDisplayResult
     setDeleteModalOpen(false);
     setUpdateModalOpen(false);
     setNotesModalOpen(false);
-  }
-
-  const handleDeleteInfo = (info) => {
-    setDeleteModalOpen(true);
-    setCurrentDeleteInfo(info);
   }
 
   const handleUpdateInfo = (info) => {
@@ -94,7 +87,6 @@ function GlobalCompanyInformation({ relevantCompanyInformation, setDisplayResult
   }
 
   const sortByDate = () => {
-    console.log("CALLED sortByDate - ", sorted);
     const relevantCompanyCopy = [...relevantCompanyInformation];
     relevantCompanyCopy.sort((companyA, companyB) => {
       const dateA = companyA.dateOfSubmission.trimStart().trimEnd();
@@ -113,9 +105,6 @@ function GlobalCompanyInformation({ relevantCompanyInformation, setDisplayResult
       <table className='table-table'>
         <tbody>
           <tr className='table-headers'>
-
-            {/* {deleteMode && (<th className='table-action'></th>)}
-            {updateMode && (<th className='table-action'></th>)} */}
 
             <th className='table-number'>No.</th>
             <th className='table-name' id='table-sort' onClick={sortByName}>
@@ -140,7 +129,6 @@ function GlobalCompanyInformation({ relevantCompanyInformation, setDisplayResult
               {sorted.sorted === "date" ? renderArrow() : null}
 
               </th>
-            {/* <th className='table-url'>URL</th> */}
             <th className='table-notes'>Notes</th>
 
           </tr>
@@ -149,33 +137,14 @@ function GlobalCompanyInformation({ relevantCompanyInformation, setDisplayResult
           (info, index) => (
             <tbody key={index}>
               <tr key={index} className='table-result-row'>
-                {/* {deleteMode && (
-                  <td className='row-action'>
-                    {<FaMinusCircle onClick= {() => handleDeleteInfo(info)} />}
-                  </td>
-                )}
-                {updateMode && (
-                  <td className='row-action'>
-                    <FaRegEdit onClick={() => handleUpdateInfo(info)} />
-                  </td>
-                )} */}
                 <td className='table-result-data'>{index + 1}</td>
-
                 <td className='table-result-data'>
-                  
-                  {/* <a href={info.companyURL}>{info.companyName}</a> */}
                   <text className='open-modal-text' onClick={() => handleUpdateInfo(info)}>{info.companyName}</text>
-                  
-                  </td>
+                </td>
                 <td className='table-result-data'>{info.jobTitle}</td>
                 <td className='table-result-data'>{info.companyLocation === "United_States" ? "United States" : info.companyLocation}</td>
                 <td className='table-result-data table-date-of-submission'>{info.dateOfSubmission}</td>
-                {/* DEPRECATED */}
-                {/* <td className='table-result-data'>
-                  <a href={info.companyURL} className='row-url'>
-                    {info.companyURL}
-                  </a>
-                </td> */}
+
                 <td className='table-result-note'>
                 <FaNoteSticky onClick={() => handleNotesInfo(info)} />
                 </td>

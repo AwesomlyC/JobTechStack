@@ -34,8 +34,6 @@ function App() {
               <Route path='/home' Component={HomePage} />
               <Route path='/main' Component={MainPage} />
               <Route path='/sign-in' Component={SignInPage} />
-              {/* DEPRECATED PAGE */}
-              {/* <Route path='/global-statistics' Component={GlobalStatisticsPage} /> */}
               <Route path='/keyword-list' Component={KeywordTablePage} />
               <Route path='/job-tracker' Component={JobTracker} />
               <Route path='/pie-chart' Component={PieChartPage} />

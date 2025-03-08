@@ -179,3 +179,7 @@ th{
 .table-value{
     color: #FFCCCF;
 }
+
+.table-result-data{
+    font-weight: 500;
+}

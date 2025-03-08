@@ -69,19 +69,7 @@ function JobTracker() {
   return (
     <div>
     <div className="statistics-container">
-      {/* <button
-        className='update-button'
-        onClick={flipUpdateMode}
-      >
-        <b><strong>Update</strong></b>
 
-      </button>
-      <button
-        className='delete-button'
-        onClick={flipDeleteMode}
-      >
-        <b><strong>Delete</strong></b>
-      </button> */}
       <SearchFields
         setDisplayResults={setDisplayResults}
         relevantCompanyInformation={relevantCompanyInformation}
@@ -90,10 +78,7 @@ function JobTracker() {
         relevantCompanyInformation={displayResults}
         setDisplayResults = {setDisplayResults}
         setHasRetrieve={setHasRetrieve}
-        // deleteMode={deleteMode}
         flipDeleteMode={flipDeleteMode}
-
-        // updateMode={updateMode}
         flipUpdateMode={flipUpdateMode}
 
         notesMode={notesMode}
