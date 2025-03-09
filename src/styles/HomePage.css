@@ -38,7 +38,8 @@ hr.separator{
     font-weight: 800;
     text-align: center;
     background-color: cyan;
-    width: 25vh;
+    width: 20vw;
+    margin-top: 4rem;
 }  
 
 .stat-update-button{

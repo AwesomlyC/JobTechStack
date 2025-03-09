@@ -130,7 +130,8 @@ function TextInput() {
 
 
                     <select
-                        className='company-information'
+                      className='company-information'
+                      
                         value={companyLocation}
                         onChange={(e) => setCompanyLocation(e.target.value)}
                     >
@@ -147,7 +148,8 @@ function TextInput() {
                         placeholder='URL'
                     />
 
-                    <DatePicker 
+                  <DatePicker 
+                        className='company-information'
                         selected={dateOfSubmission}
                         onChange={(date) => setDateOfSubmission(date)} 
                      />

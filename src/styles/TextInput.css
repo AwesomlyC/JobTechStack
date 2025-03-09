@@ -9,11 +9,11 @@
 }
 
 .text-input{
-    width: 75vb;
+    width: 35vw;
     height: 30vh;
     max-height: 50vh;
-    min-width: 30vb;
-    max-width: 100vb;
+    min-width: 35vw;
+    max-width: 35vw;
     min-height: 10vh;
     padding: 1rem;
 }
@@ -43,11 +43,11 @@
     flex-direction: column;
     gap: 1rem;
     box-sizing: border-box;
+    width: 15vw;
 }
 
 .company-information{
     padding: 0.5rem;
-    width: 30vb;
 }
 .text-reset-button{
     margin-top: 1.5rem;
