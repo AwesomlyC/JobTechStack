@@ -1,12 +1,18 @@
 import React, { useEffect, useState} from 'react';
 import axios from 'axios';
 import 'chart.js/auto';
-import './../styles/AnalyticsPage.css'
+// import './../styles/AnalyticsPage.css'
 import LoadingSpinner from './LoadingSpinner';
 import KeywordPieChart from './KeywordPieChart';
 import LocationPieChart from './LocationPieChart';
 import JobsAppliedLineChart from './JobsAppliedLineChart';
 import { useUserContext } from './UserProvider';
+
+// 
+//    DEPRECATED
+// 
+// 
+
 
 function AnalyticsPage() {
     const [data, setData] = useState(null);

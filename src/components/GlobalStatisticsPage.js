@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import GlobalKeywordTable from './GlobalKeywordTable';
-import '../styles/GlobalStatisticsPage.css'
+import '../styles/JobTracker.css'
 import GlobalCompanyInformation from './GlobalCompanyInformation';
 import SearchFields from './SearchFields';
 import LoadingSpinner from './LoadingSpinner';

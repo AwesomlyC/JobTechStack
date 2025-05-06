@@ -38,6 +38,10 @@
 }
 
 html, body{
-  background-color: #DCDCDC;
+  /* background-color: #DCDCDC; */
   padding-top: 5vh;
+}
+
+.page-content{
+  height: calc(100vh - 8vh - 2vh);
 }

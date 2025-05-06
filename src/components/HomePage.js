@@ -102,8 +102,8 @@ function HomePage() {
 
         <div className='stat-container'>
           <text className='stat-title'>Daily Statistics</text>
-          <text>Num. of Submitted Jobs: <b>{numOfCurrentDateCount}</b></text>
-          <text>Previous Num: <b>{numOfYesterdayDateCount}</b></text>
+          <text>Num. of Submitted Jobs: <b className='user-value'>{numOfCurrentDateCount}</b></text>
+          <text>Previous Num: <b className='user-value'>{numOfYesterdayDateCount}</b></text>
 
           <text>You've submitted <text style={{color: numOfCurrentDateCount > numOfYesterdayDateCount ? "blue" : "red", fontSize: "18px", fontWeight: "700"}}>{percentangeOfJobSubmitted(numOfCurrentDateCount, numOfYesterdayDateCount)}% </text> {numOfCurrentDateCount > numOfYesterdayDateCount ? "more" : "less"} compared to yesterday!
           </text>
@@ -111,8 +111,8 @@ function HomePage() {
 
         <div className='stat-container'>
           <text className='stat-title'>Global Statistics</text>
-          <text>Num. of Submitted Jobs: <b>{numOfTotalCount}</b></text>
-          <text>Signed Up On: <b>{userCreationDate}</b></text>
+          <text>Num. of Submitted Jobs: <b className='user-value'>{numOfTotalCount}</b></text>
+          <text>Signed Up On: <b className='user-value'>{userCreationDate}</b></text>
           <button onClick={updateKeywordList} className='stat-update-button'>Update keywords!</button>
 
         </div>

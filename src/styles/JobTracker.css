@@ -1,5 +1,4 @@
 .content{
-    background-color: lightcyan;
     width: 100vw;
     padding: 2.5rem 0 2.5rem 0rem;
     margin-bottom: 2rem;
@@ -109,8 +108,9 @@ th{
 
 }
 .statistics-container{
-    position: relative;
-    
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
 }
 .delete-button{
     position: absolute;
@@ -164,6 +164,7 @@ th{
     text-align: center;
     font-weight: 600;
     text-decoration: underline;
+    color: #ffffe0;
 }
 
 .open-modal-text{
@@ -177,7 +178,7 @@ th{
 }
 
 .table-value{
-    color: #FFCCCF;
+    color: #ff3352;
 }
 
 .table-result-data{

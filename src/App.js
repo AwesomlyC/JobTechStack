@@ -24,7 +24,7 @@ const AboutPage = lazy(() => import('./components/AboutPage'));
 function App() {
 
   return (
-    <div>
+    <div className='page-content'>
       <BrowserRouter>
         <Header />
           <Sidebar />

@@ -6,6 +6,7 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+    
 }
 
 .text-input{
@@ -31,6 +32,7 @@
     height: 40vh;
     flex-wrap: wrap;
     gap: 10px;
+    color: #4dffa6;
 }
 
 .user-input-field{
@@ -62,4 +64,8 @@
     font-size: 32px;
     text-align: center;
 
+}
+
+.text-input, .company-information{
+    background-color: #e6fff2;
 }

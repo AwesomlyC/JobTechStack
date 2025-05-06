@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from 'react';
 import axios from 'axios';
 import 'chart.js/auto';
-import './../styles/AnalyticsPage.css'
+import './../styles/PieChartPage.css'
 import LoadingSpinner from './LoadingSpinner';
 import KeywordPieChart from './KeywordPieChart';
 import LocationPieChart from './LocationPieChart';

@@ -38,6 +38,8 @@ function LineGraphPage() {
             alignItems: "center",
             alignContent: "center",
             margin: 'auto',
+            color: '#ffffe0',
+            height: 'calc(80vh - 8vh - 2vh)',
         }}>
             <JobsAppliedLineChart
                 data={data}

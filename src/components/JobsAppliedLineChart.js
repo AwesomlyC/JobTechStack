@@ -24,8 +24,8 @@ function JobsAppliedLineChart({ data }) {
     }), [data.jobsLabel, data.jobsDataPoints, data.avgJobsAppliedDataPoints]);
     return (
         <>
-            <h2>Time Graph: Between
-                <text style={{ color: 'blue' }}> {data.startDateString}</text> to <text style={{ color: 'blue' }}>{data.endDateString}
+            <h2 style={{paddingBottom: "2rem"}}>Time Graph: Between
+                <text style={{ color: '#00ffff' }}> {data.startDateString}</text> to <text style={{ color: '#00ffff' }}>{data.endDateString}
                 </text>
             </h2>
             <Line
@@ -34,28 +34,43 @@ function JobsAppliedLineChart({ data }) {
                     responsive: true,
                     plugins: {
                         legend: {
-                            display: true
-                        }
+                            display: true,
+                        },
+                        
                     },
                     scales: {
                         y: {
+                            ticks: {
+                                color: "#FF6384",
+                            },
                             title: {
                                 display: true,
                                 text: 'Total Jobs Applied',
                                 font: {
-                                    size: 12,
+                                    size: 16,
                                     weight: 'bold',
-                                }
+                                },
+                                color: "#00ff7f",
+                            },
+                            grid: {
+                                color: "#737373",
                             }
                         },
                         x: {
+                            ticks: {
+                                color: "#FF6384",
+                            },
                             title: {
                                 display: true,
                                 text: 'Day',
                                 font: {
-                                    size: 12,
+                                    size: 16,
                                     weight: 'bold',
-                                }
+                                },
+                                color: "#00ff7f",
+                            },
+                            grid: {
+                                color: "#737373",
                             }
                         }
                     }
