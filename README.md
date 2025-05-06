@@ -35,18 +35,13 @@ show all user's submitted details in table-format.
   - i.e. user can change line graph to show days/months/years or a specific range
 - Add job "status"
   - Submitted, Rejected, Ghosted
-- Ability to update status
+  - Ability to update status
 - Combine technical keywords
   - i.e. APIs + API
-- Possible Project Name Change to SkillSift
-- Allow user to open a modal that shows the job's description (or the entire input) of a specific job.
-  - Similar to update modal but for viewing purposes.
-  - Most likely combine update/delete into one modal and remove href from company title and transform it to a button "visit link". This will remove clutter when viewing all job applications sent.
-  - Additionally, Allow users to view information, update if needed, or delete when wanted.
 - Reverse TF-IDF index
   - Allow users to find which job posting as the technical keyword
   - i.e. java --> job1, job5, job199, ...
-
+- Allow users to add more keywords that they considered "relevant"
   ## How to Run
   1. Go to the jobtechstack directory
   2. npm start
