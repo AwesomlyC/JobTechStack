@@ -5,7 +5,7 @@ function DisplayParseResults({wordMap}) {
     <div className='result'>
     {Object.entries(wordMap).map( ([key,value]) =>
         <div>
-            {key} - {value}
+        {key} <text style={{color: 'red'}}>-</text> {value}
         </div>   
     )}
 </div>
