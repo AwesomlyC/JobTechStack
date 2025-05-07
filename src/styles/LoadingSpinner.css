@@ -10,6 +10,7 @@
 .loader-text{
     font-size: 24px;
     font-weight: 800;
+    color: #4dffa6;
 }
 .loader {
     border: 16px solid #f3f3f3;
