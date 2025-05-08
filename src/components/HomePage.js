@@ -105,11 +105,11 @@ function HomePage() {
           <text>Num. of Submitted Jobs: <b className='user-value'>{numOfCurrentDateCount}</b></text>
           <text>Previous Num: <b className='user-value'>{numOfYesterdayDateCount}</b></text>
 
-          <text>You've submitted <text style={{color: numOfCurrentDateCount > numOfYesterdayDateCount ? "blue" : "red", fontSize: "18px", fontWeight: "700"}}>{percentangeOfJobSubmitted(numOfCurrentDateCount, numOfYesterdayDateCount)}% </text> {numOfCurrentDateCount > numOfYesterdayDateCount ? "more" : "less"} compared to yesterday!
+          <text>You've submitted <text style={{color: numOfCurrentDateCount > numOfYesterdayDateCount ? "#ffe866" : "#ff3352", fontSize: "18px", fontWeight: "700"}}>{percentangeOfJobSubmitted(numOfCurrentDateCount, numOfYesterdayDateCount)}% </text> {numOfCurrentDateCount > numOfYesterdayDateCount ? "more" : "less"} compared to yesterday!
           </text>
         </div>
-
-        <div className='stat-container'>
+{/* #1affff  #ffe866*/}
+        <div className='stat-container'>  
           <text className='stat-title'>Global Statistics</text>
           <text>Num. of Submitted Jobs: <b className='user-value'>{numOfTotalCount}</b></text>
           <text>Signed Up On: <b className='user-value'>{userCreationDate}</b></text>

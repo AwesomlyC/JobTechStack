@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import GlobalKeywordTable from './GlobalKeywordTable';
 import '../styles/JobTracker.css'
-import SearchFields from './SearchFields';
 import LoadingSpinner from './LoadingSpinner';
 import { useUserContext } from './UserProvider';
 
@@ -39,7 +38,7 @@ function KeywordTablePage() {
   return (
     <div>
       <h2 className='keyword-header'>
-        Across <text style={{color: 'blue', fontSize: '28px'}}>{totalDocuments}</text> of job's description, you've retrieved...
+        Across <text style={{color: '#1affff', fontSize: '28px'}}>{totalDocuments}</text> of job's description, you've retrieved...
       </h2>
       <div className='content'>
         <GlobalKeywordTable globalStatistics={globalStatistics} />
