@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useState} from 'react'
 import axios from 'axios'
 import DatePicker from "react-datepicker";
 import '../styles/TextInput.css'
@@ -95,7 +95,7 @@ function TextInput() {
 
 
     if (isLoading){
-        return <LoadingSpinner />
+        return <LoadingSpinner/>
     }
 
 

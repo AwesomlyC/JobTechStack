@@ -26,7 +26,7 @@ function LineGraphPage() {
     }, [userID]);
 
     if (!data) {
-        return <div><LoadingSpinner /></div>
+        return <div><LoadingSpinner isLoading={!data} /></div>
     }
 
     return (

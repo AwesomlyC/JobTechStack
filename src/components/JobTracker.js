@@ -8,7 +8,7 @@ import { useUserContext } from "./UserProvider";
 
 function JobTracker() {
   const [hasRetrieve, setHasRetrieve] = useState(false);
-  const [numberOfDocuments, setNumberOfDocuments] = useState(0);
+  // const [numberOfDocuments, setNumberOfDocuments] = useState(0);
   const [relevantCompanyInformation, setRelevantCompanyInformation] =
     useState(null);
 
@@ -39,32 +39,26 @@ function JobTracker() {
   }, [hasRetrieve, userID]);
 
   const setInformation = (data) => {
-    setNumberOfDocuments(data.length);
+    // setNumberOfDocuments(data.length);
     setRelevantCompanyInformation(data.relevantInformation);
     setDisplayResults(data.relevantInformation);
   };
   const flipDeleteMode = () => {
-    // setDeleteMode((e) => !e);
-    // setUpdateMode(false);
     setNotesMode(false);
   };
 
   const flipUpdateMode = () => {
-    // setUpdateMode((e) => !e);
-    // setDeleteMode(false);
     setNotesMode(false);
   };
 
   const flipNotesMode = () => {
     setNotesMode((e) => !e);
-    // setUpdateMode(false);
-    // setDeleteMode(false);
   };
 
   if (!relevantCompanyInformation) {
     return (
       <div>
-        <LoadingSpinner />
+        <LoadingSpinner isLoading={ !relevantCompanyInformation} />
       </div>
     );
   }

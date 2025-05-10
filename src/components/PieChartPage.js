@@ -28,7 +28,7 @@ function PieChartPage() {
     }, [userID]);
 
     if (!data){
-        return <div><LoadingSpinner /></div>
+        return <div><LoadingSpinner isLoading={!data} /></div>
     }
   return (
     <div className='analytics-graphs'>

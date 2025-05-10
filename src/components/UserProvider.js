@@ -16,7 +16,7 @@ export function UserProvider({children}) {
 
   // Debug to verify rendering
   if (!isLoaded) {
-    return <LoadingSpinner />; // Render a fallback while Clerk loads
+    return <LoadingSpinner isLoading={!isLoaded} />; // Render a fallback while Clerk loads
   }
   return (
     <UserContext.Provider value={userDetails}>

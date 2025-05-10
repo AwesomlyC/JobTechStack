@@ -87,9 +87,7 @@ function HomePage() {
   };
 
   if (!userDetail || !retrieveUserStatistics || updateKeywordStatus){
-    
-    return <div><LoadingSpinner /></div>
-
+    return <div><LoadingSpinner isLoading={!userDetail || !retrieveUserStatistics || updateKeywordStatus}/></div>
   }
 
   return (
@@ -108,7 +106,6 @@ function HomePage() {
           <text>You've submitted <text style={{color: numOfCurrentDateCount > numOfYesterdayDateCount ? "#ffe866" : "#ff3352", fontSize: "18px", fontWeight: "700"}}>{percentangeOfJobSubmitted(numOfCurrentDateCount, numOfYesterdayDateCount)}% </text> {numOfCurrentDateCount > numOfYesterdayDateCount ? "more" : "less"} compared to yesterday!
           </text>
         </div>
-{/* #1affff  #ffe866*/}
         <div className='stat-container'>  
           <text className='stat-title'>Global Statistics</text>
           <text>Num. of Submitted Jobs: <b className='user-value'>{numOfTotalCount}</b></text>

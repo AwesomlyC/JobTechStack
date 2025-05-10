@@ -70,7 +70,7 @@ function GlobalStatisticsPage() {
   }
 
   if (!globalStatistics || !relevantCompanyInformation) {
-    return <div><LoadingSpinner /></div>
+    return <div><LoadingSpinner isLoading={ !globalStatistics || !relevantCompanyInformation} /></div>
   }
 
   return (

@@ -32,7 +32,7 @@ function KeywordTablePage() {
   }
 
   if (!globalStatistics ) {
-    return <div><LoadingSpinner /></div>
+    return <div><LoadingSpinner isLoading={!globalStatistics} /></div>
   }
 
   return (
