@@ -95,7 +95,7 @@ function TextInput() {
 
 
     if (isLoading){
-        return <LoadingSpinner/>
+        return <LoadingSpinner isLoading={ isLoading} />
     }
 
 
