@@ -54,7 +54,7 @@
     display: flex;
     justify-content: space-between;
 }
-.button-options .update{
+.update{
     background-color: #4FFFB0;
 }
 .options{
@@ -71,7 +71,7 @@
     padding: 10px;
 }
 
-#update-modal-options .update:hover{
+.update:hover{
     filter: brightness(75%);
     transition: 0.75s;
 }

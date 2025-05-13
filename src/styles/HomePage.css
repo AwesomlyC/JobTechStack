@@ -21,18 +21,29 @@ hr.separator{
     border: none;
 }
 
-.lower-container{
-    margin-top: 2rem;
-    margin-left: 4rem;
+.lower-wrapper{
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;            
+    width: calc(100vw - 2rem - 25px);             
+}
+.lower-container{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* two equal columns */
+  grid-auto-rows: auto;                  /* auto‐sized rows */
+  gap: 2rem;                             /* space between cells */
+  column-gap: 8rem;
 }
 
+
 .lower-container>.stat-container{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  box-sizing: border-box;
 }
 
 .stat-title{
@@ -40,10 +51,24 @@ hr.separator{
     text-align: center;
     background-color: #28a4a0;
     color: #ffffe0;
-    width: 20vw;
+    width: 100%;
     margin-top: 4rem;
 }  
+.additional-parse-keyword-input{
+    background-color: #e6fff2;
+    border-radius: 10px;
+    padding: 0.6rem 1rem;
+    min-height: 8vh;
+    resize: none;
+}
 
+#update-modal-options.button-container{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: right;
+    gap: 2rem;
+}
 .stat-update-button{
     background-color: #32de84;
     height: 2rem;

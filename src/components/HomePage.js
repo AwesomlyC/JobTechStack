@@ -96,22 +96,34 @@ function HomePage() {
         <text className='home-title'>Welcome {username}</text>
         <hr className='separator' />
       </div>
-      <div className='lower-container'>
-
-        <div className='stat-container'>
-          <text className='stat-title'>Daily Statistics</text>
-          <text>Num. of Submitted Jobs: <b className='user-value'>{numOfCurrentDateCount}</b></text>
-          <text>Previous Num: <b className='user-value'>{numOfYesterdayDateCount}</b></text>
-
-          <text>You've submitted <text style={{color: numOfCurrentDateCount > numOfYesterdayDateCount ? "#ffe866" : "#ff3352", fontSize: "18px", fontWeight: "700"}}>{percentangeOfJobSubmitted(numOfCurrentDateCount, numOfYesterdayDateCount)}% </text> {numOfCurrentDateCount > numOfYesterdayDateCount ? "more" : "less"} compared to yesterday!
-          </text>
-        </div>
-        <div className='stat-container'>  
-          <text className='stat-title'>Global Statistics</text>
-          <text>Num. of Submitted Jobs: <b className='user-value'>{numOfTotalCount}</b></text>
-          <text>Signed Up On: <b className='user-value'>{userCreationDate}</b></text>
-          <button onClick={updateKeywordList} className='stat-update-button'>Update keywords!</button>
-
+      <div className='lower-wrapper'>
+        <div className='lower-container'>
+  
+            <div className='stat-container'>
+              <text className='stat-title'>Daily Statistics</text>
+              <text>Num. of Submitted Jobs: <b className='user-value'>{numOfCurrentDateCount}</b></text>
+              <text>Previous Num: <b className='user-value'>{numOfYesterdayDateCount}</b></text>
+    
+              <text>You've submitted <text style={{color: numOfCurrentDateCount > numOfYesterdayDateCount ? "#ffe866" : "#ff3352", fontSize: "18px", fontWeight: "700"}}>{percentangeOfJobSubmitted(numOfCurrentDateCount, numOfYesterdayDateCount)}% </text> {numOfCurrentDateCount > numOfYesterdayDateCount ? "more" : "less"} compared to yesterday!
+              </text>
+            </div>
+            <div className='stat-container'>  
+              <text className='stat-title'>Global Statistics</text>
+              <text>Num. of Submitted Jobs: <b className='user-value'>{numOfTotalCount}</b></text>
+              <text>Signed Up On: <b className='user-value'>{userCreationDate}</b></text>
+              <button onClick={updateKeywordList} className='stat-update-button'>Update keywords!</button>
+    
+            </div>
+            <div className='stat-container'>
+                <text className='stat-title'>Additional Keywords to Parse</text>
+                <text className='subtitle'>Add any extra keywords you want the parser to extract, separated by commas</text>
+                <textarea placeholder='e.g. Java, SQL, NoSQL' className='additional-parse-keyword-input'></textarea>
+            <div className='button-container' id="update-modal-options">
+                  <button className='delete'>Cancel</button>
+              
+                  <button className='update'>Save</button>
+                </div>
+          </div>
         </div>
       </div>
     </div>

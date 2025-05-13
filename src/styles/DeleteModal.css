@@ -67,6 +67,7 @@ button.delete{
 }
 
 button.delete:hover{
-    font-weight: bolder;
+    filter: brightness(75%);
     padding: 8px 19px;
+    transition: 0.75s;
 }
