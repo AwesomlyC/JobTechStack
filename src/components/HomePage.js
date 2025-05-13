@@ -28,7 +28,7 @@ function HomePage() {
   useEffect(() => {
 
     const retrieveUserData = async () => {
-      console.log(userDetail);
+      // console.log(userDetail);
       if (!userDetail){
         return;
       }

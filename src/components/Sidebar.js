@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate, useLocation } from 'react-router'
 import './../styles/Sidebar.css'
 import {SignedIn} from '@clerk/clerk-react';
@@ -23,6 +23,10 @@ function Sidebar() {
     setIsExpanded((e => !e));
   }
   
+  useEffect(() => {
+    console.log(urlPath);
+    setHighlight(urlPath ? urlPath.pathname : '');
+  }, [urlPath]);
   return (
     <SignedIn>
       <aside className={`sidebar ${isExpanded ? 'expanded' : ''}`}>
@@ -86,7 +90,7 @@ function Sidebar() {
               <div className='sidebar-about'>
                 <button
                   className='sidebar-button'
-                  id = {highlight === '/about' ? 'highlight' : ""}
+                  id = {(highlight === '/about' || highlight === '/') ? 'highlight' : ""}
                   onClick={() => { navigate('/about'); setHighlight('/about') }}
                 >
                   About
@@ -143,7 +147,7 @@ function Sidebar() {
               <div className='sidebar-about'>
                 <FaInfoCircle 
                   title="About"
-                  id = {highlight === '/about' ? 'highlight' : ""}
+                  id = {(highlight === '/about' || highlight === '/') ? 'highlight' : ""}
                   onClick={() => {navigate('/about'); setHighlight('/about')}} 
                 />
               </div>
