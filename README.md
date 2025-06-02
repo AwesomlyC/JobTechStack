@@ -25,7 +25,7 @@ show all user's submitted details in table-format.
   - Should mainly be used when the list of technical keyword(s) list has been modified.
 
 ## Website Link
-- [Webpage](https://job-tech-stack-frontend.vercel.app)
+- [Webpage](https://jobtechstack.vercel.app)
 - Test User Credentials:
   - Email: test@email.com
   - Password: testuser123456789
