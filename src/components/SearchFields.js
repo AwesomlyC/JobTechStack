@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import "./../styles/SearchFields.css"
 
-function SearchFields({setDisplayResults, relevantCompanyInformation}) {
+function SearchFields({ setDisplayResults, relevantCompanyInformation, searchJobTitle, setSearchJobTitle,
+  searchCompany, setSearchCompany }) {
 
-  const [searchJobTitle, setSearchJobTitle] = useState('');
-  const [searchCompany, setSearchCompany] = useState('');
-  
+  // const [searchJobTitle, setSearchJobTitle] = useState('');
+  // const [searchCompany, setSearchCompany] = useState('');
 
   const filterSearch = (event) => {
 

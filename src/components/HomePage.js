@@ -114,7 +114,7 @@ function HomePage() {
               <button onClick={updateKeywordList} className='stat-update-button'>Update keywords!</button>
     
             </div>
-            <div className='stat-container'>
+            {/* <div className='stat-container'>
                 <text className='stat-title'>Additional Keywords to Parse</text>
                 <text className='subtitle'>Add any extra keywords you want the parser to extract, separated by commas</text>
                 <textarea placeholder='e.g. Java, SQL, NoSQL' className='additional-parse-keyword-input'></textarea>
@@ -123,7 +123,7 @@ function HomePage() {
               
                   <button className='update'>Save</button>
                 </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

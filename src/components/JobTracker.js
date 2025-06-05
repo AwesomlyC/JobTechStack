@@ -8,13 +8,13 @@ import { useUserContext } from "./UserProvider";
 
 function JobTracker() {
   const [hasRetrieve, setHasRetrieve] = useState(false);
-  // const [numberOfDocuments, setNumberOfDocuments] = useState(0);
   const [relevantCompanyInformation, setRelevantCompanyInformation] =
     useState(null);
-
   const [notesMode, setNotesMode] = useState(false);
-
   const [displayResults, setDisplayResults] = useState([]);
+
+  const [searchJobTitle, setSearchJobTitle] = useState("");
+  const [searchCompany, setSearchCompany] = useState("");
 
   const userID = useUserContext();
   useEffect(() => {
@@ -30,6 +30,19 @@ function JobTracker() {
         .then((response) => {
           setInformation(response.data);
           setHasRetrieve(true);
+          const filterCompany = searchCompany
+            .trimEnd()
+            .trimStart()
+            .toLowerCase();
+          const filterJob = searchJobTitle.trimEnd().trimStart().toLowerCase();
+
+          setDisplayResults(
+            response.data.relevantInformation.filter(
+              (company) =>
+                company.companyName.toLowerCase().includes(filterCompany) &&
+                company.jobTitle.toLowerCase().includes(filterJob)
+            )
+          );
         })
         .catch((error) => {
           console.error("Error when retrieving global statistics ---", error);
@@ -58,27 +71,31 @@ function JobTracker() {
   if (!relevantCompanyInformation) {
     return (
       <div>
-        <LoadingSpinner isLoading={ !relevantCompanyInformation} />
+        <LoadingSpinner isLoading={!relevantCompanyInformation} />
       </div>
     );
   }
 
   return (
-      <div className="statistics-container">
-        <SearchFields
-          setDisplayResults={setDisplayResults}
-          relevantCompanyInformation={relevantCompanyInformation}
-        />
-        <GlobalCompanyInformation
-          relevantCompanyInformation={displayResults}
-          setDisplayResults={setDisplayResults}
-          setHasRetrieve={setHasRetrieve}
-          flipDeleteMode={flipDeleteMode}
-          flipUpdateMode={flipUpdateMode}
-          notesMode={notesMode}
-          flipNotesMode={flipNotesMode}
-        />
-      </div>
+    <div className="statistics-container">
+      <SearchFields
+        setDisplayResults={setDisplayResults}
+        relevantCompanyInformation={relevantCompanyInformation}
+        searchJobTitle={searchJobTitle}
+        setSearchJobTitle={setSearchJobTitle}
+        searchCompany={searchCompany}
+        setSearchCompany={setSearchCompany}
+      />
+      <GlobalCompanyInformation
+        relevantCompanyInformation={displayResults}
+        setDisplayResults={setDisplayResults}
+        setHasRetrieve={setHasRetrieve}
+        flipDeleteMode={flipDeleteMode}
+        flipUpdateMode={flipUpdateMode}
+        notesMode={notesMode}
+        flipNotesMode={flipNotesMode}
+      />
+    </div>
   );
 }
 

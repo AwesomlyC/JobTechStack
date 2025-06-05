@@ -131,7 +131,7 @@ function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentU
 
     const cancelUpdateModal = () => {
         flipUpdateMode(false);
-        setHasRetrieve(false);
+        // setHasRetrieve(false);
         setCurrentUpdateInfo({});
         onClose();
     }
