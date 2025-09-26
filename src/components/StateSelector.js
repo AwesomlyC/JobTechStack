@@ -11,7 +11,7 @@ function StateSelector({companyLocation, setCompanyLocation}) {
     "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon",
     "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
     "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington",
-    "West Virginia", "Wisconsin", "Wyoming", "Remote", "United States of America"
+    "West Virginia", "Wisconsin", "Wyoming", "Remote", "United States"
     ];
   const stateOptions = US_STATES.map(state => ({
   value: state,
