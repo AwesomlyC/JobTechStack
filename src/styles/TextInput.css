@@ -10,13 +10,13 @@
 }
 
 .text-input{
-    width: 35vw;
-    height: 30vh;
-    max-height: 50vh;
-    min-width: 35vw;
-    max-width: 35vw;
+    height: 15vh;
+    max-height: 30vh;
     min-height: 10vh;
     padding: 1rem;
+    resize: vertical;
+    border: 1px solid #ccc;
+    border-radius: 6px;
 }
 
 .text-submit-button{
@@ -29,9 +29,9 @@
     display: flex;
     flex-direction: column;
     width: 50%;
-    height: 40vh;
+    height: 25vh;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 1.25rem;
     color: #4dffa6;
 }
 
@@ -50,9 +50,11 @@
 
 .company-information{
     padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
 }
 .text-reset-button{
-    margin-top: 1.5rem;
     background-color: lightsalmon;
     border-radius: 10px;
     font-size: large;
@@ -68,4 +70,51 @@
 
 .text-input, .company-information{
     background-color: #e6fff2;
+}
+
+
+/* Container with consistent width */
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 600px; /* fixed width, can adjust */
+  max-width: 90%;
+}
+
+/* Each row uses 2 equal columns */
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Make a field span across both columns */
+.full-span {
+  grid-column: span 2;
+}
+
+/* Form controls */
+.form-control {
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.label-description{
+    color: white;
+}
+
+.date-picker{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.button-area{
+    display: flex;
+    justify-content: space-evenly;
 }
