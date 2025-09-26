@@ -5,6 +5,7 @@ import DatePicker from "react-datepicker";
 
 import './../styles/UpdateModal.css'
 import 'react-datepicker/dist/react-datepicker.css'
+import StateSelector from './StateSelector';
 
 function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentUpdateInfo, setCurrentUpdateInfo }) {
 
@@ -88,7 +89,7 @@ function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentU
     const setUpdateInfo = () => {
         setCompanyName(currentUpdateInfo.companyName);
         setJobTitle(currentUpdateInfo.jobTitle);
-        setCompanyLocation(currentUpdateInfo.companyLocation)
+        setCompanyLocation({value: currentUpdateInfo.companyLocation, label: currentUpdateInfo.companyLocation});
 
         // Find Valid Date
         checkDate(currentUpdateInfo.dateOfSubmission);
@@ -97,6 +98,7 @@ function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentU
         setUserInput(currentUpdateInfo.userInput);
 
         setDocumentID(currentUpdateInfo.documentID);
+
     }
 
     const updateID = async (info) => {
@@ -107,7 +109,7 @@ function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentU
             userInput: userInput,
             companyName: companyName.trimEnd().trimStart(),
             jobTitle: jobTitle.trimEnd().trimStart(),
-            companyLocation: companyLocation.trimEnd().trimStart(),
+            companyLocation: companyLocation.value.trimEnd().trimStart(),
             dateOfSubmission  : modifyDate(dateOfSubmission.toLocaleDateString('en-US')),       
             companyURL: companyURL.trimEnd().trimStart(),
             documentID: documentID,
@@ -131,7 +133,6 @@ function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentU
 
     const cancelUpdateModal = () => {
         flipUpdateMode(false);
-        // setHasRetrieve(false);
         setCurrentUpdateInfo({});
         onClose();
     }
@@ -195,17 +196,9 @@ function UpdateModal({ isOpen, onClose, flipUpdateMode, setHasRetrieve, currentU
                             />
 
                             <label>Location: </label>
-                            <select
-                                className='company-information'
-                                value={companyLocation}
-                                onChange={(e) => setCompanyLocation(e.target.value)}
-                            >
-                                <option value='Remote'>Remote</option>
-                                <option value='United_States'>United States</option>
-                                <option value='California'>California</option>
-
-                            </select>
-
+                            <StateSelector 
+                            companyLocation = {companyLocation} 
+                            setCompanyLocation = {setCompanyLocation} />
                             <label>URL:</label>
                             <input
                                 className='company-information'

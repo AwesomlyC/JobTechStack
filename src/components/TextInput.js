@@ -6,7 +6,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import DisplayParseResults from "./DisplayParseResults";
 import LoadingSpinner from "./LoadingSpinner";
 import { useUserContext } from "./UserProvider";
-
+import StateSelector from "./StateSelector";
+import Select from 'react-select';
 function TextInput() {
   const [userInput, setUserInput] = useState("");
   const [wordMap, setWordMap] = useState({});
@@ -16,9 +17,25 @@ function TextInput() {
   const [jobTitle, setJobTitle] = useState(""); // Calendar Icon
   const [companyURL, setCompanyURL] = useState(""); // optional
 
+//   const US_STATES = [
+//     "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado",
+//     "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho",
+//     "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana",
+//     "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota",
+//     "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada",
+//     "New Hampshire", "New Jersey", "New Mexico", "New York",
+//     "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon",
+//     "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
+//     "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington",
+//     "West Virginia", "Wisconsin", "Wyoming", "Remote", "United States of America"
+//     ];
+//   const stateOptions = US_STATES.map(state => ({
+//   value: state,
+//   label: state
+// }));
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
+  
   const user = useUserContext();
   const modifyDate = (dateString) => {
     let [month, day, year] = dateString.split("/");
@@ -65,7 +82,7 @@ function TextInput() {
       userInput,
       companyName: companyName.trimEnd().trimStart(),
       jobTitle: jobTitle.trimEnd().trimStart(),
-      companyLocation: companyLocation.trimEnd().trimStart(),
+      companyLocation: companyLocation.value.trimEnd().trimStart(),
       dateOfSubmission: modifyDate(
         dateOfSubmission.toLocaleDateString("en-US")
       ),
@@ -132,15 +149,20 @@ function TextInput() {
         <div className="row">
           <div className="form-control">
             <label className="label-description">Location</label>
-            <select
+      {/* <Select
+        defaultValue={{value: "Remote", label: "Remote"}}
+        isSearchable={true}
+        options={stateOptions}
+      /> */}
+      <StateSelector companyLocation = {{value: "Remote", label: "Remote"}} setCompanyLocation = {setCompanyLocation}/>
+            {/* <StateSelector companyLocation = {companyLocation} setCompanyLocation = {setCompanyLocation} /> */}
+            {/* <select
               className="company-information"
               value={companyLocation}
               onChange={(e) => setCompanyLocation(e.target.value)}
-            >
-              <option value="Remote">Remote</option>
-              <option value="United_States">United States</option>
-              <option value="California">California</option>
-            </select>
+            > */}
+
+            {/* </select> */}
           </div>
           <div className="form-control">
             <label className="label-description">Date</label>

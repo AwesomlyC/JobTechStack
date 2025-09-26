@@ -70,7 +70,7 @@ function HomePage() {
       {userID: userDetail.id}
     ).then (response => {
       setUpdateKeywordStatus(false);
-      console.log(response.data);
+      // console.log(response.data);
     }).catch(error => {
       console.error("Unable to update properly");
       setUpdateKeywordStatus(false);
