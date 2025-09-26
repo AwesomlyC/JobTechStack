@@ -24,7 +24,7 @@ function Sidebar() {
   }
   
   useEffect(() => {
-    console.log(urlPath);
+    // console.log(urlPath);
     setHighlight(urlPath ? urlPath.pathname : '');
   }, [urlPath]);
   return (

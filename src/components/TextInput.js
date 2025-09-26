@@ -103,9 +103,9 @@ function TextInput() {
 
   return (
     <div className="text-container">
-      <div class="container">
-        <div class="row">
-          <div class="form-control">
+      <div className="container">
+        <div className="row">
+          <div className="form-control">
             <label className="label-description">Company Name</label>
             <input
               className="company-information"
@@ -116,7 +116,7 @@ function TextInput() {
               required
             />
           </div>
-          <div class="form-control">
+          <div className="form-control">
             <label className="label-description">Job Title</label>
             <input
               className="company-information"
@@ -129,8 +129,8 @@ function TextInput() {
           </div>
         </div>
 
-        <div class="row">
-          <div class="form-control">
+        <div className="row">
+          <div className="form-control">
             <label className="label-description">Location</label>
             <select
               className="company-information"
@@ -142,7 +142,7 @@ function TextInput() {
               <option value="California">California</option>
             </select>
           </div>
-          <div class="form-control">
+          <div className="form-control">
             <label className="label-description">Date</label>
             <DatePicker
               className="company-information date-picker"
@@ -152,8 +152,8 @@ function TextInput() {
           </div>
         </div>
 
-        <div class="row">
-          <div class="form-control full-span">
+        <div className="row">
+          <div className="form-control full-span">
             <label className="label-description">Job URL</label>
             <input
               className="company-information"
@@ -165,8 +165,8 @@ function TextInput() {
           </div>
         </div>
 
-        <div class="row">
-          <div class="form-control full-span">
+        <div className="row">
+          <div className="form-control full-span">
             <label className="label-description">Job Description</label>
             <textarea
               className="text-input"

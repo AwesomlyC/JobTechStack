@@ -1,9 +1,10 @@
 import React from 'react'
 
 function GlobalKeywordTable({globalStatistics}) {
-  const NUM_ROWS = globalStatistics ? Object.keys(globalStatistics).length : 150;
-  const NUM_TABLES = 6;
-  const ROWS_PER_TABLE = Math.floor(NUM_ROWS / NUM_TABLES);
+  const TOTAL_ROWS = globalStatistics ? Object.keys(globalStatistics).length : 150;
+  const NUM_TABLES = 5;
+  const ROWS_PER_TABLE = Math.floor(TOTAL_ROWS / NUM_TABLES);
+
 
   return (
     <div className='keyword-result'>

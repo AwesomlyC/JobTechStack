@@ -7,10 +7,14 @@ function LoadingSpinner({isLoading = true}) {
     let timeoutId = 0;
 
     // In the event the suer is not signed in or error has occurred.
-    if (isLoading) {
+    if (isLoading && process.env.NODE_ENV === "production") {
       timeoutId = setTimeout(() => {
         navigate('/');  // Navigate back to home page
       }, 7000); // 7 seconds
+    } else if (isLoading && process.env.NODE_ENV === "development"){
+      timeoutId = setTimeout(() => {
+        navigate('/');
+      }, 30000);
     }
 
     return () => {

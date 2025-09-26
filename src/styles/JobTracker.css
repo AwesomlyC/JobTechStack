@@ -74,7 +74,8 @@ table{
 }
 .table-table{
     height: 75vh;
-    background-color: lightgray
+    background-color: lightgray;
+    width: 70vw;;
 }
 
 .table-skills{
@@ -185,4 +186,8 @@ th{
 
 .table-result-data{
     font-weight: 500;
+    max-width: 20vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
