@@ -12,27 +12,11 @@ function TextInput() {
   const [userInput, setUserInput] = useState("");
   const [wordMap, setWordMap] = useState({});
   const [companyName, setCompanyName] = useState("");
-  const [companyLocation, setCompanyLocation] = useState("Remote");
+  const [companyLocation, setCompanyLocation] = useState({value: "Remote", label: "Remote"});
   const [dateOfSubmission, setDateOfSubmission] = useState(new Date()); // Calendar Icon
   const [jobTitle, setJobTitle] = useState(""); // Calendar Icon
   const [companyURL, setCompanyURL] = useState(""); // optional
 
-//   const US_STATES = [
-//     "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado",
-//     "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho",
-//     "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana",
-//     "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota",
-//     "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada",
-//     "New Hampshire", "New Jersey", "New Mexico", "New York",
-//     "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon",
-//     "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
-//     "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington",
-//     "West Virginia", "Wisconsin", "Wyoming", "Remote", "United States of America"
-//     ];
-//   const stateOptions = US_STATES.map(state => ({
-//   value: state,
-//   label: state
-// }));
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   
@@ -149,20 +133,7 @@ function TextInput() {
         <div className="row">
           <div className="form-control">
             <label className="label-description">Location</label>
-      {/* <Select
-        defaultValue={{value: "Remote", label: "Remote"}}
-        isSearchable={true}
-        options={stateOptions}
-      /> */}
       <StateSelector companyLocation = {{value: "Remote", label: "Remote"}} setCompanyLocation = {setCompanyLocation}/>
-            {/* <StateSelector companyLocation = {companyLocation} setCompanyLocation = {setCompanyLocation} /> */}
-            {/* <select
-              className="company-information"
-              value={companyLocation}
-              onChange={(e) => setCompanyLocation(e.target.value)}
-            > */}
-
-            {/* </select> */}
           </div>
           <div className="form-control">
             <label className="label-description">Date</label>
