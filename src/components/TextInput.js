@@ -66,7 +66,7 @@ function TextInput() {
       userInput,
       companyName: companyName.trimEnd().trimStart(),
       jobTitle: jobTitle.trimEnd().trimStart(),
-      companyLocation: companyLocation.value.trimEnd().trimStart(),
+      companyLocation: companyLocation.value ? companyLocation.value.trimEnd().trimStart() : "Remote",
       dateOfSubmission: modifyDate(
         dateOfSubmission.toLocaleDateString("en-US")
       ),
