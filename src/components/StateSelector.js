@@ -2,7 +2,7 @@ import React from 'react'
 import Select from 'react-select';
 function StateSelector({companyLocation, setCompanyLocation}) {
     const US_STATES = [
-    "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado",
+     "Remote", "United States", "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado",
     "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho",
     "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana",
     "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota",
@@ -11,7 +11,7 @@ function StateSelector({companyLocation, setCompanyLocation}) {
     "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon",
     "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
     "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington",
-    "West Virginia", "Wisconsin", "Wyoming", "Remote", "United States"
+    "West Virginia", "Wisconsin", "Wyoming"
     ];
   const stateOptions = US_STATES.map(state => ({
   value: state,
